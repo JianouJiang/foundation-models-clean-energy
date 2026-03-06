@@ -192,14 +192,13 @@ def fill_from_experiments(strategies, exp_results):
                     sup_res = vlm.get("Supervised (CLIP+LogReg)", {})
                     s["performance"] = sup_res.get("f1", 0)
 
-    # LLM Q&A results
+    # LLM Q&A results (top-level keys: mean_keyword_score, accuracy_at_04)
     qa = exp_results.get("llm_energy_qa", {})
     if qa:
-        summary = qa.get("summary", {})
         for s in strategies:
             if s["category"] == "nlp":
                 if s["strategy"] == "Zero-shot FM":
-                    s["performance"] = summary.get("overall_accuracy", 0)
+                    s["performance"] = qa.get("mean_keyword_score", 0)
 
     # RAG results
     rag = exp_results.get("rag_pipeline", {})
@@ -209,12 +208,6 @@ def fill_from_experiments(strategies, exp_results):
             if s["strategy"] == "RAG" and s["category"] == "nlp":
                 rag_mean = summary.get("rag_augmented", {}).get("mean_score", 0)
                 s["performance"] = round(rag_mean, 3)
-                # Also update direct LLM from RAG experiment
-                direct_mean = summary.get("direct_llm", {}).get("mean_score", 0)
-                for s2 in strategies:
-                    if s2["strategy"] == "Zero-shot FM" and s2["category"] == "nlp":
-                        if s2["performance"] == 0:
-                            s2["performance"] = round(direct_mean, 3)
 
     return strategies
 
@@ -241,98 +234,83 @@ def compute_pareto_frontier(strategies):
 
 
 def plot_pareto(strategies):
-    """Plot performance vs compute cost with Pareto frontier."""
+    """Plot performance vs compute cost with Pareto frontier.
+    Color encodes setup effort, shape encodes task category.
+    Only Pareto-optimal points are labeled (Tufte: reduce clutter).
+    """
+    import matplotlib.cm as cm
+    from matplotlib.colors import Normalize
+    from matplotlib.lines import Line2D
+
     fig, ax = plt.subplots(figsize=(10, 7))
 
-    colors = pu.COLORS
-    category_colors = {
-        "time-series": colors[0],
-        "vision": colors[1],
-        "nlp": colors[2],
+    category_markers = {
+        "time-series": "o",
+        "vision": "s",
+        "nlp": "D",
     }
     category_labels = {
-        "time-series": "Time-Series Forecasting",
-        "vision": "Visual Inspection",
+        "time-series": "Time-series forecasting",
+        "vision": "Visual inspection",
         "nlp": "Domain Q&A",
     }
 
-    markers = {
-        "Statistical": "s",
-        "Classical ML": "D",
-        "Fine-tuned DL": "^",
-        "Zero-shot FM": "o",
-        "Few-shot FM": "p",
-        "RAG": "*",
-    }
+    # Collect valid strategies
+    valid = [s for s in strategies if s["performance"] > 0]
+    setup_vals = np.array([s["setup_hours"] for s in valid])
+    norm = Normalize(vmin=max(setup_vals.min(), 0.01), vmax=setup_vals.max())
+    cmap = cm.get_cmap("plasma")
 
-    # Plot each strategy
-    plotted_cats = set()
-    plotted_strats = set()
-
-    for s in strategies:
-        if s["performance"] == 0:
-            continue
-
-        cat = s["category"]
-        strat = s["strategy"]
-        color = category_colors[cat]
-        marker = markers.get(strat, "o")
-        size = 150 if s.get("pareto_optimal") else 80
-
-        # Legend labels
-        cat_label = category_labels[cat] if cat not in plotted_cats else None
-        plotted_cats.add(cat)
+    for s in valid:
+        marker = category_markers.get(s["category"], "o")
+        size = 120 if s.get("pareto_optimal") else 60
+        edgewidth = 2 if s.get("pareto_optimal") else 0.3
+        edgecolor = "black" if s.get("pareto_optimal") else "0.6"
 
         ax.scatter(s["compute_tflops"], s["performance"],
-                  c=color, marker=marker, s=size,
-                  edgecolors="black" if s.get("pareto_optimal") else "gray",
-                  linewidths=2 if s.get("pareto_optimal") else 0.5,
-                  zorder=5)
-
-        # Label
-        offset = (8, 8)
-        if s["strategy"] == "Statistical":
-            offset = (8, -12)
-        elif s["strategy"] == "RAG":
-            offset = (-60, 8)
-
-        ax.annotate(f"{s['model']}\n({s['strategy']})",
-                   (s["compute_tflops"], s["performance"]),
-                   fontsize=7, ha="left",
-                   xytext=offset, textcoords="offset points",
-                   arrowprops=dict(arrowstyle="-", color="gray", lw=0.5))
+                   c=[cmap(norm(s["setup_hours"]))], marker=marker, s=size,
+                   edgecolors=edgecolor, linewidths=edgewidth, zorder=5)
 
     # Draw Pareto frontier
-    pareto_points = [(s["compute_tflops"], s["performance"])
-                     for s in strategies if s.get("pareto_optimal") and s["performance"] > 0]
-    if len(pareto_points) >= 2:
-        pareto_points.sort(key=lambda p: p[0])
-        xs, ys = zip(*pareto_points)
-        ax.plot(xs, ys, "k--", alpha=0.5, linewidth=1.5, label="Pareto frontier")
+    pareto_pts = sorted(
+        [(s["compute_tflops"], s["performance"], f"{s['model']}\n({s['strategy']})")
+         for s in valid if s.get("pareto_optimal")],
+        key=lambda p: p[0])
+    if len(pareto_pts) >= 2:
+        px, py, _ = zip(*pareto_pts)
+        ax.plot(px, py, "k--", alpha=0.5, linewidth=1.5)
+
+    # Label ONLY Pareto points (Tufte: reduce annotation clutter)
+    for i, (x, y, lab) in enumerate(pareto_pts):
+        va = "bottom" if i % 2 == 0 else "top"
+        offset_y = 8 if i % 2 == 0 else -8
+        ax.annotate(lab, (x, y), fontsize=7.5, ha="left",
+                    xytext=(8, offset_y), textcoords="offset points",
+                    arrowprops=dict(arrowstyle="-", color="0.4", lw=0.5))
 
     ax.set_xscale("log")
-    ax.set_xlabel("Compute Cost (relative TFLOPS)")
-    ax.set_ylabel("Performance (normalized, higher = better)")
-    ax.set_title("FM Deployment Strategy: Performance vs Compute Cost")
-
-    # Custom legend
-    from matplotlib.lines import Line2D
-    legend_elements = []
-    for cat, label in category_labels.items():
-        legend_elements.append(Line2D([0], [0], marker="o", color="w",
-                              markerfacecolor=category_colors[cat],
-                              markersize=10, label=label))
-    for strat, marker in markers.items():
-        legend_elements.append(Line2D([0], [0], marker=marker, color="w",
-                              markerfacecolor="gray",
-                              markersize=8, label=strat))
-    legend_elements.append(Line2D([0], [0], linestyle="--", color="black",
-                          label="Pareto frontier"))
-
-    ax.legend(handles=legend_elements, loc="lower right", fontsize=8,
-             ncol=2, framealpha=0.9)
+    ax.set_xlabel("Compute cost (relative TFLOPS, log scale)")
+    ax.set_ylabel("Performance (normalized)")
+    ax.set_title("Deployment strategies: Pareto frontier")
     ax.set_ylim(0, 1.05)
-    ax.grid(True, alpha=0.3)
+
+    # Colorbar for setup effort
+    sm = cm.ScalarMappable(norm=norm, cmap=cmap)
+    cb = fig.colorbar(sm, ax=ax, fraction=0.03, pad=0.02)
+    cb.set_label("Setup effort (hours)")
+
+    # Category legend
+    legend_elements = [
+        Line2D([0], [0], marker=m, color="w", markerfacecolor="0.5",
+               markersize=8, label=label)
+        for cat, (m, label) in zip(
+            category_markers.keys(),
+            zip(category_markers.values(), category_labels.values()))
+    ]
+    legend_elements.append(Line2D([0], [0], ls="--", color="black",
+                                  label="Pareto frontier"))
+    ax.legend(handles=legend_elements, loc="lower right", fontsize=8,
+              framealpha=0.9)
 
     fig.tight_layout()
     pu.save_figure(fig, "fig_pareto_frontier")
@@ -341,40 +319,39 @@ def plot_pareto(strategies):
 
 
 def plot_deployment_comparison(strategies):
-    """Bar chart comparing deployment strategies across tasks."""
+    """Dot plot comparing deployment strategies across tasks (Tufte: less ink than bars)."""
     fig, axes = plt.subplots(1, 3, figsize=(14, 5))
 
     categories = ["time-series", "vision", "nlp"]
-    titles = ["(a) Load Forecasting", "(b) Visual Inspection", "(c) Domain Q&A"]
+    titles = ["(a) Load forecasting", "(b) Visual inspection", "(c) Domain Q&A"]
     colors = pu.COLORS
 
     for ax, cat, title in zip(axes, categories, titles):
-        cat_strategies = [s for s in strategies
-                         if s["category"] == cat and s["performance"] > 0]
+        cat_strategies = sorted(
+            [s for s in strategies if s["category"] == cat and s["performance"] > 0],
+            key=lambda s: s["performance"])
         if not cat_strategies:
             ax.text(0.5, 0.5, "No data", transform=ax.transAxes, ha="center")
             ax.set_title(title)
             continue
 
-        names = [f"{s['model']}\n({s['strategy']})" for s in cat_strategies]
+        names = [f"{s['model']} ({s['strategy']})" for s in cat_strategies]
         perfs = [s["performance"] for s in cat_strategies]
-        bar_colors = [colors[i % len(colors)] for i in range(len(cat_strategies))]
+        y = np.arange(len(names))
 
-        bars = ax.barh(range(len(names)), perfs, color=bar_colors, edgecolor="white")
+        ax.hlines(y, 0, perfs, color="0.80", lw=1)
+        ax.plot(perfs, y, "o", color=colors[0], markersize=7, zorder=5)
+        for yy, perf in zip(y, perfs):
+            ax.text(perf + 0.02, yy, f"{perf:.3f}", va="center", fontsize=8)
 
-        # Annotate bars
-        for bar, perf in zip(bars, perfs):
-            ax.text(bar.get_width() + 0.02, bar.get_y() + bar.get_height() / 2,
-                   f"{perf:.3f}", va="center", fontsize=8)
-
-        ax.set_yticks(range(len(names)))
+        ax.set_yticks(y)
         ax.set_yticklabels(names, fontsize=8)
-        ax.set_xlim(0, 1.15)
+        ax.set_xlim(0, 1.1)
         ax.set_xlabel("Performance")
-        ax.set_title(title, fontweight="bold")
-        ax.invert_yaxis()
+        ax.set_title(title)
+        ax.grid(axis="y", visible=False)
 
-    fig.suptitle("FM Deployment Strategy Comparison Across Energy Tasks", fontsize=12, y=1.02)
+    fig.suptitle("FM deployment strategy comparison", fontsize=12, y=1.02)
     fig.tight_layout()
     pu.save_figure(fig, "fig_deployment_comparison")
     print("Saved: fig_deployment_comparison")

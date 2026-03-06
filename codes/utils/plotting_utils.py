@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
 import numpy as np
 
-# Elsevier journal style
+# Elsevier journal style — Type 42 fonts for production compatibility
 plt.rcParams.update({
     "font.family": "serif",
     "font.serif": ["Times New Roman", "DejaVu Serif"],
@@ -20,9 +20,12 @@ plt.rcParams.update({
     "savefig.dpi": 300,
     "savefig.bbox": "tight",
     "savefig.pad_inches": 0.05,
+    "pdf.fonttype": 42,       # TrueType (avoids Type 3 rejection)
+    "ps.fonttype": 42,        # TrueType for PostScript output
     "axes.grid": True,
-    "grid.alpha": 0.3,
-    "grid.linewidth": 0.5,
+    "grid.alpha": 0.15,       # Tufte: very light gridlines
+    "grid.linewidth": 0.3,    # Tufte: thin gridlines
+    "grid.color": "#cccccc",  # Light gray
     "axes.linewidth": 0.8,
     "lines.linewidth": 1.5,
     "lines.markersize": 5,

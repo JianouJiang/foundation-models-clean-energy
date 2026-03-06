@@ -167,8 +167,7 @@ def plot_vlm_results():
 
 
 def plot_llm_qa():
-    """Plot LLM Q&A results. Uses dedicated file or falls back to RAG baseline."""
-    # Try dedicated Q&A file first, fall back to RAG direct baseline
+    """Plot LLM Q&A results: (a) Cleveland dot plot, (b) slopegraph Direct vs RAG."""
     fpath = os.path.join(RESULTS_DIR, "llm_energy_qa.json")
     rag_path = os.path.join(RESULTS_DIR, "rag_pipeline.json")
 
@@ -195,58 +194,54 @@ def plot_llm_qa():
     colors = pu.COLORS
     fig, axes = plt.subplots(1, 2, figsize=(12, 5))
 
-    # (a) Direct LLM score by domain
+    # (a) Direct LLM score by domain: Cleveland dot plot
     ax = axes[0]
     if domain_scores:
-        domains = list(domain_scores.keys())
+        domains = sorted(domain_scores.keys(), key=lambda d: domain_scores[d])
         scores = [domain_scores[d] for d in domains]
-        bar_colors = [colors[i % len(colors)] for i in range(len(domains))]
+        y = np.arange(len(domains))
 
-        bars = ax.barh(domains, scores, color=bar_colors, alpha=0.85, edgecolor="white")
-        for bar, sc in zip(bars, scores):
-            ax.text(bar.get_width() + 0.02, bar.get_y() + bar.get_height() / 2,
-                   f"{sc:.3f}", va="center", fontsize=9)
+        ax.hlines(y, 0, scores, color="0.80", lw=1)
+        ax.plot(scores, y, "o", color=colors["primary"], markersize=8, zorder=5)
+        for yy, sc in zip(y, scores):
+            ax.text(sc + 0.03, yy, f"{sc:.3f}", va="center", fontsize=9)
 
-        ax.set_xlabel("Mean Keyword Match Score")
-        ax.set_xlim(0, 1.15)
-        ax.set_title("(a) Direct LLM Score by Domain")
-        ax.invert_yaxis()
+        ax.set_yticks(y)
+        ax.set_yticklabels(domains)
+        ax.set_xlabel("Mean keyword match score")
+        ax.set_xlim(0, 1.0)
+        ax.set_title("(a) Direct LLM score by domain")
+        ax.grid(axis="y", visible=False)
 
-    # (b) Direct vs RAG comparison (if RAG data available)
+    # (b) Direct vs RAG: slopegraph (paired comparison)
     ax = axes[1]
     if os.path.exists(rag_path):
         with open(rag_path) as f:
             rag_data = json.load(f)
         by_domain = rag_data.get("summary", {}).get("by_domain", {})
         if by_domain:
-            domains = list(by_domain.keys())
-            direct_scores = [by_domain[d]["direct_mean"] for d in domains]
-            rag_scores = [by_domain[d]["rag_mean"] for d in domains]
+            domains = sorted(by_domain.keys())
+            direct = [by_domain[d]["direct_mean"] for d in domains]
+            rag = [by_domain[d]["rag_mean"] for d in domains]
+            domain_colors = [colors[i % len(colors)] for i in range(len(domains))]
 
-            x = np.arange(len(domains))
-            w = 0.35
-            bars1 = ax.bar(x - w/2, direct_scores, w, label="Direct LLM",
-                           color=colors[4], alpha=0.85, edgecolor="white")
-            bars2 = ax.bar(x + w/2, rag_scores, w, label="RAG-augmented",
-                           color=colors[0], alpha=0.85, edgecolor="white")
+            for i, (d, ds, rs, c) in enumerate(zip(domains, direct, rag, domain_colors)):
+                ax.plot([0, 1], [ds, rs], 'o-', color=c, linewidth=1.5,
+                        markersize=7, zorder=3)
+                ax.text(-0.08, ds, f"{ds:.2f}", ha="right", va="center",
+                        fontsize=8, color=c)
+                ax.text(1.08, rs, f"{rs:.2f} {d}", ha="left", va="center",
+                        fontsize=8, color=c)
 
-            for bar, val in zip(bars1, direct_scores):
-                if val > 0:
-                    ax.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 0.02,
-                           f"{val:.2f}", ha="center", fontsize=8)
-            for bar, val in zip(bars2, rag_scores):
-                if val > 0:
-                    ax.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 0.02,
-                           f"{val:.2f}", ha="center", fontsize=8)
+            ax.set_xticks([0, 1])
+            ax.set_xticklabels(["Direct LLM", "RAG-augmented"], fontsize=10)
+            ax.set_ylabel("Mean score")
+            ax.set_ylim(-0.05, 1.15)
+            ax.set_xlim(-0.3, 1.4)
+            ax.set_title("(b) Direct LLM vs RAG by domain")
+            ax.grid(axis="x", visible=False)
 
-            ax.set_xticks(x)
-            ax.set_xticklabels(domains, rotation=30, ha="right", fontsize=9)
-            ax.set_ylabel("Mean Score")
-            ax.set_ylim(0, 1.2)
-            ax.legend(loc="upper right", fontsize=9)
-            ax.set_title("(b) Direct LLM vs RAG by Domain")
-
-    fig.suptitle(f"LLM Energy Domain Q&A (Qwen2.5-7B, n={n_q}, {source})",
+    fig.suptitle(f"LLM energy domain Q&A (Qwen2.5-7B, n = {n_q})",
                 fontsize=12, y=1.02)
     fig.tight_layout()
     pu.save_figure(fig, "fig_llm_qa")
@@ -254,7 +249,7 @@ def plot_llm_qa():
 
 
 def plot_rag_comparison():
-    """Plot RAG vs direct LLM comparison."""
+    """Plot RAG vs direct LLM: (a) domain slopegraph, (b) improvement waterfall."""
     fpath = os.path.join(RESULTS_DIR, "rag_pipeline.json")
     if not os.path.exists(fpath):
         print("Skipping RAG pipeline (no results)")
@@ -268,49 +263,60 @@ def plot_rag_comparison():
 
     fig, axes = plt.subplots(1, 2, figsize=(12, 5))
 
-    # (a) Direct vs RAG by domain
+    # (a) Domain improvement: horizontal dumbbell chart
     ax = axes[0]
     by_domain = summary.get("by_domain", {})
     if by_domain:
-        domains = list(by_domain.keys())
+        domains = sorted(by_domain.keys(), key=lambda d: by_domain[d].get("improvement", 0))
         direct = [by_domain[d]["direct_mean"] for d in domains]
         rag = [by_domain[d]["rag_mean"] for d in domains]
+        y = np.arange(len(domains))
 
-        x = np.arange(len(domains))
-        width = 0.35
+        # Connecting lines
+        for yy, ds, rs in zip(y, direct, rag):
+            c = colors["primary"] if rs > ds else colors["secondary"]
+            ax.plot([ds, rs], [yy, yy], '-', color=c, lw=2, alpha=0.6)
+        # Direct dots
+        ax.scatter(direct, y, s=50, color=colors["octonary"], zorder=5,
+                   label="Direct LLM", edgecolors="white", linewidths=0.5)
+        # RAG dots
+        ax.scatter(rag, y, s=50, color=colors["primary"], zorder=5,
+                   label="RAG-augmented", edgecolors="white", linewidths=0.5)
 
-        bars1 = ax.bar(x - width / 2, direct, width, label="Direct LLM",
-                       color=colors[3], alpha=0.85, edgecolor="white")
-        bars2 = ax.bar(x + width / 2, rag, width, label="RAG-augmented",
-                       color=colors[0], alpha=0.85, edgecolor="white")
+        ax.set_yticks(y)
+        ax.set_yticklabels(domains)
+        ax.set_xlabel("Mean score")
+        ax.set_xlim(-0.05, 1.15)
+        ax.set_title("(a) Direct vs RAG by domain")
+        ax.legend(fontsize=8, frameon=False, loc="lower right")
+        ax.grid(axis="y", visible=False)
 
-        ax.set_xticks(x)
-        ax.set_xticklabels(domains, rotation=30, ha="right", fontsize=8)
-        ax.set_ylabel("Score")
-        ax.set_ylim(0, 1.1)
-        ax.set_title("(a) Score by Domain")
-        ax.legend(fontsize=9)
-
-    # (b) Overall comparison with error bars
+    # (b) Improvement waterfall
     ax = axes[1]
-    methods = ["Direct LLM", "RAG-augmented"]
-    means = [summary.get("direct_llm", {}).get("mean_score", 0),
-             summary.get("rag_augmented", {}).get("mean_score", 0)]
-    stds = [summary.get("direct_llm", {}).get("std_score", 0),
-            summary.get("rag_augmented", {}).get("std_score", 0)]
+    if by_domain:
+        domains_sorted = sorted(by_domain.keys(),
+                                key=lambda d: by_domain[d].get("improvement", 0),
+                                reverse=True)
+        improvements = [by_domain[d].get("improvement", 0) for d in domains_sorted]
+        y2 = np.arange(len(domains_sorted))
+        bar_colors = [colors["primary"] if imp > 0 else colors["secondary"]
+                      for imp in improvements]
 
-    bars = ax.bar(methods, means, yerr=stds, capsize=8,
-                 color=[colors[3], colors[0]], alpha=0.85, edgecolor="white")
-    for bar, mean in zip(bars, means):
-        ax.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + 0.05,
-               f"{mean:.3f}", ha="center", fontsize=11, fontweight="bold")
+        ax.barh(y2, improvements, color=bar_colors, alpha=0.85, edgecolor="white",
+                height=0.6)
+        ax.axvline(0, color="0.3", lw=0.8)
+        for yy, imp in zip(y2, improvements):
+            ax.text(imp + 0.02 if imp >= 0 else imp - 0.02, yy,
+                    f"{imp:+.3f}", va="center", fontsize=9,
+                    ha="left" if imp >= 0 else "right")
+        ax.set_yticks(y2)
+        ax.set_yticklabels(domains_sorted)
+        ax.set_xlabel("Score improvement (RAG - Direct)")
+        overall_imp = summary.get("improvement_pct", 0)
+        ax.set_title(f"(b) RAG improvement (+{overall_imp:.1f}% overall)")
+        ax.grid(axis="y", visible=False)
 
-    improvement = summary.get("improvement_pct", 0)
-    ax.set_ylabel("Score")
-    ax.set_ylim(0, 1.2)
-    ax.set_title(f"(b) Overall: RAG improvement = {improvement:+.1f}%")
-
-    fig.suptitle(f"RAG Pipeline: Direct LLM vs RAG-Augmented (n={summary.get('n_questions', '?')})",
+    fig.suptitle(f"RAG pipeline evaluation (n = {summary.get('n_questions', '?')})",
                 fontsize=12, y=1.02)
     fig.tight_layout()
     pu.save_figure(fig, "fig_rag_comparison")

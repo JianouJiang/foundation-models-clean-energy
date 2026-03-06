@@ -45,15 +45,23 @@ def main():
 
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 5))
 
-    # Panel A: Overall trend with exponential fit
-    ax1.bar(years, counts, color=pu.COLORS["primary"], alpha=0.7, zorder=3)
+    # Panel A: Line+markers with exponential fit (Tufte: less ink than bars)
+    doubling = np.log(2) / popt[1]
+    ax1.plot(years, counts, 'o-', color=pu.COLORS["primary"],
+             markersize=6, linewidth=1.5, zorder=4, label="Observed")
     ax1.plot(x_smooth + 2019, y_smooth, '--', color=pu.COLORS["secondary"],
-             linewidth=2, label=f"Exp. fit (R²={r2:.3f})", zorder=4)
+             linewidth=1.5, zorder=3, label=f"Exp. fit ($R^2$={r2:.3f})")
+    # Annotate doubling time directly on curve
+    mid_idx = len(x_smooth) // 2
+    ax1.annotate(f"Doubling time: {doubling:.1f} yr",
+                 xy=(x_smooth[mid_idx] + 2019, y_smooth[mid_idx]),
+                 xytext=(15, 15), textcoords="offset points",
+                 fontsize=9, ha="left",
+                 arrowprops=dict(arrowstyle="->", color="0.4", lw=0.8))
     ax1.set_xlabel("Year")
     ax1.set_ylabel("Number of publications")
     ax1.set_title("(a) FM+Energy publication growth")
-    doubling = np.log(2) / popt[1]
-    ax1.legend(title=f"Doubling time: {doubling:.1f} yr")
+    ax1.legend(fontsize=8, frameon=False)
     ax1.set_xlim(2016.5, 2025.5)
 
     # Panel B: Stacked area by FM type

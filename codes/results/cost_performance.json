@@ -75,7 +75,7 @@
     "strategy": "Zero-shot FM",
     "task": "Domain Q&A",
     "model": "Qwen2.5-7B",
-    "performance": 0.26,
+    "performance": 0.519,
     "perf_metric": "Accuracy",
     "compute_tflops": 0.1,
     "setup_hours": 1,

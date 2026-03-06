@@ -13,37 +13,37 @@ Warning--empty pages in yao2023react
 Warning--empty pages in liu2024timer
 You've used 94 entries,
             2952 wiz_defined-function locations,
-            1141 strings with 24487 characters,
-and the built_in function-call counts, 30867 in all, are:
-= -- 2662
+            1168 strings with 25427 characters,
+and the built_in function-call counts, 31377 in all, are:
+= -- 2747
 > -- 1513
 < -- 18
 + -- 567
 - -- 473
-* -- 2145
-:= -- 4485
-add.period$ -- 94
+* -- 2247
+:= -- 4536
+add.period$ -- 111
 call.type$ -- 94
 change.case$ -- 97
 chr.to.int$ -- 0
 cite$ -- 102
 duplicate$ -- 952
-empty$ -- 3262
+empty$ -- 3296
 format.name$ -- 565
-if$ -- 7845
+if$ -- 7964
 int.to.chr$ -- 0
 int.to.str$ -- 94
 missing$ -- 93
-newline$ -- 290
+newline$ -- 307
 num.names$ -- 94
-pop$ -- 550
+pop$ -- 533
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 1993
+skip$ -- 2027
 stack$ -- 0
 substring$ -- 1561
-swap$ -- 218
+swap$ -- 252
 text.length$ -- 18
 text.prefix$ -- 0
 top$ -- 0
@@ -51,5 +51,5 @@ type$ -- 0
 warning$ -- 8
 while$ -- 194
 width$ -- 96
-write$ -- 783
+write$ -- 817
 (There were 8 warnings)

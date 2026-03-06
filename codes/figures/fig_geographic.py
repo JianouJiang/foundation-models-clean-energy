@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-"""Fig: Geographic distribution of FM+energy research."""
+"""Fig: Geographic distribution of FM+energy research.
+(a) Cleveland dot plot of top-15 countries
+(b) 100% stacked horizontal bars for FM-type composition of top-5 countries
+"""
 import os, sys
 import numpy as np
 import pandas as pd
@@ -36,47 +39,56 @@ def main():
     names = [COUNTRY_NAMES.get(c, c) for c, _ in top15]
     vals = [v for _, v in top15]
 
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 5))
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 5),
+                                    gridspec_kw={"width_ratios": [1.2, 1.0]})
 
-    # Panel A: Bar chart by country
-    colors = [pu.COLORS["quaternary"] if n == "China" else
-              pu.COLORS["primary"] if n == "USA" else
-              pu.COLORS["tertiary"] if n == "UK" else
-              pu.COLORS["octonary"]
-              for n in names]
-    bars = ax1.barh(range(len(names)), vals, color=colors, alpha=0.8)
-    ax1.set_yticks(range(len(names)))
+    # (a) Cleveland dot plot (Tufte: less ink than bars)
+    y = np.arange(len(names))
+    ax1.hlines(y, 0, vals, color="0.80", lw=1)
+    ax1.plot(vals, y, "o", color=pu.COLORS["primary"], markersize=7, zorder=5)
+    for yy, val in zip(y, vals):
+        ax1.text(val + max(vals) * 0.02, yy, str(val), va="center", fontsize=8)
+    ax1.set_yticks(y)
     ax1.set_yticklabels(names)
     ax1.invert_yaxis()
-    ax1.set_xlabel("Number of papers (author affiliations)")
+    ax1.set_xlabel("Papers (author affiliations)")
     ax1.set_title("(a) Geographic distribution")
-    for bar, val in zip(bars, vals):
-        ax1.text(bar.get_width() + 5, bar.get_y() + bar.get_height()/2,
-                 str(val), va="center", fontsize=8)
+    ax1.grid(axis="y", visible=False)
 
-    # Panel B: Country × FM type breakdown for top 5 countries
+    # (b) 100% stacked horizontal bars for FM composition (top-5)
     top5_codes = [c for c, _ in country_counts.most_common(5)]
+    top5_names = [COUNTRY_NAMES.get(c, c) for c in top5_codes]
     fm_types = ["LLM", "TSFM", "VLM", "diffusion", "multimodal"]
     fm_colors = [pu.COLORS["primary"], pu.COLORS["secondary"],
                  pu.COLORS["tertiary"], pu.COLORS["quaternary"],
                  pu.COLORS["quinary"]]
 
-    x = np.arange(len(top5_codes))
-    width = 0.15
-    for i, (fm, color) in enumerate(zip(fm_types, fm_colors)):
-        counts = []
-        for cc in top5_codes:
+    # Build composition matrix
+    comp = np.zeros((len(top5_codes), len(fm_types)))
+    for j, fm in enumerate(fm_types):
+        for i, cc in enumerate(top5_codes):
             mask_cc = df["countries"].str.contains(cc, na=False)
             mask_fm = df["fm_types"].str.contains(fm, na=False)
-            counts.append((mask_cc & mask_fm).sum())
-        ax2.bar(x + i*width - 2*width, counts, width, label=fm,
-                color=color, alpha=0.8)
+            comp[i, j] = (mask_cc & mask_fm).sum()
+    row_totals = comp.sum(axis=1, keepdims=True)
+    row_totals[row_totals == 0] = 1
+    pct = comp / row_totals
 
-    ax2.set_xticks(x)
-    ax2.set_xticklabels([COUNTRY_NAMES.get(c, c) for c in top5_codes])
-    ax2.set_ylabel("Number of papers")
-    ax2.set_title("(b) FM type by top-5 countries")
-    ax2.legend(fontsize=8)
+    y2 = np.arange(len(top5_codes))
+    left = np.zeros(len(top5_codes))
+    for j, (fm, color) in enumerate(zip(fm_types, fm_colors)):
+        ax2.barh(y2, pct[:, j], left=left, color=color, height=0.6,
+                 edgecolor="white", linewidth=0.3, label=fm)
+        left += pct[:, j]
+
+    ax2.set_yticks(y2)
+    ax2.set_yticklabels(top5_names)
+    ax2.invert_yaxis()
+    ax2.set_xlim(0, 1)
+    ax2.set_xlabel("Share of publications")
+    ax2.set_title("(b) FM-type portfolio (top-5)")
+    ax2.legend(fontsize=8, frameon=False, loc="lower right")
+    ax2.grid(visible=False)
 
     fig.tight_layout()
     pu.save_figure(fig, "fig_geographic")

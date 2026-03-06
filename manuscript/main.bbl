@@ -17,7 +17,8 @@ R.~Bommasani, D.~A. Hudson, E.~Adeli, R.~Altman, S.~Arber, S.~von Arx, M.~S.
 \bibitem{wei2022emergent}
 J.~Wei, Y.~Tay, R.~Bommasani, C.~Raffel, B.~Zoph, S.~Borgeaud, D.~Yogatama,
   M.~Bosma, D.~Zhou, D.~Metzler, et~al., Emergent abilities of large language
-  models, Transactions on Machine Learning Research (2022).
+  models, Transactions on Machine Learning Research (2022, eprint={2206.07682},
+  archivePrefix={arXiv}, primaryClass={cs}).
 
 \bibitem{achiam2023gpt4}
 J.~Achiam, S.~Adler, S.~Agarwal, L.~Ahmad, I.~Akkaya, F.~L. Aleman, D.~Almeida,
@@ -34,18 +35,21 @@ H.~Touvron, L.~Martin, K.~Stone, P.~Albert, A.~Almahairi, Y.~Babaei,
 A.~Radford, J.~W. Kim, C.~Hallacy, A.~Ramesh, G.~Goh, S.~Agarwal, G.~Sastry,
   A.~Askell, P.~Mishkin, J.~Clark, et~al., Learning transferable visual models
   from natural language supervision, in: International Conference on Machine
-  Learning, PMLR, 2021, pp. 8748--8763.
+  Learning, PMLR, eprint={2103.00020}, archivePrefix={arXiv},
+  primaryClass={cs}, 2021, pp. 8748--8763.
 
 \bibitem{kirillov2023sam}
 A.~Kirillov, E.~Mintun, N.~Ravi, H.~Mao, C.~Rolland, L.~Gustafson, T.~Xiao,
   S.~Whitehead, A.~C. Berg, W.-Y. Lo, et~al., Segment anything, in: Proceedings
-  of the IEEE/CVF International Conference on Computer Vision, 2023, pp.
+  of the IEEE/CVF International Conference on Computer Vision, 2023,
+  eprint={2304.02643}, archivePrefix={arXiv}, primaryClass={cs}, pp.
   4015--4026.
 
 \bibitem{woo2024moirai}
 G.~Woo, C.~Liu, A.~Kumar, C.~Xiong, S.~Savarese, D.~Sahoo, Unified training of
   universal time series forecasting transformers, in: International Conference
   on Machine Learning, PMLR, 2024.
+\newblock \href {http://arxiv.org/abs/2402.02592} {\path{arXiv:2402.02592}}.
 
 \bibitem{ahmed2020wind_forecasting_review}
 R.~Ahmed, V.~Robinson, S.~Ali, A review and evaluation of the state-of-the-art
@@ -66,17 +70,18 @@ S.~Minaee, T.~Mikolov, N.~Nikzad, M.~Chenaghlu, R.~Socher, X.~Amatriain,
 A.~C. Tricco, E.~Lillie, W.~Zarin, K.~K. O'Brien, H.~Colquhoun, D.~Levac,
   D.~Moher, M.~D. Peters, T.~Horsley, L.~Weeks, et~al., {PRISMA} extension for
   scoping reviews ({PRISMA-ScR}): Checklist and explanation, Annals of Internal
-  Medicine 169~(7) (2018) 467--473.
+  Medicine 169~(7) (2018, doi={10.7326/M18-0850}) 467--473.
 
 \bibitem{page2021prisma}
 M.~J. Page, J.~E. McKenzie, P.~M. Bossuyt, I.~Boutron, T.~C. Hoffmann, C.~D.
   Mulrow, L.~Shamseer, J.~M. Tetzlaff, E.~A. Akl, S.~E. Brennan, et~al., The
   {PRISMA} 2020 statement: An updated guideline for reporting systematic
-  reviews, BMJ 372 (2021) n71.
+  reviews, BMJ 372 (2021, doi={10.1136/bmj.n71}) n71.
 
 \bibitem{arksey2005scoping}
 H.~Arksey, L.~O'Malley, Scoping studies: Towards a methodological framework,
-  International Journal of Social Research Methodology 8~(1) (2005) 19--32.
+  International Journal of Social Research Methodology 8~(1) (2005,
+  doi={10.1080/1364557032000119616}) 19--32.
 
 \bibitem{kitchenham2007guidelines}
 B.~Kitchenham, S.~Charters, Guidelines for performing systematic literature
@@ -87,12 +92,14 @@ B.~Kitchenham, S.~Charters, Guidelines for performing systematic literature
 J.~Devlin, M.-W. Chang, K.~Lee, K.~Toutanova, {BERT}: Pre-training of deep
   bidirectional transformers for language understanding, in: Proceedings of the
   2019 Conference of the North American Chapter of the Association for
-  Computational Linguistics: Human Language Technologies, 2019, pp. 4171--4186.
+  Computational Linguistics: Human Language Technologies, 2019,
+  doi={10.18653/v1/N19-1423}, pp. 4171--4186.
 
 \bibitem{vaswani2017attention}
 A.~Vaswani, N.~Shazeer, N.~Parmar, J.~Uszkoreit, L.~Jones, A.~N. Gomez,
   {\L}.~Kaiser, I.~Polosukhin, Attention is all you need, in: Advances in
-  Neural Information Processing Systems, Vol.~30, 2017, pp. 5998--6008.
+  Neural Information Processing Systems, Vol.~30, 2017, eprint={1706.03762},
+  archivePrefix={arXiv}, primaryClass={cs}, pp. 5998--6008.
 
 \bibitem{zhou2024llm_energy_review}
 Y.~Zhou, Z.~Wang, Large language models for renewable energy: Opportunities and
@@ -105,23 +112,27 @@ A.~Lotfi, et~al., Generative {AI} and foundation models for energy systems: A
 \bibitem{nie2023patchtst}
 Y.~Nie, N.~H. Nguyen, P.~Sinthong, J.~Kalagnanam, A time series is worth 64
   words: Long-term forecasting with transformers, in: International Conference
-  on Learning Representations, 2023.
+  on Learning Representations, 2023, eprint={2211.14730},
+  archivePrefix={arXiv}, primaryClass={cs}.
 
 \bibitem{goswami2024moment}
 M.~Goswami, K.~Szafer, A.~Choudhry, Y.~Cai, S.~Li, A.~Dubrawski, {MOMENT}: A
   family of open time-series foundation models, in: International Conference on
   Machine Learning, PMLR, 2024.
+\newblock \href {http://arxiv.org/abs/2402.03885} {\path{arXiv:2402.03885}}.
 
 \bibitem{hu2022lora}
 E.~J. Hu, Y.~Shen, P.~Wallis, Z.~Allen-Zhu, Y.~Li, S.~Wang, L.~Wang, W.~Chen,
   {LoRA}: Low-rank adaptation of large language models, in: International
-  Conference on Learning Representations, 2022.
+  Conference on Learning Representations, 2022, eprint={2106.09685},
+  archivePrefix={arXiv}, primaryClass={cs}.
 
 \bibitem{lewis2020rag}
 P.~Lewis, E.~Perez, A.~Piktus, F.~Petroni, V.~Karpukhin, N.~Goyal,
   H.~K{\"u}ttler, M.~Lewis, W.-t. Yih, T.~Rockt{\"a}schel, et~al.,
   Retrieval-augmented generation for knowledge-intensive {NLP} tasks, in:
-  Advances in Neural Information Processing Systems, Vol.~33, 2020, pp.
+  Advances in Neural Information Processing Systems, Vol.~33, 2020,
+  eprint={2005.11401}, archivePrefix={arXiv}, primaryClass={cs}, pp.
   9459--9474.
 
 \bibitem{xiang2024transformer_hydro}
@@ -133,18 +144,21 @@ J.~Wei, X.~Wang, D.~Schuurmans, M.~Bosma, B.~Ichter, F.~Xia, E.~Chi, Q.~V. Le,
   D.~Zhou, Chain-of-thought prompting elicits reasoning in large language
   models, Advances in Neural Information Processing Systems 35 (2022)
   24824--24837.
+\newblock \href {http://arxiv.org/abs/2201.11903} {\path{arXiv:2201.11903}}.
 
 \bibitem{ouyang2022instructgpt}
 L.~Ouyang, J.~Wu, X.~Jiang, D.~Almeida, C.~Wainwright, P.~Mishkin, C.~Zhang,
   S.~Agarwal, K.~Slama, A.~Ray, et~al., Training language models to follow
   instructions with human feedback, Advances in Neural Information Processing
   Systems 35 (2022) 27730--27744.
+\newblock \href {http://arxiv.org/abs/2203.02155} {\path{arXiv:2203.02155}}.
 
 \bibitem{brown2020language}
 T.~Brown, B.~Mann, N.~Ryder, M.~Subbiah, J.~D. Kaplan, P.~Dhariwal,
   A.~Neelakantan, P.~Shyam, G.~Sastry, A.~Askell, et~al., Language models are
   few-shot learners, in: Advances in Neural Information Processing Systems,
-  Vol.~33, 2020, pp. 1877--1901.
+  Vol.~33, 2020, eprint={2005.14165}, archivePrefix={arXiv}, primaryClass={cs},
+  pp. 1877--1901.
 
 \bibitem{jiang2023mistral}
 A.~Q. Jiang, A.~Sablayrolles, A.~Mensch, C.~Bamford, D.~S. Chaplot, D.~d.~l.
@@ -161,16 +175,19 @@ Z.~Du, Y.~Qian, X.~Liu, M.~Ding, J.~Qiu, Z.~Yang, J.~Tang, {GLM}: General
   language model pretraining with autoregressive blank infilling, in:
   Proceedings of the 60th Annual Meeting of the Association for Computational
   Linguistics, 2022, pp. 320--335.
+\newblock \href {http://arxiv.org/abs/2103.10360} {\path{arXiv:2103.10360}}.
 
 \bibitem{zeng2023glm130b}
 A.~Zeng, X.~Liu, Z.~Du, Z.~Wang, H.~Lai, M.~Ding, Z.~Yang, Y.~Xu, W.~Zheng,
   X.~Xia, et~al., {GLM-130B}: An open bilingual pre-trained model, in:
   International Conference on Learning Representations, 2023.
+\newblock \href {http://arxiv.org/abs/2210.02414} {\path{arXiv:2210.02414}}.
 
 \bibitem{li2023blip2}
 J.~Li, D.~Li, S.~Savarese, S.~Hoi, {BLIP-2}: Bootstrapping language-image
   pre-training with frozen image encoders and large language models, in:
   International Conference on Machine Learning, PMLR, 2023, pp. 19730--19742.
+\newblock \href {http://arxiv.org/abs/2301.12597} {\path{arXiv:2301.12597}}.
 
 \bibitem{shao2024wind_blade_inspection}
 H.~Shao, et~al., Deep learning-based automated inspection of wind turbine blade
@@ -194,6 +211,7 @@ S.~Wang, et~al., Deep learning for ecological monitoring from satellite
 T.~Zhou, P.~Niu, X.~Wang, L.~Sun, R.~Jin, One fits all: Power general time
   series analysis by pretrained {LM}, in: Advances in Neural Information
   Processing Systems, Vol.~36, 2023.
+\newblock \href {http://arxiv.org/abs/2302.11939} {\path{arXiv:2302.11939}}.
 
 \bibitem{rasul2023lagllama}
 K.~Rasul, A.~Ashok, A.~R. Williams, A.~Khorasani, G.~Adamopoulos, R.~Bhatt,
@@ -213,7 +231,8 @@ A.~Das, W.~Kong, A.~Leber, R.~Mathews, R.~Sen, A decoder-only foundation model
 
 \bibitem{ho2020denoising}
 J.~Ho, A.~Jain, P.~Abbeel, Denoising diffusion probabilistic models, in:
-  Advances in Neural Information Processing Systems, Vol.~33, 2020, pp.
+  Advances in Neural Information Processing Systems, Vol.~33, 2020,
+  eprint={2006.11239}, archivePrefix={arXiv}, primaryClass={cs}, pp.
   6840--6851.
 
 \bibitem{rombach2022stablediffusion}
@@ -221,6 +240,7 @@ R.~Rombach, A.~Blattmann, D.~Lorenz, P.~Esser, B.~Ommer, High-resolution image
   synthesis with latent diffusion models, in: Proceedings of the IEEE/CVF
   Conference on Computer Vision and Pattern Recognition, 2022, pp.
   10684--10695.
+\newblock \href {http://arxiv.org/abs/2112.10752} {\path{arXiv:2112.10752}}.
 
 \bibitem{zhang2024diffusion_ts}
 L.~Zhang, et~al., Diffusion models for time series applications: A survey,
@@ -231,16 +251,19 @@ R.~Girdhar, A.~El-Nouby, Z.~Liu, M.~Singh, K.~V. Alwala, A.~Joulin, I.~Misra,
   {ImageBind}: One embedding space to bind them all, in: Proceedings of the
   IEEE/CVF Conference on Computer Vision and Pattern Recognition, 2023, pp.
   15180--15190.
+\newblock \href {http://arxiv.org/abs/2305.05665} {\path{arXiv:2305.05665}}.
 
 \bibitem{yao2023react}
 S.~Yao, J.~Zhao, D.~Yu, N.~Du, I.~Shafran, K.~Narasimhan, Y.~Cao, {ReAct}:
   Synergizing reasoning and acting in language models, in: International
   Conference on Learning Representations, 2023.
+\newblock \href {http://arxiv.org/abs/2210.03629} {\path{arXiv:2210.03629}}.
 
 \bibitem{schick2024toolformer}
 T.~Schick, J.~Dwivedi-Yu, R.~Dess{\`i}, R.~Raileanu, M.~Lomeli, L.~Zettlemoyer,
   N.~Cancedda, T.~Scialom, Toolformer: Language models can teach themselves to
   use tools, Advances in Neural Information Processing Systems 36 (2024).
+\newblock \href {http://arxiv.org/abs/2302.04761} {\path{arXiv:2302.04761}}.
 
 \bibitem{zhang2024llm_hydro_qa}
 W.~Zhang, et~al., Large language model-based question answering system for
@@ -345,6 +368,8 @@ D.~Tuia, B.~Kellenberger, S.~Beery, B.~R. Costelloe, S.~Zuffi, B.~Risse,
   A.~Mathis, M.~W. Mathis, F.~van Langevelde, T.~Burghardt, et~al.,
   Perspectives in machine learning for wildlife conservation, Nature
   Communications 13~(1) (2022) 792.
+\newblock \href {https://doi.org/10.1038/s41467-022-27980-y}
+  {\path{doi:10.1038/s41467-022-27980-y}}.
 
 \bibitem{liu2024clip_bird_wind}
 Y.~Liu, et~al., Zero-shot bird species classification at wind farm sites using
@@ -403,6 +428,7 @@ W.~Chen, et~al., Natural language processing for offshore wind farm site
 Y.~Liu, H.~Zhang, C.~Li, X.~Huang, J.~Wang, M.~Long, Timer: Generative
   pre-trained transformers are large time series models, in: International
   Conference on Machine Learning, PMLR, 2024.
+\newblock \href {http://arxiv.org/abs/2402.02368} {\path{arXiv:2402.02368}}.
 
 \bibitem{chen2024thermal_vlm_solar}
 Z.~Chen, et~al., Thermal imaging analysis of photovoltaic arrays using
@@ -434,26 +460,31 @@ T.~Wang, et~al., Pre-trained audio foundation models for bat call
 \bibitem{kahl2021birdnet}
 S.~Kahl, C.~M. Wood, M.~Eibl, H.~Klinck, {BirdNET}: A deep learning solution
   for avian diversity monitoring, Ecological Informatics 61 (2021) 101236.
+\newblock \href {https://doi.org/10.1016/j.ecoinf.2021.101236}
+  {\path{doi:10.1016/j.ecoinf.2021.101236}}.
 
 \bibitem{wu2024diffusion_wildlife_augment}
 X.~Wu, et~al., Diffusion models for synthetic wildlife image generation to
   address class imbalance in ecological monitoring, Methods in Ecology and
   Evolution 15~(6) (2024) 1092--1108.
 
+\bibitem{he2022masked}
+K.~He, X.~Chen, S.~Xie, Y.~Li, P.~Doll{\'a}r, R.~Girshick, Masked autoencoders
+  are scalable vision learners, in: Proceedings of the IEEE/CVF Conference on
+  Computer Vision and Pattern Recognition, 2022, pp. 16000--16009.
+\newblock \href {http://arxiv.org/abs/2111.06377} {\path{arXiv:2111.06377}}.
+
 \bibitem{chen2024satmae_habitat}
 S.~Chen, et~al., Satellite foundation models for vegetation change detection
   around energy infrastructure, Remote Sensing of Environment 305 (2024)
   114072.
 
-\bibitem{he2022masked}
-K.~He, X.~Chen, S.~Xie, Y.~Li, P.~Doll{\'a}r, R.~Girshick, Masked autoencoders
-  are scalable vision learners, in: Proceedings of the IEEE/CVF Conference on
-  Computer Vision and Pattern Recognition, 2022, pp. 16000--16009.
-
 \bibitem{deitsch2019elpv}
 S.~Deitsch, V.~Christlein, S.~Berber, C.~Buerhop-Lutz, A.~Maier, F.~Gallwitz,
   C.~Riess, Automatic classification of defective photovoltaic module cells in
   electroluminescence images, Solar Energy 185 (2019) 455--468.
+\newblock \href {https://doi.org/10.1016/j.solener.2019.02.067}
+  {\path{doi:10.1016/j.solener.2019.02.067}}.
 
 \bibitem{euaiact2024}
 {European Commission}, The {EU Artificial Intelligence Act}: Implications for
