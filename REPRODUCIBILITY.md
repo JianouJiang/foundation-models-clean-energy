@@ -14,7 +14,7 @@
 ## Results
 - [x] `results/reproduce.sh` exists and regenerates all figures/tables
 - [x] Script exits with code 0 on success
-- [ ] Generated outputs match paper's figures and tables
+- [x] Generated outputs match paper's figures and tables
 
 ## Process Log
 - [x] `process-log/README.md` describes research workflow
