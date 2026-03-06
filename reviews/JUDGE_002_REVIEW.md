@@ -251,3 +251,60 @@ The score rises from 4/10 (JUDGE_001) to 5/10, reflecting substantial progress. 
 ---
 
 *"The first rule of compounding is to never interrupt it unnecessarily. This paper has compounded well from a 4 to a 5 -- real experiments, real data, real methods. But a Pareto frontier figure that shows the wrong number is like a financial statement with a misplaced decimal: it makes the reader distrust everything else, even the parts that are correct. Fix the decimal." -- Munger's compounding principle applied to this paper.*
+
+---
+
+## ADDENDUM: POST-FIX REASSESSMENT (2026-03-06, same session)
+
+The Worker applied fixes during this review session. Updated assessment below.
+
+### Resolution Status of JUDGE_002 Items
+
+| # | Item | Status | Evidence |
+|---|------|--------|----------|
+| C1 | Pareto figure wrong baseline | **RESOLVED** | `cost_performance.json:78` now shows `performance: 0.519` (mean keyword score). Figure regenerated; zero-shot LLM correctly plotted at ~0.52. |
+| H1 | RAG metric inconsistency | **PARTIALLY RESOLVED** | Line 745: properly separates experiments, reports timeout confound, gives controlled +64.9%. Conclusion (line 849) uses +64.9%. **BUT line 755 still says "+136.7%"** in the synthesis subsection -- internal inconsistency with line 745 and line 849. |
+| H2 | Application study DOIs | **NOT RESOLVED** | All 11 flagged references still lack DOI/eprint fields (verified via grep). |
+| M1 | Second LLM model | **RESOLVED** | Qwen2.5-3B results added (`llm_energy_qa_3b.json`, 50 questions, mean score 0.515, accuracy 70%). Statistical comparison in text: Wilcoxon p=0.89, Cohen's d=0.016. Pareto figure includes both models. |
+| M2 | Metric disclaimer | **RESOLVED** | Line 755: "Because performance metrics differ across task categories...cross-category comparisons are approximate." Figure caption echoes this. |
+| M3 | Keyword scoring limitation | **RESOLVED** | Line 698: "the keyword-based heuristic is conservative and may miss factual errors (e.g., the 7B model incorrectly attributed SAM to Adobe rather than Meta AI)." |
+
+### New Observations
+
+**Positive findings from the fixes:**
+
+1. The Qwen2.5-3B vs 7B comparison (0.515 vs 0.519, p=0.89) is a genuinely useful finding: energy domain knowledge persists at 3B scale for this question set. This has practical implications for edge deployment at energy sites. Well executed.
+
+2. The RAG section (line 745) now properly handles the timeout confound: "7/15 direct-LLM and 3/15 RAG queries timed out (300s limit), confounding the raw comparison (0.616 vs. 0.260, +136.7%). Restricting to the 8 questions where both conditions produced responses, RAG outperformed direct LLM: 0.804 vs. 0.488 (+64.9%)." This is honest, transparent reporting. The controlled comparison on paired non-timeout questions is the correct number to cite.
+
+3. The `perf_metric` field in `cost_performance.json` still says "Accuracy" for the NLP entries (lines 79, 91, 103) when the actual metric is keyword match score. Minor labelling issue.
+
+**Remaining items requiring action (updated 2026-03-06, second pass):**
+
+1. ~~**Line 755 inconsistency (HIGH):**~~ **RESOLVED.** Line 755 now reads "+64.9% on paired non-timeout questions", consistent with lines 745 and 849.
+
+2. **Reference DOIs (HIGH -- SOLE REMAINING BLOCKER):** Still unresolved. All 11 flagged application study references in Table 5 remain without DOI or arXiv eprint fields. Verified: `deng2024gpt_wind_forecast`, `xiao2024tsfm_wind_power`, `wang2024vlm_blade_defect`, `reddy2024sam_blade_segmentation`, `lee2024tsfm_solar_forecast`, `park2024sam_solar_panel`, `huang2024clip_pv_defect`, `xu2024tsfm_streamflow`, `li2024moirai_reservoir_inflow`, `zhang2024sam_fish_monitoring`, `liu2024clip_bird_wind`. This is the single largest remaining vulnerability.
+
+3. ~~**perf_metric label (LOW):**~~ **RESOLVED.** `cost_performance.json` now correctly labels NLP entries as "Keyword score".
+
+### Updated Score (Second Pass)
+
+| Pillar | Weight | Initial (JUDGE_002) | First Pass | Second Pass | Weighted |
+|--------|--------|---------------------|------------|-------------|----------|
+| Novelty | 20% | 6/10 | 6/10 | 6/10 | 1.2 |
+| Physics/Science Depth | 40% | 5/10 | 6/10 | 6/10 | 2.4 |
+| Contribution | 30% | 5/10 | 6/10 | 6/10 | 1.8 |
+| Relevancy | 10% | 9/10 | 9/10 | 9/10 | 0.9 |
+| **Total** | | **5.6** | **6.3** | | **6.3** |
+
+**Score: 6/10** (unchanged from first pass)
+
+All actionable items except H2 (reference DOIs) have been resolved. The manuscript text is now internally consistent (+64.9% throughout), figures are correct, metrics are properly labelled, and the experimental design is properly qualified. The paper has reached the point where its methodology, experiments, and claims are scientifically defensible.
+
+**The sole blocker to 7/10 is H2:** Add DOIs or arXiv eprint fields to the 11 application study references. A sceptical reviewer will attempt to verify these citations -- they populate Table 5, the paper's core evidence table. Without DOIs, these references are unverifiable, and a reviewer who cannot find them will question the entire evidence base.
+
+**If H2 is resolved, score rises to 7/10.** At that point, no structural issues remain. The paper would be suitable for submission with a reasonable expectation of "minor revision" at the target journal.
+
+---
+
+*"Invert, always invert. The question is no longer 'how will this paper be rejected?' -- the methodology is now sound, the experiments are real, the figures are correct. The question is now 'what will a sceptical reviewer Google first?' The answer: those 11 references without DOIs. Fix that, and the paper defends itself."*

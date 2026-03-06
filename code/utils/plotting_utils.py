@@ -1,0 +1,70 @@
+#!/usr/bin/env python3
+"""Shared plotting settings for publication-quality figures."""
+import matplotlib
+matplotlib.use("Agg")
+import matplotlib.pyplot as plt
+import matplotlib.ticker as ticker
+import numpy as np
+
+# Elsevier journal style — Type 42 fonts for production compatibility
+plt.rcParams.update({
+    "font.family": "serif",
+    "font.serif": ["Times New Roman", "DejaVu Serif"],
+    "font.size": 10,
+    "axes.labelsize": 11,
+    "axes.titlesize": 11,
+    "xtick.labelsize": 9,
+    "ytick.labelsize": 9,
+    "legend.fontsize": 9,
+    "figure.dpi": 300,
+    "savefig.dpi": 300,
+    "savefig.bbox": "tight",
+    "savefig.pad_inches": 0.05,
+    "pdf.fonttype": 42,       # TrueType (avoids Type 3 rejection)
+    "ps.fonttype": 42,        # TrueType for PostScript output
+    "axes.grid": True,
+    "grid.alpha": 0.15,       # Tufte: very light gridlines
+    "grid.linewidth": 0.3,    # Tufte: thin gridlines
+    "grid.color": "#cccccc",  # Light gray
+    "axes.linewidth": 0.8,
+    "lines.linewidth": 1.5,
+    "lines.markersize": 5,
+    "figure.figsize": (7.0, 4.5),
+    "text.usetex": False,
+})
+
+# Color palette (colorblind-friendly, Dark2 + Set2)
+# Supports both dict access (COLORS["primary"]) and index access (COLORS[0])
+class _ColorPalette(dict):
+    def __init__(self, mapping):
+        super().__init__(mapping)
+        self._list = list(mapping.values())
+    def __getitem__(self, key):
+        if isinstance(key, int):
+            return self._list[key]
+        return super().__getitem__(key)
+
+COLORS = _ColorPalette({
+    "primary":   "#1b9e77",
+    "secondary": "#d95f02",
+    "tertiary":  "#7570b3",
+    "quaternary":"#e7298a",
+    "quinary":   "#66a61e",
+    "senary":    "#e6ab02",
+    "septenary": "#a6761d",
+    "octonary":  "#666666",
+})
+
+FIGURE_DIR = None  # Set by caller
+
+def save_figure(fig, name, formats=("pdf", "png")):
+    """Save figure in multiple formats."""
+    import os
+    out_dir = FIGURE_DIR or os.path.join(
+        os.path.dirname(os.path.abspath(__file__)), "..", "..", "paper", "figures")
+    os.makedirs(out_dir, exist_ok=True)
+    for fmt in formats:
+        path = os.path.join(out_dir, f"{name}.{fmt}")
+        fig.savefig(path, format=fmt)
+        print(f"  Saved: {path}")
+    plt.close(fig)

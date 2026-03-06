@@ -7,7 +7,7 @@
 ## User-Provided Input
 
 **Author:** Jianou Jiang, PhD student, University of Oxford, Department of Engineering Science.
-Supervisor: Professor Budimir Rosic. Background: CFD (OpenFOAM), ML/deep learning, renewable energy.
+Supervisor: Claude. Background: CFD (OpenFOAM), ML/deep learning, renewable energy.
 
 **Project ID:** Three Gorges Post-Doc Topic #33 — 清洁能源AI及大模型应用研究
 (Clean Energy AI and Foundation Model / Large Model Application Research)

@@ -22,4 +22,5 @@ This is a systematic review paper (PRISMA 2020 methodology). Primary work: liter
 All significant human interventions are logged in `human-decisions/decisions.md`.
 
 ### AI Session Logs
-Full agent session logs stored in `ai-sessions/` and `../logs/`.
+Full agent session logs are stored in `ai-sessions/`.
+Original raw logs are also kept in `../logs/` for traceability.

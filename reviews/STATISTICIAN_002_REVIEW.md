@@ -285,3 +285,80 @@ All of the above, plus:
 ---
 
 *"To consult the statistician after an experiment is finished is merely to ask him to conduct a post-mortem examination. He can perhaps say what the experiment died of." The experiments in this paper are alive, but they need proper vital signs — confidence intervals are the heartbeat of any quantitative claim. Show me the intervals, and the numbers will speak for themselves." — Fisher's prescription for this manuscript.*
+
+---
+
+## ADDENDUM: POST-FIX REASSESSMENT (2026-03-06, same session)
+
+The Worker applied fixes during Sessions 15-18. Updated assessment below.
+
+### Resolution Status of STATISTICIAN_002 Items
+
+| # | Item | Severity | Status | Evidence |
+|---|------|----------|--------|----------|
+| M2 | Exponential growth claim | **CRITICAL** | **RESOLVED** | Line 186: "regime shift coinciding with ChatGPT's release rather than sustained exponential growth." Both R^2 values reported (0.95 raw, 0.49 log). Abstract updated: "regime shift in publication activity." Figure caption updated. Excellent rewrite. |
+| R1 | RAG timeout confound | **CRITICAL** | **RESOLVED** | Line 745: raw (0.616 vs 0.260, +136.7%) clearly labeled as confounded; controlled comparison (0.804 vs 0.488, +64.9%) on 8 paired non-timeout questions. Line 755: uses +64.9%. Line 849 (conclusions): uses +64.9%. No remaining stale 136.7% figures outside the properly-qualified raw comparison. |
+| R2 | No CIs on benchmarks | **HIGH** | **PARTIALLY RESOLVED** | Wilson CIs added for VLM accuracy ([0.57, 0.68] vs [0.71, 0.81], line 733) and reproducibility metrics (line 750). **BUT** the time-series benchmark (Table 6) still reports only point estimates — no CIs on MAE, RMSE, or MAPE. See new item below. |
+| R3 | Weak baselines, XGBoost label | **HIGH** | **RESOLVED** | "Gradient Boosting" label (line 679). Disclaimer: "All baselines use default hyperparameters; the comparison demonstrates FM zero-shot capability rather than superiority over optimised baselines" (line 667). Caveat: "Optimised baselines with longer test periods may narrow the gap" (line 686). |
+| R4 | VLM degenerate prompt | **MEDIUM** | **RESOLVED** | Footnote on Table 8 (line 730): "Degenerate all-positive classifier... F1 reflects class balance, not meaningful discrimination." |
+| R5 | Hallucination detection | **MEDIUM** | **RESOLVED** | Line 698: "detected hallucinations, though the keyword-based heuristic is conservative and may miss factual errors (e.g., the 7B model incorrectly attributed SAM to Adobe rather than Meta AI)." |
+| R6 | Table 5 uncertainty | **MEDIUM** | **RESOLVED** | Table caption (line 412): "All values are point estimates as reported; none of the cited studies provide confidence intervals or standard errors." |
+| E2 | RAG domain n too small | **MEDIUM** | **NOTED** | Limitation inherent to the 15-question design; acknowledged implicitly by the paired comparison approach. |
+| E3 | Pareto normalization | **MEDIUM** | **RESOLVED** | Line 755: "Because performance metrics differ across task categories... cross-category comparisons are approximate." |
+| M3 | Classifier validation CI | **LOW** | **RESOLVED** | Line 181: "88% agreement with manual coding; Wilson 95% CI [80%, 93%]." |
+| M1 | Inter-rater CI too wide | **LOW** | **NOTED** | Limitation acknowledged in line 111. Acceptable. |
+
+### New Positive Finding: Dual-Model Statistical Comparison
+
+The Worker added Qwen2.5-3B (Session 17) with proper statistical testing:
+- Wilcoxon signed-rank test: p = 0.89 (appropriate for paired, non-parametric data)
+- Cohen's d = 0.016 (negligible effect size)
+- 95% CI for difference: [-0.069, +0.077] (crosses zero, confirming no significant difference)
+- Win/loss/tie: 7B wins 15, 3B wins 12, ties 23
+
+This is well-executed. The Wilcoxon test is the correct choice for paired ordinal scores. The effect size quantification via Cohen's d is a best practice. The conclusion — "energy domain knowledge is retained even at 3B scale" — is appropriately cautious and properly supported by the statistical evidence. This addresses both the Judge's request for a second model and my request for significance testing on at least one comparison.
+
+### Remaining Items
+
+**R2-residual (MEDIUM, downgraded from HIGH): Time-series benchmark still lacks CIs.**
+
+The time-series table (lines 674-683) reports MAE, RMSE, and MAPE as point estimates only. This is the paper's strongest quantitative claim ("MAE 33% below ARIMA") and the one most in need of uncertainty bounds. The VLM and reproducibility CIs are welcome, but the timeseries experiment — with only a 7-day test set and 10-window approximation — is where CIs matter most.
+
+The disclaimer "All baselines use default hyperparameters" (line 667) and "Optimised baselines with longer test periods may narrow the gap" (line 686) partially mitigate this by framing the comparison as demonstrative rather than definitive. Given the survey context, I downgrade this from HIGH to MEDIUM.
+
+**Suggested fix:** Add a sentence: "With a 7-day test set, individual daily MAEs range from [X] to [Y], reflecting the variability that a rolling-window evaluation would capture." This requires no new computation — just computing per-day MAE from the existing predictions.
+
+**E2-residual (LOW): LLM Q&A domain differences untested.**
+
+Domain scores range from 0.405 (AI) to 0.675 (wind) but no omnibus test (e.g., Kruskal-Wallis) is reported. With n=10 per domain, a test is feasible. However, the dual-model comparison (Wilcoxon p=0.89) demonstrates that the Worker is capable of proper testing; the domain differences are presented descriptively rather than as statistical claims, and the figure caption appropriately says "uneven parametric knowledge" rather than "significantly different." This is acceptable. Downgraded to LOW.
+
+### Updated Scoring
+
+| Component | Weight | Original | Updated | Notes |
+|-----------|--------|----------|---------|-------|
+| Methodology | 50% | 6/10 | 8/10 | Regime shift honest; both R^2 reported; classifier CI added |
+| Results | 30% | 5/10 | 7/10 | RAG adjusted; VLM CIs; dual-model Wilcoxon; TS CIs still missing |
+| Experimental Design | 20% | 6/10 | 7/10 | Baseline disclaimer; second model; honest framing |
+| **Weighted Total** | | **5.6** | **7.5** | |
+
+**Revised Score: 7/10**
+
+The score rises from 6/10 to 7/10. The key drivers:
+
+1. The regime shift rewrite (M2) is textbook-quality honest characterization — reporting both R^2 values and letting the reader decide is exactly what Fisher would demand.
+2. The timeout-adjusted RAG comparison (R1) with clean paired analysis (+64.9%) replaces the confounded raw figure — proper experimental methodology.
+3. The Wilcoxon/Cohen's d dual-model comparison is genuine statistical testing applied to the benchmark results.
+4. The Wilson CIs on VLM accuracy and reproducibility metrics show the uncertainty quantification culture is improving.
+5. The baseline disclaimers transform the timeseries comparison from a misleading superiority claim to an honest demonstration.
+
+**Path to 8/10:**
+1. Add per-day MAE range or bootstrap CIs for the time-series benchmark
+2. Kruskal-Wallis test on LLM Q&A domain differences (or explicitly state the comparison is descriptive)
+3. Bootstrap CIs on VLM F1 (not just accuracy)
+
+**Path to 9/10:**
+All of the above, plus rolling-window evaluation for the timeseries benchmark and a larger RAG question set to enable domain-level analysis.
+
+---
+
+*"The regime shift rewrite is the most important fix. A scientist who reports R^2 = 0.95 AND R^2 = 0.49 from two legitimate analyses of the same data, and explains why they differ, earns more trust than one who cherry-picks the favourable number. This paper now earns that trust." — Fisher's revised assessment.*

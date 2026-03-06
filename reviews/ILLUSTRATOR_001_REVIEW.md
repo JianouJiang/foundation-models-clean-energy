@@ -3,35 +3,44 @@
 **Date**: 2026-03-06  
 **Scope**: Review of *existing* figures in `manuscript/figures/` (do not penalize missing/in-progress figures).
 
+## Update Note (state checked 2026-03-06 ~17:20)
+- `manuscript/main.tex` now includes figures as **PDF** (vector) rather than PNG — good; do not regress.
+- `pdffonts` spot-check on `manuscript/figures/*.pdf` shows **embedded CID TrueType fonts** (no Type 3 observed) — good; do not regress.
+- New figure programmatic report regenerated at `manuscript/figure_report.md` timestamp **2026-03-06 16:36:53**; scores/flags below reflect this updated report (not the earlier run).
+- Note: several figure PDFs/PNGs were regenerated later (**~17:12** by file mtime). Re-run the figure inspector/report after the latest regeneration so the scores/AI-lazy flags are strictly aligned with the current figure binaries.
+
 ## Constraints / Evidence Used
 - I did **not** run `figure_inspector.py` because (a) it is not present in this repo root and (b) I am explicitly constrained to **not run scripts** in this role.
 - I **did** use the existing programmatic report `manuscript/figure_report.md` plus code inspection of figure scripts in `codes/`.
 - I could not perform a true “eyeball” inspection (text overlap, label collisions) in this environment; I instead flag *high-risk* spots from the scripts + automated metrics and request the Worker to confirm by visual check at print size.
 
 ## Must-Fix (Global) — Before Submission
-1. **Stop embedding PNGs in LaTeX**: `manuscript/main.tex` uses `.png` for figures that already exist as vector `.pdf`. For journal production, use **PDF** to preserve typography and avoid raster artifacts.
-2. **PDF font issue**: `pdffonts` shows Matplotlib is emitting **Type 3** fonts (e.g., `DejaVuSerif` Type 3) in `manuscript/figures/*.pdf`. Type 3 fonts are a common production red-flag (poor text searchability, rendering quirks, and publisher complaints). Recommend setting `plt.rcParams["pdf.fonttype"]=42` (and `ps.fonttype=42`) and ensuring a proper serif font is embedded (or render text via LaTeX for perfect consistency with the manuscript).
-3. **Figure placement / overflow** (from USER REVIEW `reviews/USER_REVIEW_20260306_141841.md`): figures must appear **inline near first reference** and must **not overflow margins**. Several figures have very wide aspect ratios; ensure they remain legible at `\textwidth` in final PDF (9–11pt figure text).
+1. **Correctness before aesthetics (Pareto)**: `fig_pareto_frontier` is explicitly flagged by JUDGE_002 as containing an **incorrect point** due to an integration bug. A pretty but wrong frontier is fatal — regenerate only after data integration is correct and re-validate labels/points against the table/text.
+2. **Stop bar-charting paired comparisons**: several experiment/comparison figures still summarize *paired* outcomes (Direct vs RAG; model variants) with bars. This hides variance, confounds interpretation, and (per STATISTICIAN_002) can mask infrastructure artifacts (timeouts → zeros). Use paired plots + distributions.
+3. **Uncertainty is missing in most figures**: where claims are quantitative (benchmarks, proportions), show uncertainty bands/intervals (bootstrap/Wilson) or at minimum annotate sample sizes and variability.
+4. **Figure placement / overflow** (from USER REVIEW `reviews/USER_REVIEW_20260306_141841.md`): figures must appear **inline near first reference** and must **not overflow margins**. Several figures have very wide aspect ratios; ensure they remain legible at `\textwidth` in final PDF (9–11pt figure text).
+5. **Do-not-regress (production hygiene)**: keep figures included as **PDF**, and keep **embedded TrueType/Type 1 fonts** (avoid Type 3).
 
 ## Programmatic Figure Inspector Summary (copied from `manuscript/figure_report.md`)
 Image scores (PNG):
 - `fig_publication_trend.png`: **6.0/10**
-- `fig_geographic.png`: **5.5/10**
-- `fig_domain_heatmap.png`: **7.5/10**
-- `fig_taxonomy_heatmap.png`: **7.0/10**
-- `fig_reproducibility.png`: **6.5/10**
+- `fig_geographic.png`: **5.0/10**
+- `fig_domain_heatmap.png`: **7.0/10**
+- `fig_taxonomy_heatmap.png`: **6.5/10**
+- `fig_reproducibility.png`: **5.5/10**
 - `fig_timeseries_benchmark.png`: **6.5/10**
 - `fig_timeseries_predictions.png`: **8.0/10**
 - `fig_llm_qa.png`: **5.5/10**
-- `fig_vlm_inspection.png`: **6.0/10**
-- `fig_rag_comparison.png`: **5.5/10**
-- `fig_pareto_frontier.png`: **5.0/10**
-- `fig_deployment_comparison.png`: **5.5/10**
-- `fig_setup_effort.png`: **5.5/10**
+- `fig_vlm_inspection.png`: **5.5/10**
+- `fig_rag_comparison.png`: **5.0/10**
+- `fig_pareto_frontier.png`: **5.5/10**
+- `fig_deployment_comparison.png`: **5.0/10**
+- `fig_setup_effort.png`: **5.0/10**
 
 Notable measured issues repeated across many figures:
-- **Very high “white space”** (often ~75–96%): suggests plots are visually undersized relative to canvas or margins are too generous.
-- Several scripts are flagged as using **AI-lazy primitives** (bar/barh) without richer encodings (see Script Analysis in the report).
+- **Very high “white space”** (often ~70–97%): suggests plots are visually undersized relative to canvas or margins are too generous.
+- `manuscript/figure_report.md` now reports **Total AI-lazy flags: 4** (down from earlier runs), but several key figures remain visually bar-dominant even when not flagged by the tool.
+- Cross-check: `reviews/EDITOR_001_REVIEW.md` cites **6 AI-lazy flags**. Treat the *latest* `manuscript/figure_report.md` as source of truth once it is regenerated against the current figure files.
 
 ## Visual Language Consistency (Across All Figures)
 **Good**:
@@ -45,6 +54,14 @@ Notable measured issues repeated across many figures:
 
 ---
 
+# Cross-Agent Outstanding Items (Figure Implications)
+These are *not* stylistic quibbles; they affect what the figures are allowed to claim.
+
+1. **Pareto frontier correctness (JUDGE_002)**: treat `fig_pareto_frontier` as *invalid until re-generated from corrected data*. After fix, label fewer points and directly label Pareto points only (avoid annotation clutter).
+2. **RAG improvement figure integrity (STATISTICIAN_002)**: if timeouts produced zeros, bar summaries can silently exaggerate improvement. The figure should show *per-question paired deltas* and explicitly mark/omit timeout cases (or show a separate “failed queries” count).
+3. **Publication growth story (STATISTICIAN_002)**: the growth curve is plausibly a **step-change post-2023**, not a single exponential regime. The figure should either (a) show two regimes / changepoint, or (b) annotate the fit window and show residuals so the viewer sees misfit.
+4. **Incommensurate metrics (Pareto) (STATISTICIAN_002)**: mixing `1-nMAE`, `F1`, and “keyword match” as one “performance” axis is inherently approximate. A journal-quality graphic would separate modalities (small multiples) or add explicit caveats in-axis labeling.
+
 # Per-Figure Review (existing files)
 
 ## 1) `fig_publication_trend` (Score 6.0/10) — Acceptable, but not yet “journal figure”
@@ -53,12 +70,13 @@ Notable measured issues repeated across many figures:
 
 **Issues / risks**
 - Panel (a) uses **bars** + fit; bars are often too “thick” for time trends and waste ink.
-- Missing explicit marking of the **regime** used for fit (2019–2025) on the plot itself (a subtle but important visual honesty point).
+- Missing explicit marking of the **fit window/regime** (2019–2025) on the plot itself (visual honesty).
+- Per STATISTICIAN_002: the data likely reflects a **regime shift (post-2023 step-change)** rather than a single exponential. The figure must not visually “sell” a global exponential if the fit is window-sensitive.
 
 **Upgrade suggestion**
-- Switch panel (a) to a **line with point markers** (or lollipop) + shaded confidence band for the fitted model; annotate the doubling time on the curve, not in legend.
+- Switch panel (a) to a **line with point markers** + shaded fit band; add a vertical marker at 2023 (ChatGPT era) and either (a) fit only the post-2023 segment or (b) show two fits (pre vs post) with residual inset.
 
-## 2) `fig_geographic` (Score 5.5/10) — **AI-lazy** (barh + grouped bars)
+## 2) `fig_geographic` (Score 5.0/10) — **AI-lazy** (barh + grouped bars)
 Current (`codes/figures/fig_geographic.py`) is a bar chart + grouped bar chart. A top reviewer will expect a geographic encoding.
 
 **Required redesign (journal-quality)**: Choropleth + composition small multiples (30+ line outline)
@@ -141,21 +159,21 @@ ax_comp.grid(False)
 pu.save_figure(fig, "fig_geographic")
 ```
 
-## 3) `fig_domain_heatmap` (Score 7.5/10) — Solid, but improve inference density
+## 3) `fig_domain_heatmap` (Score 7.0/10) — Solid, but improve inference density
 Current is a single annotated heatmap with dashed red gap boxes.
 
 **Recommendations**
 - Add **marginal totals** (domain totals + FM totals) and/or **hierarchical clustering** ordering to reveal structure.
 - Consider a second panel: **normalised** heatmap (row-wise %) to separate “volume” from “preference”.
 
-## 4) `fig_taxonomy_heatmap` (Score 7.0/10) — Good base, but flagged “single-panel”
+## 4) `fig_taxonomy_heatmap` (Score 6.5/10) — Good base, but flagged “single-panel”
 The heatmap is the right object; the issue is storytelling: it needs context and annotation.
 
 **Upgrade suggestion**
 - Make it a 2×1 composite: (a) raw counts (current), (b) row-normalised proportions, with callouts on the most important “gap” cells (not just red boxes everywhere).
 
-## 5) `fig_reproducibility` (Score 6.5/10) — **AI-lazy** dashboard (bars)
-All three panels are bar charts. The content is important; the display is not.
+## 5) `fig_reproducibility` (Score 5.5/10) — Important content; still too bar-forward
+The latest `manuscript/figure_report.md` rates the *script* highly (uncertainty band present), but the *image* remains marginal — likely a scaling/whitespace/readability issue at print size.
 
 **Required redesign (journal-quality)**: time trend + dot plot + bullet charts (30+ line outline)
 ```python
@@ -244,6 +262,7 @@ pu.save_figure(fig, "fig_reproducibility")
 
 ## 7) `fig_llm_qa` (Score 5.5/10) — **AI-lazy** (barh + grouped bars)
 The scientific question is comparative, paired, and distributional; bars hide that.
+Per STATISTICIAN_002, infrastructure artifacts (timeouts → zeros) can make aggregate bar improvements meaningless unless failures are explicitly handled/visualized.
 
 **Required redesign (journal-quality)**: paired per-question deltas + domain facets (30+ line outline)
 ```python
@@ -259,7 +278,7 @@ import plotting_utils as pu
 with open("codes/results/rag_pipeline.json") as f:
     rag = json.load(f)
 
-# Worker: store per-question scores (domain, q_id, direct_score, rag_score)
+# Worker: store per-question scores (domain, q_id, direct_score, rag_score, direct_ok, rag_ok)
 qa = pd.read_csv("codes/results/qa_per_question_scores.csv")
 qa["delta"] = qa["rag_score"] - qa["direct_score"]
 
@@ -312,7 +331,7 @@ fig.suptitle("LLM energy Q&A: paired effects and distributions (avoid bar-chart 
 pu.save_figure(fig, "fig_llm_qa")
 ```
 
-## 8) `fig_vlm_inspection` (Score 6.0/10) — Mixed: one good panel, one AI-lazy panel
+## 8) `fig_vlm_inspection` (Score 5.5/10) — Mixed: one good panel, one bar-summary panel
 **Good**
 - Confusion matrix panel is appropriate (though ensure numbers remain readable at print size).
 
@@ -322,14 +341,18 @@ pu.save_figure(fig, "fig_llm_qa")
 **Upgrade suggestion**
 - Replace bars with: (a) **precision–recall points** for variants, or (b) distribution of CLIP similarity scores with **ROC operating points**, plus confusion matrix as (b).
 
-## 9) `fig_rag_comparison` (Score 5.5/10) — **AI-lazy**
+## 9) `fig_rag_comparison` (Score 5.0/10) — Borderline AI-lazy summary
 Grouped bars hide question-level variance and paired nature.
+Per STATISTICIAN_002, report the count of **failed/time-out queries** separately (or exclude with clear rule) so the viewer can see whether “improvement” is driven by missing baseline responses.
 
 **Upgrade suggestion**
 - Use the same paired + distribution approach proposed for `fig_llm_qa`, but applied to the 15-question subset; emphasize *grounding* (e.g., citations present/absent) as an additional visual channel.
 
-## 10) `fig_pareto_frontier` (Score 5.0/10) — Borderline; improve readability and data-ink
+## 10) `fig_pareto_frontier` (Score 5.5/10) — Borderline; fix correctness + readability
 The idea is correct (log-cost vs performance), but current labeling likely creates clutter and contributes to “white space” warnings.
+Per JUDGE_002, the current frontier is also **numerically wrong** due to a baseline/integration bug; treat any present graphic as provisional until re-generated from corrected inputs.
+
+Also per STATISTICIAN_002: the y-axis collapses **incommensurate metrics** (1−nMAE, F1, keyword score). If kept, make the approximation explicit, or switch to small multiples by task/modality.
 
 **Upgrade suggestion (30+ line outline)**: label only Pareto points + add iso-setup contours
 ```python
@@ -381,12 +404,12 @@ ax.set_title("Deployment strategies: Pareto frontier (color = setup effort)")
 pu.save_figure(fig, "fig_pareto_frontier")
 ```
 
-## 11) `fig_deployment_comparison` (Score 5.5/10) — **AI-lazy** (barh across tasks)
+## 11) `fig_deployment_comparison` (Score 5.0/10) — Borderline AI-lazy (barh across tasks)
 Replace with a higher-density comparison:
 - per-task **dot plots** with confidence intervals (or bootstrapped variability),
 - and/or a **parallel coordinates** view across multiple metrics (performance, cost, setup hours, labeled data).
 
-## 12) `fig_setup_effort` (Score 5.5/10) — Acceptable, but integrate with Pareto story
+## 12) `fig_setup_effort` (Score 5.0/10) — Acceptable, but integrate with Pareto story
 Bubble charts are fine, but current design likely duplicates the Pareto frontier narrative.
 Suggestion: merge into a single 2×1 figure: top = Pareto (color=setup), bottom = setup vs performance (size=labeled data), with consistent labeling scheme.
 
@@ -395,14 +418,14 @@ Suggestion: merge into a single 2×1 figure: top = Pareto (color=setup), bottom 
 ## Anti-Patterns Found (Flagged)
 - **AI-lazy figures**: heavy use of `ax.bar` / `ax.barh` where paired effects or distributions are central (`fig_geographic`, `fig_llm_qa`, `fig_rag_comparison`, `fig_reproducibility`, parts of `fig_vlm_inspection`, `fig_deployment_comparison`).
 - **Over-annotation risk**: widespread `ax.text(...)` on bars; likely overlap at print scale.
-- **Typeface mismatch / Type 3 fonts** in PDFs: likely to be rejected/complained about in production.
 - **High whitespace** warnings across many exported images: tighten layouts and scale plot elements to fill canvas.
 
 ## Requested Worker Checks (Quick Visual QA)
 - Print to PDF and check each figure at final size: **no text overlap**, tick labels readable, legends not covering data.
 - Confirm that panel labels (a,b,…) are consistent in position, font size, and weight across the entire paper.
 - Confirm figures do not exceed margins and appear inline (per user review).
+- Validate **figure-to-claim integrity**: (a) Pareto points match the underlying table/results; (b) RAG vs Direct comparisons explicitly handle timeouts/failures; (c) publication-growth plot is honest about fit window/regime shift.
+- Re-check `pdffonts` on a few key figure PDFs before submission to ensure fonts remain embedded (avoid accidental Type 3 regressions).
 
 ## Score
-Score: **6.5/10**
-
+Score: 6/10

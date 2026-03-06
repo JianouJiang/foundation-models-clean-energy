@@ -1,0 +1,57 @@
+This is BibTeX, Version 0.99d (TeX Live 2022/dev/Debian)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: main.aux
+The style file: elsarticle-num.bst
+Database file #1: references.bib
+Warning--empty pages in woo2024moirai
+Warning--empty pages in nie2023patchtst
+Warning--empty pages in goswami2024moment
+Warning--empty pages in hu2022lora
+Warning--empty pages in zeng2023glm130b
+Warning--empty pages in zhou2023onefitsall
+Warning--empty pages in yao2023react
+Warning--empty pages in jin2024chatgrid
+Warning--empty pages in zhou2024anomalyclip
+Warning--empty pages in liu2024timer
+You've used 93 entries,
+            2952 wiz_defined-function locations,
+            1207 strings with 29693 characters,
+and the built_in function-call counts, 35048 in all, are:
+= -- 3017
+> -- 1977
+< -- 18
++ -- 721
+- -- 628
+* -- 2915
+:= -- 5103
+add.period$ -- 166
+call.type$ -- 93
+change.case$ -- 97
+chr.to.int$ -- 0
+cite$ -- 103
+duplicate$ -- 951
+empty$ -- 3419
+format.name$ -- 719
+if$ -- 8652
+int.to.chr$ -- 0
+int.to.str$ -- 93
+missing$ -- 92
+newline$ -- 360
+num.names$ -- 93
+pop$ -- 522
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 2127
+stack$ -- 0
+substring$ -- 1581
+swap$ -- 361
+text.length$ -- 18
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 10
+while$ -- 195
+width$ -- 95
+write$ -- 921
+(There were 10 warnings)
