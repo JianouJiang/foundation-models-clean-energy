@@ -100,6 +100,23 @@ I attempted to locate these by title in **OpenAlex**, **Crossref**, and the **ar
 1. Add a DOI or arXiv eprint (or an official URL) for each of the 11 studies, **or**
 2. Replace/remove any citation that cannot be verified as a real, citable work (and then update the associated metric claims accordingly).
 
+#### Evidence (OpenAlex title search; 2026-03-06)
+
+Using the OpenAlex Works endpoint with `search=<title>` (top-5 results, relevance-sorted), none of the Table 5 titles appeared as an exact match, and the top results were unrelated (often decades older). This is not definitive proof of fabrication, but it is strong evidence that the bib entries lack sufficient metadata and may be incorrect.
+
+- `xu2024tsfm_streamflow` title search returned top hit “Earthquake research in China” (1975; doi:10.1029/eo056i011p00838).
+- `li2024moirai_reservoir_inflow` top hit “A comprehensive review of deep learning applications in hydrology and water resources” (2020; doi:10.2166/wst.2020.369).
+- `xiao2024tsfm_wind_power` top hit “A Survey of Convolutional Neural Networks: Analysis, Applications, and Prospects” (2021; doi:10.1109/tnnls.2021.3084827).
+- `wang2024vlm_blade_defect` top hit “A Comprehensive Review on Signal-Based and Model-Based Condition Monitoring of Wind Turbines…” (2022; doi:10.1109/jproc.2022.3171691).
+- `reddy2024sam_blade_segmentation` returned **count=0** for the full title.
+- `lee2024tsfm_solar_forecast` top hit “pvlib python: a python package for modeling solar energy systems” (2018; doi:10.21105/joss.00884).
+- `huang2024clip_pv_defect` top hit “A Review on Deep Learning Applications in Prognostics and Health Management” (2019; doi:10.1109/access.2019.2950985).
+- `park2024sam_solar_panel` top hit “Big Data: New Tricks for Econometrics” (2014; doi:10.1257/jep.28.2.3).
+- `liu2024clip_bird_wind` top hit “Montana's ring-necked pheasant…” (1976; doi:10.5962/bhl.title.69151).
+- `zhang2024sam_fish_monitoring` top hit “Tackling Climate Change with Machine Learning” (2022; doi:10.1145/3485128).
+
+Special note: `deng2024gpt_wind_forecast` has a **truncated title** in `references.bib` (“Can GPT”), making automated verification impossible and increasing the chance of accidental mis-citation.
+
 ## Notes from latest peer reviews (for Worker triage)
 
 I reviewed `reviews/JUDGE_002_REVIEW.md`, `reviews/STATISTICIAN_002_REVIEW.md`, and `reviews/ILLUSTRATOR_001_REVIEW.md`. Key items that intersect *presentation and claim integrity*:
