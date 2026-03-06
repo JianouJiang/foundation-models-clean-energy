@@ -9,6 +9,7 @@
 \usepackage{xcolor}
 \usepackage{multirow}
 \usepackage{array}
+\usepackage{float}
 %%\usepackage{lineno}  % Removed: no line numbers for final publication
 \usepackage{tikz}
 \usepackage{pgfplots}
@@ -505,7 +506,7 @@ The Interface layer provides three operator-facing components: a \textit{natural
 
 %% Layer 1: Perception
 \node[layer=green!60!black] (L1) at (0, 0.4) {};
-\node[layerlabel=green!60!black] at (-7.3, 0.4) {PERCEPTION};
+\node[layerlabel=green!60!black] at (-7.3, -0.1) {PERCEPTION};
 \node[font=\small\bfseries, color=green!60!black] at (0, 1.2) {Layer 1: Perception};
 \node[component=green!60!black] (ts) at (-4.5, 0.2) {Time-Series\\Ingestion};
 \node[component=green!60!black] (img) at (-1.5, 0.2) {Image\\Ingestion};
@@ -526,12 +527,7 @@ The Interface layer provides three operator-facing components: a \textit{natural
       fill=yellow!10, font=\small] (ops) at (0, 10.2) {};
 \node[font=\small, color=yellow!50!black] at (0, 10.2) {Operators, Engineers, Managers};
 
-%% Inter-layer arrows
-\draw[bigarrow] (data.north) -- (L1.south);
-\draw[bigarrow] (L1.north) -- (L2.south);
-\draw[bigarrow] (L2.north) -- (L3.south);
-\draw[bigarrow] (L3.north) -- (L4.south);
-\draw[bigarrow] (L4.north) -- (ops.south);
+%% Inter-layer arrows removed (visual clutter)
 
 %% Side annotations
 \node[note] at (8.2, 4.7) {On-premises\\deployment};
@@ -662,7 +658,7 @@ To move beyond qualitative assessment, we conducted five benchmark experiments t
 
 {\tolerance=400 We evaluated Chronos-T5-Small \cite{ansari2024chronos} (zero-shot) against default-parameter baselines on 24-hour ahead load forecasting using the UCI Household Electric Power dataset (34{,}168 hourly records, 7-day test set). Baselines include ARIMA(2,1,1), gradient boosting (sklearn, 100 estimators) with lag features, and a single-layer LSTM (32 hidden, 5 epochs on recent 3{,}000 hours). All baselines use default hyperparameters; the comparison demonstrates FM zero-shot capability rather than superiority over optimised baselines.\par}
 
-\begin{table}[htbp]
+\begin{table}[H]
 \centering
 \caption{Time-series forecasting benchmark: 24-hour ahead household load prediction (7-day test set, 168 hours). Chronos operates in zero-shot mode (no training on target data); all other methods are trained on the training split.}
 \label{tab:ts_benchmark}
@@ -681,10 +677,10 @@ LSTM (1-layer, 32 hidden) & 0.647 & 0.829 & 101.02 \\
 
 Chronos achieves the best MAE \textit{without any exposure to the target data}: 33\% below ARIMA, 11\% below gradient boosting. However, daily MAEs vary substantially (Chronos [0.234, 0.865] vs.\ gradient boosting [0.388, 0.668]), indicating higher day-to-day variability for the zero-shot model. Optimised baselines with longer test periods and rolling-window evaluation may narrow the gap, but the results demonstrate that pre-trained TSFMs provide strong zero-shot baselines (Figure~\ref{fig:ts_benchmark}).
 
-\begin{figure}[htbp]
+\begin{figure}[H]
 \centering
-\includegraphics[width=0.85\textwidth]{figures/fig_timeseries_predictions.pdf}
-\vspace{-6pt}
+\includegraphics[width=0.78\textwidth]{figures/fig_timeseries_predictions.pdf}
+\vspace{-8pt}
 \caption{Time-series benchmark: 7-day load prediction traces. Chronos (zero-shot) closely tracks the actual load pattern without any training on the target data.}
 \label{fig:ts_benchmark}
 \end{figure}

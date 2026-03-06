@@ -286,54 +286,54 @@
 \newlabel{tab:ts_benchmark}{{6}{27}{Time-series forecasting benchmark: 24-hour ahead household load prediction (7-day test set, 168 hours). Chronos operates in zero-shot mode (no training on target data); all other methods are trained on the training split}{table.6}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Time-series benchmark: 7-day load prediction traces. Chronos (zero-shot) closely tracks the actual load pattern without any training on the target data.}}{27}{figure.8}\protected@file@percent }
 \newlabel{fig:ts_benchmark}{{8}{27}{Time-series benchmark: 7-day load prediction traces. Chronos (zero-shot) closely tracks the actual load pattern without any training on the target data}{figure.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {11.2}Experiment 2: LLM for energy domain question answering}{27}{subsection.11.2}\protected@file@percent }
+\newlabel{subsec:exp_qa}{{11.2}{27}{Experiment 2: LLM for energy domain question answering}{subsection.11.2}{}}
 \citation{deitsch2019elpv}
 \citation{radford2021learning}
-\@writefile{toc}{\contentsline {subsection}{\numberline {11.2}Experiment 2: LLM for energy domain question answering}{28}{subsection.11.2}\protected@file@percent }
-\newlabel{subsec:exp_qa}{{11.2}{28}{Experiment 2: LLM for energy domain question answering}{subsection.11.2}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces LLM energy domain Q\&A evaluation (50 questions across 5 domains). (a)\nobreakspace  {}Keyword match scores by energy domain for Qwen2.5-7B and Qwen2.5-3B, showing uneven parametric knowledge (wind highest, AI lowest) with negligible scale effect ($p=0.89$). (b)\nobreakspace  {}Comparison of direct LLM (7B) vs.\ RAG-augmented scores on a 15-question subset; RAG improves performance in all domains except wind.}}{28}{figure.9}\protected@file@percent }
 \newlabel{fig:llm_qa}{{9}{28}{LLM energy domain Q\&A evaluation (50 questions across 5 domains). (a)~Keyword match scores by energy domain for Qwen2.5-7B and Qwen2.5-3B, showing uneven parametric knowledge (wind highest, AI lowest) with negligible scale effect ($p=0.89$). (b)~Comparison of direct LLM (7B) vs.\ RAG-augmented scores on a 15-question subset; RAG improves performance in all domains except wind}{figure.9}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {11.3}Experiment 3: VLM zero-shot solar panel inspection}{28}{subsection.11.3}\protected@file@percent }
 \newlabel{subsec:exp_vlm}{{11.3}{28}{Experiment 3: VLM zero-shot solar panel inspection}{subsection.11.3}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces VLM zero-shot solar panel inspection on the ELPV dataset (300 images, balanced classes). CLIP ViT-B-32 with three prompt strategies vs.\ supervised baseline using CLIP embeddings.}}{29}{table.7}\protected@file@percent }
 \newlabel{tab:vlm_benchmark}{{7}{29}{VLM zero-shot solar panel inspection on the ELPV dataset (300 images, balanced classes). CLIP ViT-B-32 with three prompt strategies vs.\ supervised baseline using CLIP embeddings}{table.7}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces VLM zero-shot solar panel inspection. (a)\nobreakspace  {}Accuracy and F1 scores for CLIP zero-shot variants vs.\ supervised baseline on the ELPV dataset. (b)\nobreakspace  {}Confusion matrix for CLIP ensemble prompts, showing strong bias toward the defective class.}}{29}{figure.10}\protected@file@percent }
+\newlabel{fig:vlm_inspection}{{10}{29}{VLM zero-shot solar panel inspection. (a)~Accuracy and F1 scores for CLIP zero-shot variants vs.\ supervised baseline on the ELPV dataset. (b)~Confusion matrix for CLIP ensemble prompts, showing strong bias toward the defective class}{figure.10}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {11.4}Experiment 4: RAG pipeline for energy documents}{29}{subsection.11.4}\protected@file@percent }
 \newlabel{subsec:exp_rag}{{11.4}{29}{Experiment 4: RAG pipeline for energy documents}{subsection.11.4}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {11.5}Experiment 5: Reproducibility audit}{29}{subsection.11.5}\protected@file@percent }
-\newlabel{subsec:exp_repro}{{11.5}{29}{Experiment 5: Reproducibility audit}{subsection.11.5}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces VLM zero-shot solar panel inspection. (a)\nobreakspace  {}Accuracy and F1 scores for CLIP zero-shot variants vs.\ supervised baseline on the ELPV dataset. (b)\nobreakspace  {}Confusion matrix for CLIP ensemble prompts, showing strong bias toward the defective class.}}{30}{figure.10}\protected@file@percent }
-\newlabel{fig:vlm_inspection}{{10}{30}{VLM zero-shot solar panel inspection. (a)~Accuracy and F1 scores for CLIP zero-shot variants vs.\ supervised baseline on the ELPV dataset. (b)~Confusion matrix for CLIP ensemble prompts, showing strong bias toward the defective class}{figure.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {11.5}Experiment 5: Reproducibility audit}{30}{subsection.11.5}\protected@file@percent }
+\newlabel{subsec:exp_repro}{{11.5}{30}{Experiment 5: Reproducibility audit}{subsection.11.5}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {11.6}Cross-experiment synthesis: deployment cost-performance}{30}{subsection.11.6}\protected@file@percent }
 \newlabel{subsec:cost_perf}{{11.6}{30}{Cross-experiment synthesis: deployment cost-performance}{subsection.11.6}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {12}Challenges, Limitations, and Research Agenda}{30}{section.12}\protected@file@percent }
 \newlabel{sec:challenges}{{12}{30}{Challenges, Limitations, and Research Agenda}{section.12}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {12.1}Technical challenges}{30}{subsection.12.1}\protected@file@percent }
+\newlabel{subsec:technical_challenges}{{12.1}{30}{Technical challenges}{subsection.12.1}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Deployment cost-performance Pareto frontier across all benchmark experiments. Points on the frontier represent strategies that are not dominated (no other strategy is both cheaper and higher-performing). Performance metrics are task-specific (1$-$nMAE, F1, keyword score) and normalised to $[0,1]$; cross-category comparisons are therefore approximate.}}{31}{figure.11}\protected@file@percent }
 \newlabel{fig:pareto}{{11}{31}{Deployment cost-performance Pareto frontier across all benchmark experiments. Points on the frontier represent strategies that are not dominated (no other strategy is both cheaper and higher-performing). Performance metrics are task-specific (1$-$nMAE, F1, keyword score) and normalised to $[0,1]$; cross-category comparisons are therefore approximate}{figure.11}{}}
 \citation{rasul2023lagllama}
 \citation{woo2024moirai}
-\@writefile{toc}{\contentsline {subsection}{\numberline {12.1}Technical challenges}{32}{subsection.12.1}\protected@file@percent }
-\newlabel{subsec:technical_challenges}{{12.1}{32}{Technical challenges}{subsection.12.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {12.2}Operational and institutional challenges}{32}{subsection.12.2}\protected@file@percent }
+\newlabel{subsec:operational_challenges}{{12.2}{32}{Operational and institutional challenges}{subsection.12.2}{}}
 \citation{euaiact2024}
 \citation{china_genai_regulation2023}
-\@writefile{toc}{\contentsline {subsection}{\numberline {12.2}Operational and institutional challenges}{33}{subsection.12.2}\protected@file@percent }
-\newlabel{subsec:operational_challenges}{{12.2}{33}{Operational and institutional challenges}{subsection.12.2}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {12.3}Research agenda}{33}{subsection.12.3}\protected@file@percent }
 \newlabel{subsec:research_agenda}{{12.3}{33}{Research agenda}{subsection.12.3}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {13}Comparison with Existing Review Literature}{34}{section.13}\protected@file@percent }
 \newlabel{sec:comparison}{{13}{34}{Comparison with Existing Review Literature}{section.13}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Comparison of this review with existing survey papers on AI and foundation models in energy systems.}}{34}{table.8}\protected@file@percent }
 \newlabel{tab:comparison}{{8}{34}{Comparison of this review with existing survey papers on AI and foundation models in energy systems}{table.8}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {14}Conclusions}{35}{section.14}\protected@file@percent }
-\newlabel{sec:conclusions}{{14}{35}{Conclusions}{section.14}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {14}Conclusions}{34}{section.14}\protected@file@percent }
+\newlabel{sec:conclusions}{{14}{34}{Conclusions}{section.14}{}}
 \citation{tricco2018prisma_scr}
 \bibstyle{elsarticle-num}
 \bibdata{references}
 \bibcite{wang2019dl_renewable_forecasting}{{1}{}{{}}{{}}}
+\bibcite{bommasani2021opportunities}{{2}{}{{}}{{}}}
 \@writefile{toc}{\let\numberline\tmptocnumberline}
 \@writefile{toc}{\contentsline {section}{\numberline {Appendix\nobreakspace  {}A}PRISMA-ScR Checklist}{36}{appendix.A}\protected@file@percent }
 \newlabel{app:prisma_checklist}{{Appendix\nobreakspace  {}A}{36}{PRISMA-ScR Checklist}{appendix.A}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {A.9}{\ignorespaces PRISMA-ScR checklist. Items adapted from Tricco et al.\ (2018).}}{36}{table.9}\protected@file@percent }
 \newlabel{tab:prisma_checklist}{{A.9}{36}{PRISMA-ScR checklist. Items adapted from Tricco et al.\ (2018)}{table.9}{}}
-\bibcite{bommasani2021opportunities}{{2}{}{{}}{{}}}
 \bibcite{wei2022emergent}{{3}{}{{}}{{}}}
 \bibcite{achiam2023gpt4}{{4}{}{{}}{{}}}
 \bibcite{touvron2023llama2}{{5}{}{{}}{{}}}
@@ -426,4 +426,4 @@
 \bibcite{euaiact2024}{{92}{}{{}}{{}}}
 \bibcite{china_genai_regulation2023}{{93}{}{{}}{{}}}
 \providecommand\NAT@force@numbers{}\NAT@force@numbers
-\gdef \@abspage@last{48}
+\gdef \@abspage@last{47}
