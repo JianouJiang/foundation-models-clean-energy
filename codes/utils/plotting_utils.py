@@ -31,7 +31,17 @@ plt.rcParams.update({
 })
 
 # Color palette (colorblind-friendly, Dark2 + Set2)
-COLORS = {
+# Supports both dict access (COLORS["primary"]) and index access (COLORS[0])
+class _ColorPalette(dict):
+    def __init__(self, mapping):
+        super().__init__(mapping)
+        self._list = list(mapping.values())
+    def __getitem__(self, key):
+        if isinstance(key, int):
+            return self._list[key]
+        return super().__getitem__(key)
+
+COLORS = _ColorPalette({
     "primary":   "#1b9e77",
     "secondary": "#d95f02",
     "tertiary":  "#7570b3",
@@ -40,7 +50,7 @@ COLORS = {
     "senary":    "#e6ab02",
     "septenary": "#a6761d",
     "octonary":  "#666666",
-}
+})
 
 FIGURE_DIR = None  # Set by caller
 

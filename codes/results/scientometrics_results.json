@@ -1,0 +1,750 @@
+{
+  "growth": {
+    "yearly_counts": [
+      {
+        "year": 2017,
+        "count": 115
+      },
+      {
+        "year": 2018,
+        "count": 121
+      },
+      {
+        "year": 2019,
+        "count": 144
+      },
+      {
+        "year": 2020,
+        "count": 134
+      },
+      {
+        "year": 2021,
+        "count": 126
+      },
+      {
+        "year": 2022,
+        "count": 136
+      },
+      {
+        "year": 2023,
+        "count": 370
+      },
+      {
+        "year": 2024,
+        "count": 975
+      },
+      {
+        "year": 2025,
+        "count": 1319
+      }
+    ],
+    "exp_fit_params": [
+      50.1626880711212,
+      0.5518553030351373
+    ],
+    "r_squared": 0.949956392327685,
+    "doubling_time_years": 1.2560306601163742,
+    "fm_type_yearly": [
+      {
+        "year": 2019,
+        "LLM": 27,
+        "TSFM": 9,
+        "VLM": 5,
+        "diffusion": 86,
+        "multimodal": 0,
+        "standard_transformer": 0,
+        "unclassified": 17
+      },
+      {
+        "year": 2020,
+        "LLM": 18,
+        "TSFM": 10,
+        "VLM": 11,
+        "diffusion": 82,
+        "multimodal": 4,
+        "standard_transformer": 0,
+        "unclassified": 9
+      },
+      {
+        "year": 2021,
+        "LLM": 18,
+        "TSFM": 12,
+        "VLM": 10,
+        "diffusion": 66,
+        "multimodal": 2,
+        "standard_transformer": 1,
+        "unclassified": 17
+      },
+      {
+        "year": 2022,
+        "LLM": 17,
+        "TSFM": 7,
+        "VLM": 17,
+        "diffusion": 79,
+        "multimodal": 2,
+        "standard_transformer": 0,
+        "unclassified": 14
+      },
+      {
+        "year": 2023,
+        "LLM": 171,
+        "TSFM": 14,
+        "VLM": 13,
+        "diffusion": 107,
+        "multimodal": 4,
+        "standard_transformer": 5,
+        "unclassified": 56
+      },
+      {
+        "year": 2024,
+        "LLM": 658,
+        "TSFM": 32,
+        "VLM": 26,
+        "diffusion": 121,
+        "multimodal": 8,
+        "standard_transformer": 7,
+        "unclassified": 123
+      },
+      {
+        "year": 2025,
+        "LLM": 1027,
+        "TSFM": 69,
+        "VLM": 14,
+        "diffusion": 64,
+        "multimodal": 13,
+        "standard_transformer": 15,
+        "unclassified": 117
+      }
+    ]
+  },
+  "domains": {
+    "domain_counts": {
+      "general_energy": 2567,
+      "grid": 576,
+      "wind": 198,
+      "solar": 246,
+      "ecological": 141,
+      "hydropower": 79
+    },
+    "domain_fm_cross": {
+      "LLM": {
+        "ecological": 62,
+        "general_energy": 1569,
+        "grid": 311,
+        "hydropower": 22,
+        "solar": 69,
+        "wind": 76,
+        "All": 2109
+      },
+      "TSFM": {
+        "ecological": 8,
+        "general_energy": 115,
+        "grid": 32,
+        "hydropower": 9,
+        "solar": 15,
+        "wind": 26,
+        "All": 205
+      },
+      "VLM": {
+        "ecological": 12,
+        "general_energy": 73,
+        "grid": 13,
+        "hydropower": 4,
+        "solar": 7,
+        "wind": 2,
+        "All": 111
+      },
+      "diffusion": {
+        "ecological": 27,
+        "general_energy": 509,
+        "grid": 53,
+        "hydropower": 4,
+        "solar": 129,
+        "wind": 32,
+        "All": 754
+      },
+      "multimodal": {
+        "ecological": 1,
+        "general_energy": 26,
+        "grid": 3,
+        "hydropower": 1,
+        "solar": 0,
+        "wind": 5,
+        "All": 36
+      },
+      "standard_transformer": {
+        "ecological": 0,
+        "general_energy": 16,
+        "grid": 6,
+        "hydropower": 3,
+        "solar": 9,
+        "wind": 0,
+        "All": 34
+      },
+      "unclassified": {
+        "ecological": 6,
+        "general_energy": 259,
+        "grid": 38,
+        "hydropower": 36,
+        "solar": 6,
+        "wind": 51,
+        "All": 396
+      },
+      "All": {
+        "ecological": 116,
+        "general_energy": 2567,
+        "grid": 456,
+        "hydropower": 79,
+        "solar": 235,
+        "wind": 192,
+        "All": 3645
+      }
+    },
+    "domain_task_cross": {
+      "anomaly_narration": {
+        "ecological": 1,
+        "general_energy": 25,
+        "grid": 2,
+        "hydropower": 0,
+        "solar": 0,
+        "wind": 0,
+        "All": 28
+      },
+      "data_augmentation": {
+        "ecological": 2,
+        "general_energy": 315,
+        "grid": 27,
+        "hydropower": 1,
+        "solar": 9,
+        "wind": 5,
+        "All": 359
+      },
+      "fault_detection": {
+        "ecological": 2,
+        "general_energy": 51,
+        "grid": 29,
+        "hydropower": 3,
+        "solar": 8,
+        "wind": 11,
+        "All": 104
+      },
+      "forecasting": {
+        "ecological": 27,
+        "general_energy": 506,
+        "grid": 166,
+        "hydropower": 26,
+        "solar": 77,
+        "wind": 96,
+        "All": 898
+      },
+      "image_inspection": {
+        "ecological": 8,
+        "general_energy": 16,
+        "grid": 3,
+        "hydropower": 2,
+        "solar": 3,
+        "wind": 0,
+        "All": 32
+      },
+      "nlp_qa": {
+        "ecological": 12,
+        "general_energy": 205,
+        "grid": 39,
+        "hydropower": 4,
+        "solar": 9,
+        "wind": 4,
+        "All": 273
+      },
+      "optimization": {
+        "ecological": 16,
+        "general_energy": 439,
+        "grid": 82,
+        "hydropower": 9,
+        "solar": 24,
+        "wind": 15,
+        "All": 585
+      },
+      "unclassified": {
+        "ecological": 48,
+        "general_energy": 1010,
+        "grid": 108,
+        "hydropower": 34,
+        "solar": 105,
+        "wind": 61,
+        "All": 1366
+      },
+      "All": {
+        "ecological": 116,
+        "general_energy": 2567,
+        "grid": 456,
+        "hydropower": 79,
+        "solar": 235,
+        "wind": 192,
+        "All": 3645
+      }
+    }
+  },
+  "citations": {
+    "top_papers": [
+      {
+        "title": "Photorealistic Text-to-Image Diffusion Models with Deep Language Understanding",
+        "year": 2022,
+        "cited_by_count": 2101,
+        "primary_fm_type": "LLM",
+        "primary_domain": "general_energy"
+      },
+      {
+        "title": "De novo design of protein structure and function with RFdiffusion",
+        "year": 2023,
+        "cited_by_count": 1620,
+        "primary_fm_type": "diffusion",
+        "primary_domain": "general_energy"
+      },
+      {
+        "title": "Diffusion Models in Vision: A Survey",
+        "year": 2023,
+        "cited_by_count": 1447,
+        "primary_fm_type": "diffusion",
+        "primary_domain": "general_energy"
+      },
+      {
+        "title": "The 2021 Magnonics Roadmap",
+        "year": 2021,
+        "cited_by_count": 540,
+        "primary_fm_type": "unclassified",
+        "primary_domain": "general_energy"
+      },
+      {
+        "title": "The Power of Generative AI: A Review of Requirements, Models, Input\u2013Output Formats, Evaluation Metrics, and Challenges",
+        "year": 2023,
+        "cited_by_count": 509,
+        "primary_fm_type": "diffusion",
+        "primary_domain": "general_energy"
+      },
+      {
+        "title": "Unlocking the Power of ChatGPT: A Framework for Applying Generative AI in Education",
+        "year": 2023,
+        "cited_by_count": 506,
+        "primary_fm_type": "LLM",
+        "primary_domain": "general_energy"
+      },
+      {
+        "title": "Plug-and-Play Diffusion Features for Text-Driven Image-to-Image Translation",
+        "year": 2023,
+        "cited_by_count": 462,
+        "primary_fm_type": "diffusion",
+        "primary_domain": "general_energy"
+      },
+      {
+        "title": "DiffusionCLIP: Text-Guided Diffusion Models for Robust Image Manipulation",
+        "year": 2022,
+        "cited_by_count": 438,
+        "primary_fm_type": "VLM",
+        "primary_domain": "general_energy"
+      },
+      {
+        "title": "Review on Li Deposition in Working Batteries: From Nucleation to Early Growth",
+        "year": 2021,
+        "cited_by_count": 430,
+        "primary_fm_type": "diffusion",
+        "primary_domain": "grid"
+      },
+      {
+        "title": "Harnessing the Power of LLMs in Practice: A Survey on ChatGPT and Beyond",
+        "year": 2024,
+        "cited_by_count": 427,
+        "primary_fm_type": "LLM",
+        "primary_domain": "general_energy"
+      },
+      {
+        "title": "Accurate predictions on small data with a tabular foundation model",
+        "year": 2025,
+        "cited_by_count": 396,
+        "primary_fm_type": "diffusion",
+        "primary_domain": "general_energy"
+      },
+      {
+        "title": "TPU v4: An Optically Reconfigurable Supercomputer for Machine Learning with Hardware Support for Embeddings",
+        "year": 2023,
+        "cited_by_count": 383,
+        "primary_fm_type": "LLM",
+        "primary_domain": "general_energy"
+      },
+      {
+        "title": "Epithelial barrier hypothesis: Effect of the external exposome on the microbiome and epithelial barriers in allergic disease",
+        "year": 2022,
+        "cited_by_count": 370,
+        "primary_fm_type": "TSFM",
+        "primary_domain": "ecological"
+      },
+      {
+        "title": "A Survey on Large Language Models: Applications, Challenges, Limitations, and Practical Usage",
+        "year": 2023,
+        "cited_by_count": 333,
+        "primary_fm_type": "LLM",
+        "primary_domain": "general_energy"
+      },
+      {
+        "title": "Opportunities and challenges for ChatGPT and large language models in biomedicine and health",
+        "year": 2023,
+        "cited_by_count": 313,
+        "primary_fm_type": "LLM",
+        "primary_domain": "general_energy"
+      },
+      {
+        "title": "Enriching Location Representation with Detailed Semantic Information",
+        "year": 2024,
+        "cited_by_count": 307,
+        "primary_fm_type": "LLM",
+        "primary_domain": "grid"
+      },
+      {
+        "title": "Unleashing the Power of Edge-Cloud Generative AI in Mobile Networks: A Survey of AIGC Services",
+        "year": 2024,
+        "cited_by_count": 295,
+        "primary_fm_type": "LLM",
+        "primary_domain": "general_energy"
+      },
+      {
+        "title": "Amino acid-dependent control of mTORC1 signaling: a variety of regulatory modes",
+        "year": 2020,
+        "cited_by_count": 287,
+        "primary_fm_type": "LLM",
+        "primary_domain": "general_energy"
+      },
+      {
+        "title": "Latent-NeRF for Shape-Guided Generation of 3D Shapes and Textures",
+        "year": 2023,
+        "cited_by_count": 280,
+        "primary_fm_type": "diffusion",
+        "primary_domain": "general_energy"
+      },
+      {
+        "title": "RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control",
+        "year": 2023,
+        "cited_by_count": 262,
+        "primary_fm_type": "LLM",
+        "primary_domain": "general_energy"
+      }
+    ],
+    "citation_by_fm_type": {
+      "count": {
+        "LLM": 2109.0,
+        "TSFM": 205.0,
+        "VLM": 111.0,
+        "diffusion": 754.0,
+        "multimodal": 36.0,
+        "standard_transformer": 34.0,
+        "unclassified": 396.0
+      },
+      "mean": {
+        "LLM": 9.262683736367947,
+        "TSFM": 7.3463414634146345,
+        "VLM": 25.954954954954953,
+        "diffusion": 35.33023872679045,
+        "multimodal": 13.75,
+        "standard_transformer": 14.617647058823529,
+        "unclassified": 15.176767676767676
+      },
+      "std": {
+        "LLM": 53.58346834864671,
+        "TSFM": 28.990229063554168,
+        "VLM": 51.73347560286759,
+        "diffusion": 89.84014703534297,
+        "multimodal": 17.50816136222517,
+        "standard_transformer": 23.845480743144137,
+        "unclassified": 39.380507491462446
+      },
+      "min": {
+        "LLM": 0.0,
+        "TSFM": 0.0,
+        "VLM": 0.0,
+        "diffusion": 0.0,
+        "multimodal": 0.0,
+        "standard_transformer": 0.0,
+        "unclassified": 0.0
+      },
+      "25%": {
+        "LLM": 0.0,
+        "TSFM": 0.0,
+        "VLM": 4.0,
+        "diffusion": 8.0,
+        "multimodal": 2.75,
+        "standard_transformer": 1.0,
+        "unclassified": 2.0
+      },
+      "50%": {
+        "LLM": 1.0,
+        "TSFM": 0.0,
+        "VLM": 12.0,
+        "diffusion": 20.0,
+        "multimodal": 6.0,
+        "standard_transformer": 4.0,
+        "unclassified": 5.0
+      },
+      "75%": {
+        "LLM": 6.0,
+        "TSFM": 4.0,
+        "VLM": 23.0,
+        "diffusion": 38.0,
+        "multimodal": 23.25,
+        "standard_transformer": 14.25,
+        "unclassified": 13.25
+      },
+      "max": {
+        "LLM": 2101.0,
+        "TSFM": 370.0,
+        "VLM": 438.0,
+        "diffusion": 1620.0,
+        "multimodal": 86.0,
+        "standard_transformer": 97.0,
+        "unclassified": 540.0
+      }
+    }
+  },
+  "geographic": {
+    "country_counts": {
+      "CN": 873,
+      "US": 709,
+      "GB": 238,
+      "DE": 159,
+      "IN": 158,
+      "CA": 119,
+      "KR": 113,
+      "AU": 105,
+      "IT": 96,
+      "SG": 88,
+      "HK": 84,
+      "JP": 78,
+      "ES": 69,
+      "FR": 68,
+      "CH": 59,
+      "NL": 58,
+      "IR": 47,
+      "SA": 41,
+      "PK": 38,
+      "AE": 37,
+      "SE": 37,
+      "TW": 34,
+      "PL": 34,
+      "NO": 33,
+      "BR": 29,
+      "DK": 27,
+      "TR": 27,
+      "EG": 24,
+      "GR": 22,
+      "RU": 21
+    },
+    "institution_counts": {
+      "Tsinghua University": 73,
+      "Nanyang Technological University": 42,
+      "Chinese Academy of Sciences": 42,
+      "North China Electric Power University": 35,
+      "Shanghai Jiao Tong University": 35,
+      "Zhejiang University": 35,
+      "Peking University": 26,
+      "University of Chinese Academy of Sciences": 26,
+      "State Grid Corporation of China (China)": 26,
+      "University of Hong Kong": 24,
+      "South China University of Technology": 24,
+      "National Renewable Energy Laboratory": 23,
+      "University of Oxford": 22,
+      "Massachusetts Institute of Technology": 22,
+      "Hong Kong Polytechnic University": 21,
+      "National University of Singapore": 20,
+      "Guangdong University of Technology": 20,
+      "ETH Zurich": 19,
+      "City University of Hong Kong": 18,
+      "Beihang University": 18,
+      "Carnegie Mellon University": 17,
+      "China Southern Power Grid (China)": 17,
+      "Wuhan University": 17,
+      "Tianjin University": 16,
+      "Beijing University of Posts and Telecommunications": 16,
+      "Southeast University": 16,
+      "University of Illinois Urbana-Champaign": 16,
+      "Politecnico di Milano": 16,
+      "China Academy of Engineering Physics": 16,
+      "University of Southampton": 16
+    }
+  },
+  "keywords": {
+    "keyword_temporal": "see console output"
+  },
+  "venues": {
+    "top_venues": {
+      "arXiv (Cornell University)": 452,
+      "ArXiv.org": 121,
+      "Zenodo (CERN European Organization for Nuclear Research)": 80,
+      "SSRN Electronic Journal": 59,
+      "IEEE Access": 46,
+      "Energies": 40,
+      "Applied Energy": 20,
+      "Applied Sciences": 18,
+      "IEEE Internet of Things Journal": 17,
+      "Electronics": 17,
+      "Proceedings of the AAAI Conference on Artificial Intelligence": 16,
+      "Sustainability": 15,
+      "The Journal of Physical Chemistry C": 14,
+      "Preprints.org": 14,
+      "IEEE Transactions on Smart Grid": 12,
+      "Scientific Reports": 12,
+      "Sensors": 11,
+      "ACS Applied Materials & Interfaces": 11,
+      "The Astrophysical Journal": 11,
+      "Journal of Geophysical Research Space Physics": 11
+    }
+  },
+  "maturity": {
+    "wind_LLM": {
+      "n_papers": 77,
+      "avg_citations": 5.0,
+      "recent_2024_plus": 68,
+      "maturity_index": 58.95
+    },
+    "wind_VLM": {
+      "n_papers": 3,
+      "avg_citations": 1.0,
+      "recent_2024_plus": 2,
+      "maturity_index": 2.11
+    },
+    "wind_TSFM": {
+      "n_papers": 30,
+      "avg_citations": 10.6,
+      "recent_2024_plus": 12,
+      "maturity_index": 18.71
+    },
+    "wind_diffusion": {
+      "n_papers": 36,
+      "avg_citations": 9.2,
+      "recent_2024_plus": 20,
+      "maturity_index": 24.09
+    },
+    "wind_multimodal": {
+      "n_papers": 32,
+      "avg_citations": 5.1,
+      "recent_2024_plus": 21,
+      "maturity_index": 22.35
+    },
+    "solar_LLM": {
+      "n_papers": 72,
+      "avg_citations": 3.8,
+      "recent_2024_plus": 64,
+      "maturity_index": 55.24
+    },
+    "solar_VLM": {
+      "n_papers": 7,
+      "avg_citations": 20.4,
+      "recent_2024_plus": 4,
+      "maturity_index": 4.9
+    },
+    "solar_TSFM": {
+      "n_papers": 22,
+      "avg_citations": 1.6,
+      "recent_2024_plus": 22,
+      "maturity_index": 17.62
+    },
+    "solar_diffusion": {
+      "n_papers": 135,
+      "avg_citations": 26.7,
+      "recent_2024_plus": 28,
+      "maturity_index": 76.17
+    },
+    "solar_multimodal": {
+      "n_papers": 26,
+      "avg_citations": 8.5,
+      "recent_2024_plus": 22,
+      "maturity_index": 19.69
+    },
+    "hydropower_LLM": {
+      "n_papers": 22,
+      "avg_citations": 4.0,
+      "recent_2024_plus": 18,
+      "maturity_index": 16.44
+    },
+    "hydropower_VLM": {
+      "n_papers": 4,
+      "avg_citations": 1.5,
+      "recent_2024_plus": 4,
+      "maturity_index": 3.22
+    },
+    "hydropower_TSFM": {
+      "n_papers": 15,
+      "avg_citations": 3.1,
+      "recent_2024_plus": 10,
+      "maturity_index": 10.53
+    },
+    "hydropower_diffusion": {
+      "n_papers": 5,
+      "avg_citations": 20.2,
+      "recent_2024_plus": 3,
+      "maturity_index": 3.6
+    },
+    "hydropower_multimodal": {
+      "n_papers": 12,
+      "avg_citations": 5.8,
+      "recent_2024_plus": 8,
+      "maturity_index": 8.46
+    },
+    "grid_LLM": {
+      "n_papers": 344,
+      "avg_citations": 4.7,
+      "recent_2024_plus": 320,
+      "maturity_index": 268.05
+    },
+    "grid_VLM": {
+      "n_papers": 21,
+      "avg_citations": 15.9,
+      "recent_2024_plus": 12,
+      "maturity_index": 14.26
+    },
+    "grid_TSFM": {
+      "n_papers": 68,
+      "avg_citations": 1.9,
+      "recent_2024_plus": 63,
+      "maturity_index": 52.92
+    },
+    "grid_diffusion": {
+      "n_papers": 119,
+      "avg_citations": 31.6,
+      "recent_2024_plus": 37,
+      "maturity_index": 70.92
+    },
+    "grid_multimodal": {
+      "n_papers": 113,
+      "avg_citations": 4.3,
+      "recent_2024_plus": 104,
+      "maturity_index": 87.74
+    },
+    "ecological_LLM": {
+      "n_papers": 68,
+      "avg_citations": 9.5,
+      "recent_2024_plus": 55,
+      "maturity_index": 50.59
+    },
+    "ecological_VLM": {
+      "n_papers": 17,
+      "avg_citations": 11.7,
+      "recent_2024_plus": 10,
+      "maturity_index": 11.62
+    },
+    "ecological_TSFM": {
+      "n_papers": 16,
+      "avg_citations": 31.2,
+      "recent_2024_plus": 9,
+      "maturity_index": 11.01
+    },
+    "ecological_diffusion": {
+      "n_papers": 38,
+      "avg_citations": 30.1,
+      "recent_2024_plus": 7,
+      "maturity_index": 21.4
+    },
+    "ecological_multimodal": {
+      "n_papers": 32,
+      "avg_citations": 13.4,
+      "recent_2024_plus": 21,
+      "maturity_index": 22.43
+    }
+  }
+}

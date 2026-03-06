@@ -1,0 +1,135 @@
+{
+  "total_papers": 3645,
+  "year_range": "2017-2026",
+  "fm_type_distribution": {
+    "LLM": 2109,
+    "diffusion": 754,
+    "unclassified": 396,
+    "TSFM": 205,
+    "VLM": 111,
+    "multimodal": 36,
+    "standard_transformer": 34
+  },
+  "domain_distribution": {
+    "general_energy": 2567,
+    "grid": 456,
+    "solar": 235,
+    "wind": 192,
+    "ecological": 116,
+    "hydropower": 79
+  },
+  "yearly_counts": {
+    "2017": 115,
+    "2018": 121,
+    "2019": 144,
+    "2020": 134,
+    "2021": 126,
+    "2022": 136,
+    "2023": 370,
+    "2024": 975,
+    "2025": 1319,
+    "2026": 205
+  },
+  "growth_rates": [
+    {
+      "year": 2018,
+      "growth_pct": 5.2
+    },
+    {
+      "year": 2019,
+      "growth_pct": 19.0
+    },
+    {
+      "year": 2020,
+      "growth_pct": -6.9
+    },
+    {
+      "year": 2021,
+      "growth_pct": -6.0
+    },
+    {
+      "year": 2022,
+      "growth_pct": 7.9
+    },
+    {
+      "year": 2023,
+      "growth_pct": 172.1
+    },
+    {
+      "year": 2024,
+      "growth_pct": 163.5
+    },
+    {
+      "year": 2025,
+      "growth_pct": 35.3
+    },
+    {
+      "year": 2026,
+      "growth_pct": -84.5
+    }
+  ],
+  "exponential_fit": {
+    "slope": 0.2098,
+    "intercept": -418.5918,
+    "r_squared": 0.4894,
+    "p_value": 0.0243,
+    "doubling_time_years": 3.3,
+    "annual_growth_rate_pct": 23.3
+  },
+  "chi2_fm_vs_domain": {
+    "chi2": 487.51,
+    "p_value": 4.38e-84,
+    "dof": 30,
+    "significant": "True",
+    "interpretation": "FM type and energy domain are NOT independent"
+  },
+  "citation_stats": {
+    "mean": 15.8,
+    "median": 3.0,
+    "std": 61.2,
+    "max": 2101,
+    "q25": 1.0,
+    "q75": 14.0
+  },
+  "kruskal_citations_by_fm": {
+    "H_statistic": 966.68,
+    "p_value": 1.44e-205,
+    "significant": "True"
+  },
+  "open_access_trend": {
+    "2017": 56.5,
+    "2018": 61.2,
+    "2019": 57.6,
+    "2020": 61.9,
+    "2021": 61.1,
+    "2022": 66.9,
+    "2023": 69.7,
+    "2024": 63.4,
+    "2025": 61.1,
+    "2026": 83.9
+  },
+  "oa_trend_kendall_S": 23,
+  "oa_trend_direction": "increasing",
+  "top_venues": {
+    "arXiv (Cornell University)": 452,
+    "ArXiv.org": 121,
+    "Zenodo (CERN European Organization for Nuclear Research)": 80,
+    "SSRN Electronic Journal": 59,
+    "IEEE Access": 46,
+    "Energies": 40,
+    "Applied Energy": 20,
+    "Applied Sciences": 18,
+    "IEEE Internet of Things Journal": 17,
+    "Electronics": 17,
+    "Proceedings of the AAAI Conference on Artificial Intelligence": 16,
+    "Sustainability": 15,
+    "The Journal of Physical Chemistry C": 14,
+    "Preprints.org": 14,
+    "IEEE Transactions on Smart Grid": 12
+  },
+  "geographic_concentration": {
+    "n_countries": 105,
+    "gini_coefficient": 0.782,
+    "top3_share_pct": 45.5
+  }
+}

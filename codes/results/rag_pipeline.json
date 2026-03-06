@@ -1,0 +1,682 @@
+{
+  "direct_llm": [
+    {
+      "question_id": "q1",
+      "domain": "wind",
+      "answer": "The maximum theoretical efficiency limit for wind turbines is known as the Betz Limit, which is approximately 59.3%.",
+      "score": 0.667,
+      "details": {
+        "keyword_score": 0.667,
+        "keywords_matched": 2,
+        "keywords_total": 3,
+        "length_score": 1.0,
+        "hallucination_penalty": 0
+      },
+      "time_sec": 242.15
+    },
+    {
+      "question_id": "q2",
+      "domain": "hydropower",
+      "answer": "[Error: HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=300)]",
+      "score": 0,
+      "details": {
+        "keyword_score": 0.0,
+        "keywords_matched": 0,
+        "keywords_total": 5,
+        "length_score": 0.5,
+        "hallucination_penalty": 0.2
+      },
+      "time_sec": 300.1
+    },
+    {
+      "question_id": "q3",
+      "domain": "hydropower",
+      "answer": "The typical round-trip efficiency of pumped-storage hydroelectricity ranges from 70% to 80%.",
+      "score": 0.75,
+      "details": {
+        "keyword_score": 0.75,
+        "keywords_matched": 3,
+        "keywords_total": 4,
+        "length_score": 1.0,
+        "hallucination_penalty": 0
+      },
+      "time_sec": 270.83
+    },
+    {
+      "question_id": "q4",
+      "domain": "solar",
+      "answer": "Electroluminescence imaging can detect defects such as:\n\n- Cracks and breaks in the cell structure\n- Shading from foreign objects or improper contacts\n- Non-uniformity in the cell's light emission, indicating efficiency variations\n- Defective contacts and busbars\n- Micro-cracks not visible under visual inspection\n\nThis technique helps identify issues that affect solar cell performance.",
+      "score": 0.4,
+      "details": {
+        "keyword_score": 0.4,
+        "keywords_matched": 2,
+        "keywords_total": 5,
+        "length_score": 1.0,
+        "hallucination_penalty": 0
+      },
+      "time_sec": 26.03
+    },
+    {
+      "question_id": "q5",
+      "domain": "grid",
+      "answer": "The current cost of lithium-ion battery packs for grid storage varies but generally ranges from $100 to $200 per kilowatt-hour (kWh) as of 2023. Costs continue to decrease due to technological advancements and increased production scale.",
+      "score": 0.667,
+      "details": {
+        "keyword_score": 0.667,
+        "keywords_matched": 2,
+        "keywords_total": 3,
+        "length_score": 1.0,
+        "hallucination_penalty": 0
+      },
+      "time_sec": 13.86
+    },
+    {
+      "question_id": "q6",
+      "domain": "wind",
+      "answer": "Wake effects can reduce wind farm output by up to 10-30%, depending on factors such as turbine spacing, wind conditions, and farm layout.",
+      "score": 0.4,
+      "details": {
+        "keyword_score": 0.4,
+        "keywords_matched": 2,
+        "keywords_total": 5,
+        "length_score": 1.0,
+        "hallucination_penalty": 0
+      },
+      "time_sec": 7.64
+    },
+    {
+      "question_id": "q7",
+      "domain": "ecological",
+      "answer": "Estimating the exact number of bird deaths caused by wind turbines annually in the U.S. is challenging due to varying studies and methodologies. However, a commonly cited figure from the American Wind Energy Association suggests that around 590,000 birds die each year in the U.S. as a result of collisions with wind turbines or related structures. It's important to note that this number can vary significantly depending on factors such as turbine design, location, and local bird populations.",
+      "score": 0.25,
+      "details": {
+        "keyword_score": 0.25,
+        "keywords_matched": 1,
+        "keywords_total": 4,
+        "length_score": 1.0,
+        "hallucination_penalty": 0
+      },
+      "time_sec": 27.59
+    },
+    {
+      "question_id": "q8",
+      "domain": "ecological",
+      "answer": "Solar photovoltaic (PV) systems have a significantly lower carbon footprint compared to coal-fired power plants over their lifecycle. Coal plants emit about 820-980 grams of CO2 per kWh, while the emissions from solar PV range from approximately 30-75 grams of CO2 per kWh, depending on the type of solar panel and manufacturing process.",
+      "score": 0.6,
+      "details": {
+        "keyword_score": 0.6,
+        "keywords_matched": 3,
+        "keywords_total": 5,
+        "length_score": 1.0,
+        "hallucination_penalty": 0
+      },
+      "time_sec": 18.79
+    },
+    {
+      "question_id": "q9",
+      "domain": "solar",
+      "answer": "Key challenges for perovskite solar cell commercialization include stability issues, toxicity of lead-based materials, efficiency degradation over time, and scalability of production processes.",
+      "score": 0.167,
+      "details": {
+        "keyword_score": 0.167,
+        "keywords_matched": 1,
+        "keywords_total": 6,
+        "length_score": 1.0,
+        "hallucination_penalty": 0
+      },
+      "time_sec": 10.45
+    },
+    {
+      "question_id": "q10",
+      "domain": "AI_energy",
+      "answer": "[Error: HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=300)]",
+      "score": 0,
+      "details": {
+        "keyword_score": 0.0,
+        "keywords_matched": 0,
+        "keywords_total": 5,
+        "length_score": 0.5,
+        "hallucination_penalty": 0.2
+      },
+      "time_sec": 300.1
+    },
+    {
+      "question_id": "q11",
+      "domain": "ecological",
+      "answer": "[Error: HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=300)]",
+      "score": 0,
+      "details": {
+        "keyword_score": 0.2,
+        "keywords_matched": 1,
+        "keywords_total": 5,
+        "length_score": 0.5,
+        "hallucination_penalty": 0.2
+      },
+      "time_sec": 300.1
+    },
+    {
+      "question_id": "q12",
+      "domain": "AI_energy",
+      "answer": "[Error: HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=300)]",
+      "score": 0,
+      "details": {
+        "keyword_score": 0.0,
+        "keywords_matched": 0,
+        "keywords_total": 5,
+        "length_score": 0.5,
+        "hallucination_penalty": 0.2
+      },
+      "time_sec": 300.1
+    },
+    {
+      "question_id": "q13",
+      "domain": "grid",
+      "answer": "[Error: HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=300)]",
+      "score": 0,
+      "details": {
+        "keyword_score": 0.0,
+        "keywords_matched": 0,
+        "keywords_total": 5,
+        "length_score": 0.5,
+        "hallucination_penalty": 0.2
+      },
+      "time_sec": 300.1
+    },
+    {
+      "question_id": "q14",
+      "domain": "solar",
+      "answer": "[Error: HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=300)]",
+      "score": 0,
+      "details": {
+        "keyword_score": 0.0,
+        "keywords_matched": 0,
+        "keywords_total": 4,
+        "length_score": 0.5,
+        "hallucination_penalty": 0.2
+      },
+      "time_sec": 300.11
+    },
+    {
+      "question_id": "q15",
+      "domain": "grid",
+      "answer": "[Error: HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=300)]",
+      "score": 0,
+      "details": {
+        "keyword_score": 0.0,
+        "keywords_matched": 0,
+        "keywords_total": 6,
+        "length_score": 0.5,
+        "hallucination_penalty": 0.2
+      },
+      "time_sec": 300.11
+    }
+  ],
+  "rag_augmented": [
+    {
+      "question_id": "q1",
+      "domain": "wind",
+      "answer": "The maximum theoretical efficiency limit for wind turbines is 59.3%, which is known as the Betz limit.",
+      "score": 0.667,
+      "details": {
+        "keyword_score": 0.667,
+        "keywords_matched": 2,
+        "keywords_total": 3,
+        "length_score": 1.0,
+        "hallucination_penalty": 0
+      },
+      "time_sec": 291.78
+    },
+    {
+      "question_id": "q2",
+      "domain": "hydropower",
+      "answer": "[Error: HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=300)]",
+      "score": 0,
+      "details": {
+        "keyword_score": 0.0,
+        "keywords_matched": 0,
+        "keywords_total": 5,
+        "length_score": 0.5,
+        "hallucination_penalty": 0.2
+      },
+      "time_sec": 300.1
+    },
+    {
+      "question_id": "q3",
+      "domain": "hydropower",
+      "answer": "The typical round-trip efficiency of pumped-storage hydroelectricity (PSH) ranges from 70-85%.",
+      "score": 1,
+      "details": {
+        "keyword_score": 1.0,
+        "keywords_matched": 4,
+        "keywords_total": 4,
+        "length_score": 1.0,
+        "hallucination_penalty": 0
+      },
+      "time_sec": 86.38
+    },
+    {
+      "question_id": "q4",
+      "domain": "solar",
+      "answer": "Electroluminescence imaging can detect defects such as micro-cracks, broken interconnects, or shunts in solar cells.",
+      "score": 0.8,
+      "details": {
+        "keyword_score": 0.8,
+        "keywords_matched": 4,
+        "keywords_total": 5,
+        "length_score": 1.0,
+        "hallucination_penalty": 0
+      },
+      "time_sec": 22.79
+    },
+    {
+      "question_id": "q5",
+      "domain": "grid",
+      "answer": "The current cost of lithium-ion battery packs for grid storage is $139/kWh (pack level) as of 2023.",
+      "score": 1,
+      "details": {
+        "keyword_score": 1.0,
+        "keywords_matched": 3,
+        "keywords_total": 3,
+        "length_score": 1.0,
+        "hallucination_penalty": 0
+      },
+      "time_sec": 23.2
+    },
+    {
+      "question_id": "q6",
+      "domain": "wind",
+      "answer": "Wake effects can reduce wind farm output by 10-20%.",
+      "score": 0.3,
+      "details": {
+        "keyword_score": 0.6,
+        "keywords_matched": 3,
+        "keywords_total": 5,
+        "length_score": 0.5,
+        "hallucination_penalty": 0
+      },
+      "time_sec": 19.04
+    },
+    {
+      "question_id": "q7",
+      "domain": "ecological",
+      "answer": "The estimated annual bird mortality from wind turbines in the US ranges from 140,000 to 500,000 birds.",
+      "score": 1,
+      "details": {
+        "keyword_score": 1.0,
+        "keywords_matched": 4,
+        "keywords_total": 4,
+        "length_score": 1.0,
+        "hallucination_penalty": 0
+      },
+      "time_sec": 20.58
+    },
+    {
+      "question_id": "q8",
+      "domain": "ecological",
+      "answer": "The carbon footprint of solar PV is 20-50 gCO2eq/kWh, which is significantly lower than that of coal, which has a carbon footprint of 820 gCO2eq/kWh.",
+      "score": 1,
+      "details": {
+        "keyword_score": 1.0,
+        "keywords_matched": 5,
+        "keywords_total": 5,
+        "length_score": 1.0,
+        "hallucination_penalty": 0
+      },
+      "time_sec": 25.57
+    },
+    {
+      "question_id": "q9",
+      "domain": "solar",
+      "answer": "The key challenges for perovskite solar cell commercialization include long-term stability under heat, moisture, and UV exposure.",
+      "score": 0.667,
+      "details": {
+        "keyword_score": 0.667,
+        "keywords_matched": 4,
+        "keywords_total": 6,
+        "length_score": 1.0,
+        "hallucination_penalty": 0
+      },
+      "time_sec": 24.33
+    },
+    {
+      "question_id": "q10",
+      "domain": "AI_energy",
+      "answer": "Time-series foundation models like Chronos perform well in energy load forecasting, achieving comparable or better performance than tuned statistical baselines (ARIMA, ETS) without requiring domain-specific configuration.",
+      "score": 0.8,
+      "details": {
+        "keyword_score": 0.8,
+        "keywords_matched": 4,
+        "keywords_total": 5,
+        "length_score": 1.0,
+        "hallucination_penalty": 0
+      },
+      "time_sec": 142.38
+    },
+    {
+      "question_id": "q11",
+      "domain": "ecological",
+      "answer": "The fish turbine strike mortality rate at hydropower dams ranges from 5-30% depending on the turbine type and fish species. Advanced turbine designs aim to reduce this mortality rate below 2%.",
+      "score": 1,
+      "details": {
+        "keyword_score": 1.0,
+        "keywords_matched": 5,
+        "keywords_total": 5,
+        "length_score": 1.0,
+        "hallucination_penalty": 0
+      },
+      "time_sec": 200.16
+    },
+    {
+      "question_id": "q12",
+      "domain": "AI_energy",
+      "answer": "[Error: HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=300)]",
+      "score": 0,
+      "details": {
+        "keyword_score": 0.0,
+        "keywords_matched": 0,
+        "keywords_total": 5,
+        "length_score": 0.5,
+        "hallucination_penalty": 0.2
+      },
+      "time_sec": 300.11
+    },
+    {
+      "question_id": "q13",
+      "domain": "grid",
+      "answer": "Battery energy storage systems can provide grid services including peak shaving, frequency regulation, and renewable integration.",
+      "score": 1,
+      "details": {
+        "keyword_score": 1.0,
+        "keywords_matched": 5,
+        "keywords_total": 5,
+        "length_score": 1.0,
+        "hallucination_penalty": 0
+      },
+      "time_sec": 235.48
+    },
+    {
+      "question_id": "q14",
+      "domain": "solar",
+      "answer": "[Error: HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=300)]",
+      "score": 0,
+      "details": {
+        "keyword_score": 0.0,
+        "keywords_matched": 0,
+        "keywords_total": 4,
+        "length_score": 0.5,
+        "hallucination_penalty": 0.2
+      },
+      "time_sec": 300.11
+    },
+    {
+      "question_id": "q15",
+      "domain": "grid",
+      "answer": "[Error: HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=300)]",
+      "score": 0,
+      "details": {
+        "keyword_score": 0.0,
+        "keywords_matched": 0,
+        "keywords_total": 6,
+        "length_score": 0.5,
+        "hallucination_penalty": 0.2
+      },
+      "time_sec": 300.11
+    }
+  ],
+  "retrieval_quality": [
+    {
+      "question_id": "q1",
+      "retrieved": [
+        "wind_001",
+        "wind_003",
+        "hydro_001"
+      ],
+      "relevant": [
+        "wind_001"
+      ],
+      "recall_at_3": 1.0,
+      "top_score": 0.6359
+    },
+    {
+      "question_id": "q2",
+      "retrieved": [
+        "hydro_002",
+        "hydro_001",
+        "wind_001"
+      ],
+      "relevant": [
+        "hydro_002"
+      ],
+      "recall_at_3": 1.0,
+      "top_score": 0.7748
+    },
+    {
+      "question_id": "q3",
+      "retrieved": [
+        "hydro_003",
+        "hydro_004",
+        "grid_001"
+      ],
+      "relevant": [
+        "hydro_003"
+      ],
+      "recall_at_3": 1.0,
+      "top_score": 0.744
+    },
+    {
+      "question_id": "q4",
+      "retrieved": [
+        "solar_002",
+        "solar_001",
+        "solar_003"
+      ],
+      "relevant": [
+        "solar_002"
+      ],
+      "recall_at_3": 1.0,
+      "top_score": 0.7531
+    },
+    {
+      "question_id": "q5",
+      "retrieved": [
+        "grid_001",
+        "grid_004",
+        "eco_004"
+      ],
+      "relevant": [
+        "grid_001"
+      ],
+      "recall_at_3": 1.0,
+      "top_score": 0.7249
+    },
+    {
+      "question_id": "q6",
+      "retrieved": [
+        "wind_003",
+        "wind_001",
+        "wind_004"
+      ],
+      "relevant": [
+        "wind_003"
+      ],
+      "recall_at_3": 1.0,
+      "top_score": 0.8076
+    },
+    {
+      "question_id": "q7",
+      "retrieved": [
+        "eco_002",
+        "wind_001",
+        "wind_003"
+      ],
+      "relevant": [
+        "eco_002"
+      ],
+      "recall_at_3": 1.0,
+      "top_score": 0.6745
+    },
+    {
+      "question_id": "q8",
+      "retrieved": [
+        "eco_004",
+        "solar_001",
+        "grid_001"
+      ],
+      "relevant": [
+        "eco_004"
+      ],
+      "recall_at_3": 1.0,
+      "top_score": 0.6374
+    },
+    {
+      "question_id": "q9",
+      "retrieved": [
+        "solar_003",
+        "solar_001",
+        "grid_001"
+      ],
+      "relevant": [
+        "solar_003"
+      ],
+      "recall_at_3": 1.0,
+      "top_score": 0.7114
+    },
+    {
+      "question_id": "q10",
+      "retrieved": [
+        "ai_002",
+        "solar_004",
+        "ai_004"
+      ],
+      "relevant": [
+        "ai_002"
+      ],
+      "recall_at_3": 1.0,
+      "top_score": 0.742
+    },
+    {
+      "question_id": "q11",
+      "retrieved": [
+        "eco_001",
+        "hydro_001",
+        "wind_004"
+      ],
+      "relevant": [
+        "eco_001"
+      ],
+      "recall_at_3": 1.0,
+      "top_score": 0.7883
+    },
+    {
+      "question_id": "q12",
+      "retrieved": [
+        "ai_003",
+        "grid_002",
+        "eco_004"
+      ],
+      "relevant": [
+        "ai_003"
+      ],
+      "recall_at_3": 1.0,
+      "top_score": 0.4923
+    },
+    {
+      "question_id": "q13",
+      "retrieved": [
+        "grid_001",
+        "grid_004",
+        "hydro_003"
+      ],
+      "relevant": [
+        "grid_001"
+      ],
+      "recall_at_3": 1.0,
+      "top_score": 0.6117
+    },
+    {
+      "question_id": "q14",
+      "retrieved": [
+        "solar_003",
+        "solar_001",
+        "eco_004"
+      ],
+      "relevant": [
+        "solar_003"
+      ],
+      "recall_at_3": 1.0,
+      "top_score": 0.8322
+    },
+    {
+      "question_id": "q15",
+      "retrieved": [
+        "grid_003",
+        "hydro_004",
+        "hydro_003"
+      ],
+      "relevant": [
+        "grid_003"
+      ],
+      "recall_at_3": 1.0,
+      "top_score": 0.6231
+    }
+  ],
+  "summary": {
+    "n_questions": 15,
+    "n_knowledge_passages": 24,
+    "embedding_model": "all-MiniLM-L6-v2",
+    "llm_model": "qwen2.5:7b",
+    "direct_llm": {
+      "mean_score": 0.26,
+      "std_score": 0.284,
+      "median_score": 0.167
+    },
+    "rag_augmented": {
+      "mean_score": 0.616,
+      "std_score": 0.414,
+      "median_score": 0.8
+    },
+    "retrieval": {
+      "mean_recall_at_3": 1.0
+    },
+    "improvement": 0.356,
+    "improvement_pct": 136.7,
+    "by_domain": {
+      "AI_energy": {
+        "n_questions": 2,
+        "direct_mean": 0.0,
+        "rag_mean": 0.4,
+        "improvement": 0.4
+      },
+      "ecological": {
+        "n_questions": 3,
+        "direct_mean": 0.283,
+        "rag_mean": 1.0,
+        "improvement": 0.717
+      },
+      "grid": {
+        "n_questions": 3,
+        "direct_mean": 0.222,
+        "rag_mean": 0.667,
+        "improvement": 0.444
+      },
+      "hydropower": {
+        "n_questions": 2,
+        "direct_mean": 0.375,
+        "rag_mean": 0.5,
+        "improvement": 0.125
+      },
+      "solar": {
+        "n_questions": 3,
+        "direct_mean": 0.189,
+        "rag_mean": 0.489,
+        "improvement": 0.3
+      },
+      "wind": {
+        "n_questions": 2,
+        "direct_mean": 0.534,
+        "rag_mean": 0.484,
+        "improvement": -0.05
+      }
+    }
+  }
+}

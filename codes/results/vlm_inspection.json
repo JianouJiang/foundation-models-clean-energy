@@ -1,0 +1,62 @@
+{
+  "Random baseline": {
+    "accuracy": 0.49,
+    "precision": 0.4898,
+    "recall": 0.48,
+    "f1": 0.4848,
+    "n_samples": 300
+  },
+  "CLIP zero-shot (generic)": {
+    "accuracy": 0.6233,
+    "precision": 0.635,
+    "recall": 0.58,
+    "f1": 0.6063,
+    "n_samples": 300,
+    "time_sec": 1196.2,
+    "avg_confidence": 0.7126
+  },
+  "CLIP zero-shot (domain)": {
+    "accuracy": 0.5,
+    "precision": 0.5,
+    "recall": 1.0,
+    "f1": 0.6667,
+    "n_samples": 300,
+    "time_sec": 1521.0,
+    "avg_confidence": 0.9235
+  },
+  "CLIP zero-shot (ensemble)": {
+    "accuracy": 0.5667,
+    "precision": 0.5373,
+    "recall": 0.96,
+    "f1": 0.689,
+    "n_samples": 300,
+    "time_sec": 1492.1,
+    "avg_confidence": 0.8181
+  },
+  "Supervised (CLIP+LogReg)": {
+    "accuracy": 0.76,
+    "precision": 0.7708,
+    "recall": 0.74,
+    "f1": 0.7551,
+    "n_samples": 300,
+    "time_sec": 1300.7,
+    "note": "5-fold stratified cross-validation"
+  },
+  "confusion_matrix_ensemble": [
+    [
+      26,
+      124
+    ],
+    [
+      6,
+      144
+    ]
+  ],
+  "dataset": {
+    "name": "ELPV (Electroluminescence Photovoltaic)",
+    "total_images": 300,
+    "functional": 150,
+    "defective": 150,
+    "source": "https://github.com/zae-bayern/elpv-dataset"
+  }
+}

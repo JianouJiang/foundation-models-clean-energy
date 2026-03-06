@@ -1,0 +1,98 @@
+[
+  {
+    "strategy": "Zero-shot FM",
+    "task": "Load forecasting",
+    "model": "Chronos-T5-Small",
+    "performance": 0.388,
+    "perf_metric": "1 - nMAE",
+    "compute_tflops": 0.02,
+    "setup_hours": 1,
+    "labeled_data": 0,
+    "category": "time-series",
+    "pareto_optimal": false
+  },
+  {
+    "strategy": "Fine-tuned DL",
+    "task": "Load forecasting",
+    "model": "LSTM",
+    "performance": 0.179,
+    "perf_metric": "1 - nMAE",
+    "compute_tflops": 0.5,
+    "setup_hours": 20,
+    "labeled_data": 5000,
+    "category": "time-series",
+    "pareto_optimal": false
+  },
+  {
+    "strategy": "Classical ML",
+    "task": "Load forecasting",
+    "model": "XGBoost",
+    "performance": 0.315,
+    "perf_metric": "1 - nMAE",
+    "compute_tflops": 0.001,
+    "setup_hours": 10,
+    "labeled_data": 5000,
+    "category": "time-series",
+    "pareto_optimal": true
+  },
+  {
+    "strategy": "Statistical",
+    "task": "Load forecasting",
+    "model": "ARIMA",
+    "performance": 0.091,
+    "perf_metric": "1 - nMAE",
+    "compute_tflops": 0.0001,
+    "setup_hours": 5,
+    "labeled_data": 1000,
+    "category": "time-series",
+    "pareto_optimal": true
+  },
+  {
+    "strategy": "Zero-shot FM",
+    "task": "Defect detection",
+    "model": "CLIP ViT-B-32",
+    "performance": 0.689,
+    "perf_metric": "F1",
+    "compute_tflops": 0.01,
+    "setup_hours": 2,
+    "labeled_data": 0,
+    "category": "vision",
+    "pareto_optimal": true
+  },
+  {
+    "strategy": "Few-shot FM",
+    "task": "Defect detection",
+    "model": "CLIP + LogReg",
+    "performance": 0.7551,
+    "perf_metric": "F1",
+    "compute_tflops": 0.02,
+    "setup_hours": 5,
+    "labeled_data": 50,
+    "category": "vision",
+    "pareto_optimal": true
+  },
+  {
+    "strategy": "Zero-shot FM",
+    "task": "Domain Q&A",
+    "model": "Qwen2.5-7B",
+    "performance": 0.26,
+    "perf_metric": "Accuracy",
+    "compute_tflops": 0.1,
+    "setup_hours": 1,
+    "labeled_data": 0,
+    "category": "nlp",
+    "pareto_optimal": false
+  },
+  {
+    "strategy": "RAG",
+    "task": "Domain Q&A",
+    "model": "Qwen2.5-7B + RAG",
+    "performance": 0.616,
+    "perf_metric": "Accuracy",
+    "compute_tflops": 0.15,
+    "setup_hours": 10,
+    "labeled_data": 0,
+    "category": "nlp",
+    "pareto_optimal": false
+  }
+]

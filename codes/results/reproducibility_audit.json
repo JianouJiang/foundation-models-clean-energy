@@ -1,0 +1,493 @@
+{
+  "open_access": {
+    "total_papers": 3645,
+    "open_access_count": 2327,
+    "open_access_pct": 63.8,
+    "by_year": {
+      "sum": {
+        "2017": 65,
+        "2018": 74,
+        "2019": 83,
+        "2020": 83,
+        "2021": 77,
+        "2022": 91,
+        "2023": 258,
+        "2024": 618,
+        "2025": 806,
+        "2026": 172
+      },
+      "count": {
+        "2017": 115,
+        "2018": 121,
+        "2019": 144,
+        "2020": 134,
+        "2021": 126,
+        "2022": 136,
+        "2023": 370,
+        "2024": 975,
+        "2025": 1319,
+        "2026": 205
+      },
+      "pct": {
+        "2017": 56.5,
+        "2018": 61.2,
+        "2019": 57.6,
+        "2020": 61.9,
+        "2021": 61.1,
+        "2022": 66.9,
+        "2023": 69.7,
+        "2024": 63.4,
+        "2025": 61.1,
+        "2026": 83.9
+      }
+    },
+    "by_fm_type": {
+      "sum": {
+        "LLM": 1327,
+        "TSFM": 156,
+        "VLM": 59,
+        "diffusion": 475,
+        "multimodal": 22,
+        "standard_transformer": 25,
+        "unclassified": 263
+      },
+      "count": {
+        "LLM": 2109,
+        "TSFM": 205,
+        "VLM": 111,
+        "diffusion": 754,
+        "multimodal": 36,
+        "standard_transformer": 34,
+        "unclassified": 396
+      },
+      "pct": {
+        "LLM": 62.9,
+        "TSFM": 76.1,
+        "VLM": 53.2,
+        "diffusion": 63.0,
+        "multimodal": 61.1,
+        "standard_transformer": 73.5,
+        "unclassified": 66.4
+      }
+    }
+  },
+  "doi": {
+    "total": 3645,
+    "has_doi": 3553,
+    "doi_pct": 97.5
+  },
+  "code_estimate": {
+    "ml_venue_papers": 597,
+    "ml_venue_pct": 16.4,
+    "code_mentioned_in_abstract": 199,
+    "code_mention_pct": 5.5
+  },
+  "pwc_check": {
+    "checked": 50,
+    "found_on_pwc": 0,
+    "found_pct": 0.0,
+    "papers": [
+      {
+        "title": "Photorealistic Text-to-Image Diffusion Models with Deep Language Understanding",
+        "year": 2022,
+        "cited_by": 2101,
+        "found_on_pwc": false,
+        "has_code": false,
+        "n_implementations": 0
+      },
+      {
+        "title": "De novo design of protein structure and function with RFdiffusion",
+        "year": 2023,
+        "cited_by": 1620,
+        "found_on_pwc": false,
+        "has_code": false,
+        "n_implementations": 0
+      },
+      {
+        "title": "Diffusion Models in Vision: A Survey",
+        "year": 2023,
+        "cited_by": 1447,
+        "found_on_pwc": false,
+        "has_code": false,
+        "n_implementations": 0
+      },
+      {
+        "title": "The 2021 Magnonics Roadmap",
+        "year": 2021,
+        "cited_by": 540,
+        "found_on_pwc": false,
+        "has_code": false,
+        "n_implementations": 0
+      },
+      {
+        "title": "The Power of Generative AI: A Review of Requirements, Models, Input\u2013Output Forma",
+        "year": 2023,
+        "cited_by": 509,
+        "found_on_pwc": false,
+        "has_code": false,
+        "n_implementations": 0
+      },
+      {
+        "title": "Unlocking the Power of ChatGPT: A Framework for Applying Generative AI in Educat",
+        "year": 2023,
+        "cited_by": 506,
+        "found_on_pwc": false,
+        "has_code": false,
+        "n_implementations": 0
+      },
+      {
+        "title": "Plug-and-Play Diffusion Features for Text-Driven Image-to-Image Translation",
+        "year": 2023,
+        "cited_by": 462,
+        "found_on_pwc": false,
+        "has_code": false,
+        "n_implementations": 0
+      },
+      {
+        "title": "DiffusionCLIP: Text-Guided Diffusion Models for Robust Image Manipulation",
+        "year": 2022,
+        "cited_by": 438,
+        "found_on_pwc": false,
+        "has_code": false,
+        "n_implementations": 0
+      },
+      {
+        "title": "Review on Li Deposition in Working Batteries: From Nucleation to Early Growth",
+        "year": 2021,
+        "cited_by": 430,
+        "found_on_pwc": false,
+        "has_code": false,
+        "n_implementations": 0
+      },
+      {
+        "title": "Harnessing the Power of LLMs in Practice: A Survey on ChatGPT and Beyond",
+        "year": 2024,
+        "cited_by": 427,
+        "found_on_pwc": false,
+        "has_code": false,
+        "n_implementations": 0
+      },
+      {
+        "title": "Accurate predictions on small data with a tabular foundation model",
+        "year": 2025,
+        "cited_by": 396,
+        "found_on_pwc": false,
+        "has_code": false,
+        "n_implementations": 0
+      },
+      {
+        "title": "TPU v4: An Optically Reconfigurable Supercomputer for Machine Learning with Hard",
+        "year": 2023,
+        "cited_by": 383,
+        "found_on_pwc": false,
+        "has_code": false,
+        "n_implementations": 0
+      },
+      {
+        "title": "Epithelial barrier hypothesis: Effect of the external exposome on the microbiome",
+        "year": 2022,
+        "cited_by": 370,
+        "found_on_pwc": false,
+        "has_code": false,
+        "n_implementations": 0
+      },
+      {
+        "title": "A Survey on Large Language Models: Applications, Challenges, Limitations, and Pr",
+        "year": 2023,
+        "cited_by": 333,
+        "found_on_pwc": false,
+        "has_code": false,
+        "n_implementations": 0
+      },
+      {
+        "title": "Opportunities and challenges for ChatGPT and large language models in biomedicin",
+        "year": 2023,
+        "cited_by": 313,
+        "found_on_pwc": false,
+        "has_code": false,
+        "n_implementations": 0
+      },
+      {
+        "title": "Enriching Location Representation with Detailed Semantic Information",
+        "year": 2024,
+        "cited_by": 307,
+        "found_on_pwc": false,
+        "has_code": false,
+        "n_implementations": 0
+      },
+      {
+        "title": "Unleashing the Power of Edge-Cloud Generative AI in Mobile Networks: A Survey of",
+        "year": 2024,
+        "cited_by": 295,
+        "found_on_pwc": false,
+        "has_code": false,
+        "n_implementations": 0
+      },
+      {
+        "title": "Amino acid-dependent control of mTORC1 signaling: a variety of regulatory modes",
+        "year": 2020,
+        "cited_by": 287,
+        "found_on_pwc": false,
+        "has_code": false,
+        "n_implementations": 0
+      },
+      {
+        "title": "Latent-NeRF for Shape-Guided Generation of 3D Shapes and Textures",
+        "year": 2023,
+        "cited_by": 280,
+        "found_on_pwc": false,
+        "has_code": false,
+        "n_implementations": 0
+      },
+      {
+        "title": "RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control",
+        "year": 2023,
+        "cited_by": 262,
+        "found_on_pwc": false,
+        "has_code": false,
+        "n_implementations": 0
+      },
+      {
+        "title": "A Critical Review of the Evidence That Metformin Is a Putative Anti-Aging Drug T",
+        "year": 2021,
+        "cited_by": 251,
+        "found_on_pwc": false,
+        "has_code": false,
+        "n_implementations": 0
+      },
+      {
+        "title": "Boltz-2: Towards Accurate and Efficient Binding Affinity Prediction",
+        "year": 2025,
+        "cited_by": 247,
+        "found_on_pwc": false,
+        "has_code": false,
+        "n_implementations": 0
+      },
+      {
+        "title": "Device Physics of Hybrid Perovskite Solar cells: Theory and Experiment",
+        "year": 2018,
+        "cited_by": 236,
+        "found_on_pwc": false,
+        "has_code": false,
+        "n_implementations": 0
+      },
+      {
+        "title": "Transcriptional activation of RagD GTPase controls mTORC1 and promotes cancer gr",
+        "year": 2017,
+        "cited_by": 226,
+        "found_on_pwc": false,
+        "has_code": false,
+        "n_implementations": 0
+      },
+      {
+        "title": "Kinetics, Isotherm and Thermodynamic Studies for Efficient Adsorption of Congo R",
+        "year": 2021,
+        "cited_by": 213,
+        "found_on_pwc": false,
+        "has_code": false,
+        "n_implementations": 0
+      },
+      {
+        "title": "Using artificial intelligence in craft education: crafting with text-to-image ge",
+        "year": 2023,
+        "cited_by": 212,
+        "found_on_pwc": false,
+        "has_code": false,
+        "n_implementations": 0
+      },
+      {
+        "title": "Opto-Valleytronic Spin Injection in Monolayer MoS<sub>2</sub>/Few-Layer Graphene",
+        "year": 2017,
+        "cited_by": 212,
+        "found_on_pwc": false,
+        "has_code": false,
+        "n_implementations": 0
+      },
+      {
+        "title": "Light Intensity Analysis of Photovoltaic Parameters for Perovskite Solar Cells",
+        "year": 2021,
+        "cited_by": 211,
+        "found_on_pwc": false,
+        "has_code": false,
+        "n_implementations": 0
+      },
+      {
+        "title": "Reducing Surface Recombination Velocities at the Electrical Contacts Will Improv",
+        "year": 2018,
+        "cited_by": 199,
+        "found_on_pwc": false,
+        "has_code": false,
+        "n_implementations": 0
+      },
+      {
+        "title": "Revolutionizing Cyber Threat Detection With Large Language Models: A Privacy-Pre",
+        "year": 2024,
+        "cited_by": 194,
+        "found_on_pwc": false,
+        "has_code": false,
+        "n_implementations": 0
+      },
+      {
+        "title": "An Insulator in Transmission Lines Recognition and Fault Detection Model Based o",
+        "year": 2021,
+        "cited_by": 193,
+        "found_on_pwc": false,
+        "has_code": false,
+        "n_implementations": 0
+      },
+      {
+        "title": "Does ChatGPT enhance student learning? A systematic review and meta-analysis of ",
+        "year": 2024,
+        "cited_by": 190,
+        "found_on_pwc": false,
+        "has_code": false,
+        "n_implementations": 0
+      },
+      {
+        "title": "Low-Light Image Enhancement with Wavelet-Based Diffusion Models",
+        "year": 2023,
+        "cited_by": 187,
+        "found_on_pwc": false,
+        "has_code": false,
+        "n_implementations": 0
+      },
+      {
+        "title": "Efficient Deformable ConvNets: Rethinking Dynamic and Sparse Operator for Vision",
+        "year": 2024,
+        "cited_by": 181,
+        "found_on_pwc": false,
+        "has_code": false,
+        "n_implementations": 0
+      },
+      {
+        "title": "Ambiguous Medical Image Segmentation Using Diffusion Models",
+        "year": 2023,
+        "cited_by": 175,
+        "found_on_pwc": false,
+        "has_code": false,
+        "n_implementations": 0
+      },
+      {
+        "title": "A Review of Current Trends, Techniques, and Challenges in Large Language Models ",
+        "year": 2024,
+        "cited_by": 172,
+        "found_on_pwc": false,
+        "has_code": false,
+        "n_implementations": 0
+      },
+      {
+        "title": "Generative artificial intelligence empowers digital twins in drug discovery and ",
+        "year": 2023,
+        "cited_by": 171,
+        "found_on_pwc": false,
+        "has_code": false,
+        "n_implementations": 0
+      },
+      {
+        "title": "Generative Artificial Intelligence Acceptance Scale: A Validity and Reliability ",
+        "year": 2023,
+        "cited_by": 161,
+        "found_on_pwc": false,
+        "has_code": false,
+        "n_implementations": 0
+      },
+      {
+        "title": "What drives the market for plug-in electric vehicles? - A review of internationa",
+        "year": 2018,
+        "cited_by": 158,
+        "found_on_pwc": false,
+        "has_code": false,
+        "n_implementations": 0
+      },
+      {
+        "title": "Bringing Race Into Second Language Acquisition",
+        "year": 2019,
+        "cited_by": 152,
+        "found_on_pwc": false,
+        "has_code": false,
+        "n_implementations": 0
+      },
+      {
+        "title": "Listen, Denoise, Action! Audio-Driven Motion Synthesis with Diffusion Models",
+        "year": 2023,
+        "cited_by": 152,
+        "found_on_pwc": false,
+        "has_code": false,
+        "n_implementations": 0
+      },
+      {
+        "title": "S\u2010adenosylmethionine: A metabolite critical to the regulation of autophagy",
+        "year": 2020,
+        "cited_by": 151,
+        "found_on_pwc": false,
+        "has_code": false,
+        "n_implementations": 0
+      },
+      {
+        "title": "Bayesian analysis of single-particle tracking data using the nested-sampling alg",
+        "year": 2018,
+        "cited_by": 145,
+        "found_on_pwc": false,
+        "has_code": false,
+        "n_implementations": 0
+      },
+      {
+        "title": "Theoretical, Equilibrium, Kinetics and Thermodynamic Investigations of Methylene",
+        "year": 2022,
+        "cited_by": 144,
+        "found_on_pwc": false,
+        "has_code": false,
+        "n_implementations": 0
+      },
+      {
+        "title": "A Comprehensive Survey of Deep Transfer Learning for Anomaly Detection in Indust",
+        "year": 2024,
+        "cited_by": 144,
+        "found_on_pwc": false,
+        "has_code": false,
+        "n_implementations": 0
+      },
+      {
+        "title": "Broadly applicable and accurate protein design by integrating structure predicti",
+        "year": 2022,
+        "cited_by": 143,
+        "found_on_pwc": false,
+        "has_code": false,
+        "n_implementations": 0
+      },
+      {
+        "title": "Green artificial intelligence initiatives: Potentials and challenges",
+        "year": 2024,
+        "cited_by": 139,
+        "found_on_pwc": false,
+        "has_code": false,
+        "n_implementations": 0
+      },
+      {
+        "title": "Nonlocal Kirchhoff diffusion problems: local existence and blow-up of solutions",
+        "year": 2018,
+        "cited_by": 138,
+        "found_on_pwc": false,
+        "has_code": false,
+        "n_implementations": 0
+      },
+      {
+        "title": "Role of surface recombination in perovskite solar cells at the interface of HTL/",
+        "year": 2019,
+        "cited_by": 137,
+        "found_on_pwc": false,
+        "has_code": false,
+        "n_implementations": 0
+      },
+      {
+        "title": "From Words to Watts: Benchmarking the Energy Costs of Large Language Model Infer",
+        "year": 2023,
+        "cited_by": 135,
+        "found_on_pwc": false,
+        "has_code": false,
+        "n_implementations": 0
+      }
+    ]
+  },
+  "reproducibility_index": 0.403
+}

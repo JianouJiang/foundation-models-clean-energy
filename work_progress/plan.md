@@ -210,8 +210,77 @@ figure is visually clean. RSER editors value figures that can be reproduced in f
    standardized benchmarks, real-time FM inference constraints, multilingual operational
    interfaces (Chinese/English).
 
-10. (Optional) **Case Study Diagram** — RAG pipeline applied to Three Gorges operational
-    logs, showing query-response architecture without requiring full system deployment.
+10. **Time-Series FM Benchmark Results** — Performance comparison table/chart: foundation
+    time-series models vs classical baselines on energy forecasting datasets.
+
+11. **LLM Energy Q&A Accuracy** — Bar chart of accuracy/hallucination rates across models
+    on energy domain questions.
+
+12. **VLM Zero-Shot Inspection** — Confusion matrix or ROC: CLIP zero-shot vs supervised
+    baseline on solar panel defect detection.
+
+13. **RAG vs Direct LLM** — Comparison chart showing hallucination reduction with RAG
+    on energy technical documents.
+
+14. **Reproducibility Audit** — Bar chart: % of top papers with open code, open data, both.
+
+15. **Cost-Performance Pareto** — Deployment strategy cost vs accuracy frontier.
+
+16. **Keyword Co-occurrence Network** — Network graph with community detection showing
+    research cluster structure.
+
+17. **Temporal Keyword Evolution** — Alluvial/streamgraph showing vocabulary shift from
+    "deep learning" to "foundation model" to "LLM agent" over 2017-2026.
+
+---
+
+## Computational Experiment Contract
+
+This paper is NOT a pure prose review. It includes substantial computational work.
+
+### Experiment 1: Bibliometric & Scientometric Analysis
+- **Data source**: OpenAlex API (free, no auth)
+- **Scope**: 500-2000+ papers on FM+energy (2017-2026)
+- **Analysis**: Publication trends, citation networks, keyword co-occurrence, geographic
+  distribution, automated classification by energy domain × FM type × task
+- **Output**: classified_papers.csv, 6+ figures, PRISMA flow
+
+### Experiment 2: Time-Series FM Benchmark on Energy Data
+- **Dataset**: Public energy time-series (UCI Power, ENTSO-E load, or wind/solar from Kaggle)
+- **Models**: ARIMA, XGBoost, LSTM, Transformer, Chronos/MOMENT/Lag-Llama (HuggingFace)
+- **Comparison**: Zero-shot vs fine-tuned vs classical
+- **Metrics**: MAE, RMSE, MAPE on test set
+- **Key question**: Do foundation time-series models beat classical methods on energy data?
+
+### Experiment 3: LLM Energy Domain Q&A
+- **Benchmark**: 50-100 curated energy domain questions
+- **Models**: Qwen2.5 (local Ollama), plus any API-accessible models
+- **Metrics**: Accuracy, hallucination rate, domain specificity
+- **Key question**: How well do general LLMs handle energy domain knowledge zero-shot?
+
+### Experiment 4: VLM Zero-Shot Energy Inspection
+- **Dataset**: ELPV dataset (solar cell electroluminescence images, open on GitHub)
+- **Models**: CLIP zero-shot vs fine-tuned ResNet baseline
+- **Metrics**: Accuracy, F1, confusion matrix
+- **Key question**: Can VLMs do zero-shot defect detection for energy infrastructure?
+
+### Experiment 5: RAG Pipeline for Energy Documents
+- **Documents**: 10-20 public IEA/IRENA reports (free PDFs)
+- **Stack**: sentence-transformers + FAISS + Ollama Qwen2.5
+- **Comparison**: RAG answers vs direct LLM answers
+- **Metrics**: Relevance, factual grounding, hallucination rate
+- **Key question**: Does RAG improve LLM accuracy on energy domain Q&A?
+
+### Experiment 6: Reproducibility Audit
+- **Scope**: Top 100 most-cited papers from the bibliometric database
+- **Check**: GitHub link, open code, open data availability
+- **Output**: Reproducibility statistics supporting AIDER's open-science mission
+
+### Experiment 7: Cost-Performance Analysis
+- **Data**: Inference costs and accuracy from Experiments 2-5
+- **Output**: Pareto frontier of deployment strategies for energy applications
+
+---
 
 ### Research Methodology
 
