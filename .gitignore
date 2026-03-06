@@ -5,3 +5,4 @@ __pycache__/
 page_images/
 watcher_state.json
 .running_experiment.json
+data/elpv_repo/
