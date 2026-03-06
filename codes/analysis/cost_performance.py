@@ -23,8 +23,8 @@ def load_experiment_results():
     results = {}
 
     for fname in ["timeseries_benchmark.json", "vlm_inspection.json",
-                   "llm_energy_qa.json", "rag_pipeline.json",
-                   "reproducibility_audit.json"]:
+                   "llm_energy_qa.json", "llm_energy_qa_3b.json",
+                   "rag_pipeline.json", "reproducibility_audit.json"]:
         fpath = os.path.join(RESULTS_DIR, fname)
         if os.path.exists(fpath):
             with open(fpath) as f:
@@ -133,8 +133,19 @@ def build_deployment_matrix():
             "task": "Domain Q&A",
             "model": "Qwen2.5-7B",
             "performance": 0.0,
-            "perf_metric": "Accuracy",
+            "perf_metric": "Keyword score",
             "compute_tflops": 0.1,
+            "setup_hours": 1,
+            "labeled_data": 0,
+            "category": "nlp",
+        },
+        {
+            "strategy": "Zero-shot FM (small)",
+            "task": "Domain Q&A",
+            "model": "Qwen2.5-3B",
+            "performance": 0.0,
+            "perf_metric": "Keyword score",
+            "compute_tflops": 0.04,
             "setup_hours": 1,
             "labeled_data": 0,
             "category": "nlp",
@@ -144,7 +155,7 @@ def build_deployment_matrix():
             "task": "Domain Q&A",
             "model": "Qwen2.5-7B + RAG",
             "performance": 0.0,
-            "perf_metric": "Accuracy",
+            "perf_metric": "Keyword score",
             "compute_tflops": 0.15,
             "setup_hours": 10,
             "labeled_data": 0,
@@ -197,8 +208,15 @@ def fill_from_experiments(strategies, exp_results):
     if qa:
         for s in strategies:
             if s["category"] == "nlp":
-                if s["strategy"] == "Zero-shot FM":
+                if s["strategy"] == "Zero-shot FM" and s["model"] == "Qwen2.5-7B":
                     s["performance"] = qa.get("mean_keyword_score", 0)
+
+    # LLM Q&A 3B results
+    qa_3b = exp_results.get("llm_energy_qa_3b", {})
+    if qa_3b:
+        for s in strategies:
+            if s["category"] == "nlp" and s["model"] == "Qwen2.5-3B":
+                s["performance"] = qa_3b.get("mean_keyword_score", 0)
 
     # RAG results
     rag = exp_results.get("rag_pipeline", {})
@@ -280,12 +298,14 @@ def plot_pareto(strategies):
         px, py, _ = zip(*pareto_pts)
         ax.plot(px, py, "k--", alpha=0.5, linewidth=1.5)
 
-    # Label ONLY Pareto points (Tufte: reduce annotation clutter)
+    # Label ONLY Pareto points — custom offsets to avoid overlap
+    custom_offsets = [(10, -22), (10, 14), (-80, -20), (14, 14)]
     for i, (x, y, lab) in enumerate(pareto_pts):
-        va = "bottom" if i % 2 == 0 else "top"
-        offset_y = 8 if i % 2 == 0 else -8
-        ax.annotate(lab, (x, y), fontsize=7.5, ha="left",
-                    xytext=(8, offset_y), textcoords="offset points",
+        ox, oy = custom_offsets[i % len(custom_offsets)]
+        ha_ann = "left" if ox > 0 else "right"
+        va_ann = "bottom" if oy > 0 else "top"
+        ax.annotate(lab, (x, y), fontsize=9, ha=ha_ann,
+                    xytext=(ox, oy), textcoords="offset points",
                     arrowprops=dict(arrowstyle="-", color="0.4", lw=0.5))
 
     ax.set_xscale("log")
@@ -351,8 +371,8 @@ def plot_deployment_comparison(strategies):
         ax.set_title(title)
         ax.grid(axis="y", visible=False)
 
-    fig.suptitle("FM deployment strategy comparison", fontsize=12, y=1.02)
-    fig.tight_layout()
+    fig.suptitle("FM deployment strategy comparison", fontsize=12)
+    fig.tight_layout(rect=[0, 0, 1, 0.95])
     pu.save_figure(fig, "fig_deployment_comparison")
     print("Saved: fig_deployment_comparison")
     return fig

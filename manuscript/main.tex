@@ -56,11 +56,11 @@ foundation models \sep large language models \sep clean energy \sep hydropower \
 \section{Introduction}
 \label{sec:introduction}
 
-The global clean energy transition demands increasingly sophisticated tools for managing complex, heterogeneous data streams across power generation, transmission, and ecological stewardship. Hydropower reservoirs produce multi-decadal hydrological records alongside real-time turbine vibration signals; wind farms generate terabytes of SCADA data combined with meteorological reanalysis fields and drone inspection imagery; solar installations integrate satellite-derived irradiance maps with panel-level thermal signatures; and ecological monitoring at energy infrastructure sites spans acoustic recordings, underwater camera feeds, and satellite vegetation indices. No single conventional machine learning model---trained from scratch on a narrow, site-specific dataset---handles this diversity adequately \cite{wang2023dl_renewable_forecasting}.
+The global clean energy transition demands increasingly sophisticated tools for managing complex, heterogeneous data streams across power generation, transmission, and ecological stewardship. Hydropower reservoirs produce multi-decadal hydrological records alongside real-time turbine vibration signals; wind farms generate terabytes of SCADA data combined with meteorological reanalysis fields and drone inspection imagery; solar installations integrate satellite-derived irradiance maps with panel-level thermal signatures; and ecological monitoring at energy infrastructure sites spans acoustic recordings, underwater camera feeds, and satellite vegetation indices. No single conventional machine learning model---trained from scratch on a narrow, site-specific dataset---handles this diversity adequately \cite{wang2019dl_renewable_forecasting}.
 
 Foundation models (FMs) offer a fundamentally different paradigm. Defined by Bommasani et al. \cite{bommasani2021opportunities} as models ``trained on broad data at scale and adaptable to a wide range of downstream tasks,'' FMs exhibit emergent capabilities absent from their smaller predecessors: in-context learning, zero-shot generalisation, chain-of-thought reasoning, and cross-modal grounding \cite{wei2022emergent}. These capabilities map directly onto unsolved problems in clean energy operations---multi-source data fusion, rapid adaptation to new plant sites without costly retraining, natural language explainability for operator decision support, and ecological monitoring at scale with limited labelled data.
 
-Yet despite rapid advances in foundation model architectures---from GPT-4 \cite{achiam2023gpt4} and LLaMA \cite{touvron2023llama2} in language to CLIP \cite{radford2021learning} and Segment Anything \cite{kirillov2023sam} in vision, and from TimeGPT to Moirai \cite{woo2024moirai} in time series---their adoption in clean energy remains fragmented. Existing review articles address either traditional deep learning for energy forecasting \cite{wang2023dl_renewable_forecasting, ahmed2020wind_forecasting_review} or large language models for general industrial applications \cite{zhao2023llm_survey, minaee2024llm_survey}, but none systematically maps the full spectrum of foundation model capabilities onto the specific technical challenges of clean energy operations and ecological monitoring.
+Yet despite rapid advances in foundation model architectures---from GPT-4 \cite{achiam2023gpt4} and LLaMA \cite{touvron2023llama2} in language to CLIP \cite{radford2021learning} and Segment Anything \cite{kirillov2023sam} in vision, and from TimeGPT to Moirai \cite{woo2024moirai} in time series---their adoption in clean energy remains fragmented. Existing review articles address either traditional deep learning for energy forecasting \cite{wang2019dl_renewable_forecasting, ahmed2020wind_forecasting_review} or large language models for general industrial applications \cite{zhao2023llm_survey, minaee2024llm_survey}, but none systematically maps the full spectrum of foundation model capabilities onto the specific technical challenges of clean energy operations and ecological monitoring.
 
 This paper addresses that gap through five contributions. First, we present a comprehensive scoping review (2019--2026) guided by the PRISMA-ScR framework \cite{tricco2018prisma_scr, page2021prisma}, synthesising 31 application studies with transparent eligibility criteria. Second, a large-scale bibliometric analysis of 3{,}645 classified FM+energy papers from OpenAlex quantifies publication growth, geographic distribution, and reproducibility gaps. Third, a structured taxonomy cross-references five FM paradigms against seven clean energy task categories with data-driven maturity assessment. Fourth, the Clean Energy Foundation Model Deployment Framework (CEFMDF)---a four-layer architecture (Perception--Reasoning--Decision--Interface)---specifies how FMs integrate with existing SCADA/EMS infrastructure. Fifth, five benchmark experiments (time-series forecasting, LLM energy Q\&A, VLM zero-shot inspection, RAG pipeline evaluation, and a reproducibility audit) provide original quantitative evidence on FM capabilities for energy applications.
 
@@ -89,7 +89,7 @@ The string was adapted for each database's syntax. Boolean operators and field r
 
 \textit{Databases not included:} CNKI was excluded due to the English-language scope of the primary search; Chinese-language domestic studies may be underrepresented, though studies from Chinese groups published in English venues were captured.
 
-\textit{Search completeness check:} The included study set was validated against reference lists of Zhou et al.\ \cite{zhou2024llm_energy_review} and Lotfi et al.\ \cite{lotfi2024generativeai_energy}; all FM-specific studies meeting our criteria were identified. Citation chasing additionally captured 7 studies not in either competing review.
+\textit{Search completeness check:} The included study set was validated against reference lists of Zhang et al.\ \cite{zhang2025deep_generative_energy} and Zhu et al.\ \cite{zhu2024generalist_energy_ai}; all FM-specific studies meeting our criteria were identified. Citation chasing additionally captured 7 studies not in either competing review.
 
 \subsection{Eligibility criteria}
 \label{subsec:eligibility}
@@ -246,7 +246,7 @@ This section distinguishes foundation models from conventional deep learning and
 \subsection{From conventional deep learning to foundation models}
 \label{subsec:conventional_vs_fm}
 
-Conventional energy-sector deep learning (LSTMs for forecasting, CNNs for defect detection, standard Transformers for inflow prediction \cite{xiang2024transformer_hydro}) follows a narrow paradigm: one model, one dataset, one site. Foundation models break this through \textit{large-scale pre-training} on broad data, \textit{transfer learning} requiring zero to few labelled examples, and \textit{emergent capabilities} arising from scale \cite{wei2022emergent}---chain-of-thought reasoning \cite{wei2022chainofthought}, instruction following \cite{ouyang2022instructgpt}, and cross-modal association. Table~\ref{tab:fm_vs_dl} summarises the key distinctions.
+Conventional energy-sector deep learning (LSTMs for forecasting, CNNs for defect detection, standard Transformers for inflow prediction \cite{demiray2024transformer_streamflow}) follows a narrow paradigm: one model, one dataset, one site. Foundation models break this through \textit{large-scale pre-training} on broad data, \textit{transfer learning} requiring zero to few labelled examples, and \textit{emergent capabilities} arising from scale \cite{wei2022emergent}---chain-of-thought reasoning \cite{wei2022chainofthought}, instruction following \cite{ouyang2022instructgpt}, and cross-modal association. Table~\ref{tab:fm_vs_dl} summarises the key distinctions.
 
 \begin{table}[htbp]
 \centering
@@ -277,7 +277,7 @@ LLMs---autoregressive Transformers pre-trained on hundreds of billions of tokens
 \subsection{Vision-language models}
 \label{subsec:vlm}
 
-VLMs jointly process images and text. CLIP \cite{radford2021learning} learns a shared image-text embedding space enabling zero-shot classification; BLIP-2 \cite{li2023blip2} couples frozen visual encoders with LLMs for visual question answering. In clean energy, VLMs enable zero-shot inspection of turbine blade cracks \cite{shao2024wind_blade_inspection}, solar panel hot spots \cite{tang2024solar_panel_defect}, fish passage imagery \cite{chen2024fish_passage_cv}, and satellite ecological assessment \cite{wang2023ecological_satellite}---eliminating the labelled-data bottleneck that limits conventional inspection automation. The Segment Anything Model (SAM) \cite{kirillov2023sam}, pre-trained on 11~million images, provides promptable segmentation for delineating damaged regions, individual panels, and wildlife outlines.
+VLMs jointly process images and text. CLIP \cite{radford2021learning} learns a shared image-text embedding space enabling zero-shot classification; BLIP-2 \cite{li2023blip2} couples frozen visual encoders with LLMs for visual question answering. In clean energy, VLMs enable zero-shot inspection of turbine blade cracks \cite{memari2024blade_inspection_review}, solar panel hot spots \cite{thakfan2024solar_panel_defect}, fish passage imagery \cite{gregory2025fish_passage_dl}, and satellite ecological assessment \cite{pettorelli2024dl_satellite_biodiversity}---eliminating the labelled-data bottleneck that limits conventional inspection automation. The Segment Anything Model (SAM) \cite{kirillov2023sam}, pre-trained on 11~million images, provides promptable segmentation for delineating damaged regions, individual panels, and wildlife outlines.
 
 \subsection{Time-series foundation models}
 \label{subsec:tsfm}
@@ -287,7 +287,7 @@ TSFMs are pre-trained on large, diverse time-series corpora for zero-shot or few
 \subsection{Diffusion models for energy data augmentation}
 \label{subsec:diffusion}
 
-Diffusion models \cite{ho2020denoising, rombach2022stablediffusion} generate high-fidelity samples by reversing a learned noising process, offering stable training and diverse outputs compared to GANs. In energy applications, their primary utility is data augmentation for rare-event scenarios: synthetic thermal images of solar panel defects, extreme weather scenarios for stress-testing forecasts, and underwater imagery of endangered species \cite{zhang2024diffusion_ts}. Conditional generation enables targeted augmentation of underrepresented classes in imbalanced energy datasets.
+Diffusion models \cite{ho2020denoising, rombach2022stablediffusion} generate high-fidelity samples by reversing a learned noising process, offering stable training and diverse outputs compared to GANs. In energy applications, their primary utility is data augmentation for rare-event scenarios: synthetic thermal images of solar panel defects, extreme weather scenarios for stress-testing forecasts, and underwater imagery of endangered species \cite{lin2024diffusion_ts}. Conditional generation enables targeted augmentation of underrepresented classes in imbalanced energy datasets.
 
 \subsection{Multimodal transformers and agent frameworks}
 \label{subsec:multimodal}
@@ -337,13 +337,13 @@ The vertical axis categorises clean energy tasks into seven types: forecasting, 
 
 Fig.~\ref{fig:taxonomy_heatmap} presents the taxonomy as a maturity matrix, with each cell assessed on a three-level scale: \textit{active} (multiple studies with quantitative evaluation), \textit{emerging} (proof-of-concept studies exist), and \textit{gap} (no or minimal investigation). The maturity assessment is based on the studies reviewed and cited throughout Sections~\ref{sec:hydro}--\ref{sec:ecological}. The distribution reveals several patterns.
 
-\textit{Concentration in LLM--Operational Q\&A}: The most active area applies LLMs to question-answering over energy operational documents \cite{zhang2024llm_hydro_qa, wu2024scada_llm_maintenance, zheng2024chatgrid, wang2024llm_power_systems}. Most studies use RAG-based approaches to query maintenance logs, regulatory databases, or operational manuals, reflecting the natural first application of language models in text-rich energy operations.
+\textit{Concentration in LLM--Operational Q\&A}: The most active area applies LLMs to question-answering over energy operational documents \cite{ren2024watergpt, hu2025digital_twin_blade, jin2024chatgrid, hamann2024foundation_grid}. Most studies use RAG-based approaches to query maintenance logs, regulatory databases, or operational manuals, reflecting the natural first application of language models in text-rich energy operations.
 
-\textit{Rapid growth in TSFM--Forecasting}: Time-series foundation models applied to energy forecasting represent the fastest-growing area. Models including Moirai \cite{woo2024moirai}, Lag-Llama \cite{rasul2023lagllama}, Chronos \cite{ansari2024chronos}, and TimesFM \cite{das2024timesfm} have been evaluated on wind \cite{deng2024gpt_wind_forecast, xiao2024tsfm_wind_power}, solar \cite{lee2024tsfm_solar_forecast}, and hydrological \cite{xu2024tsfm_streamflow, li2024moirai_reservoir_inflow} forecasting tasks, with most publications appearing in 2024--2025.
+\textit{Rapid growth in TSFM--Forecasting}: Time-series foundation models applied to energy forecasting represent the fastest-growing area. Models including Moirai \cite{woo2024moirai}, Lag-Llama \cite{rasul2023lagllama}, Chronos \cite{ansari2024chronos}, and TimesFM \cite{das2024timesfm} have been evaluated on wind \cite{lai2024bert4st, mo2024powerformer}, solar \cite{piantadosi2024tsfm_solar_forecast}, and hydrological \cite{liu2024transformer_hydrologic, zhang2024crossregion_streamflow} forecasting tasks, with most publications appearing in 2024--2025.
 
-\textit{Emerging VLM--Image Inspection}: Vision-language models for infrastructure inspection constitute an emerging area with significant practical potential. CLIP-based defect classification \cite{huang2024clip_pv_defect, wang2024vlm_blade_defect} and SAM-based segmentation \cite{park2024sam_solar_panel, reddy2024sam_blade_segmentation} have been demonstrated for wind turbine blades and solar panels.
+\textit{Emerging VLM--Image Inspection}: Vision-language models for infrastructure inspection constitute an emerging area with significant practical potential. CLIP-based defect classification \cite{zhou2024anomalyclip, memari2024blade_inspection_review} and SAM-based segmentation \cite{li2024sam_solar_panel, sheiati2024blade_identification} have been demonstrated for wind turbine blades and solar panels.
 
-\textit{Critical gaps}: Three gaps stand out. Anomaly narration---translating detections into natural-language explanations---has very few studies \cite{chen2024hydro_vibration_llm, yang2024llm_solar_monitoring} despite clear value. Multimodal transformer applications integrating time series, imagery, and text remain largely conceptual \cite{li2024multimodal_power_grid}. Planning and scheduling with FM agents has received minimal attention \cite{wang2024energy_llm_agents}, despite demonstrated capabilities in other domains \cite{yao2023react, xi2023llmagent_survey}.
+\textit{Critical gaps}: Three gaps stand out. Anomaly narration---translating detections into natural-language explanations---has very few studies \cite{ma2022hydro_turbine_anomaly, jalal2024dl_pv_faults} despite clear value. Multimodal transformer applications integrating time series, imagery, and text remain largely conceptual \cite{zaboli2025llm_power_security}. Planning and scheduling with FM agents has received minimal attention \cite{liu2025repower_llm_power}, despite demonstrated capabilities in other domains \cite{yao2023react, xi2023llmagent_survey}.
 
 \begin{table}[htbp]
 \centering
@@ -395,7 +395,7 @@ Table~\ref{tab:study_distribution} shows LLMs and VLMs each account for 9 of 31 
 \subsection{Temporal trends}
 \label{subsec:temporal_trends}
 
-The reviewed literature shows clear temporal phases: pre-2023 studies applied BERT-class encoders for text classification or fine-tuned Transformers for forecasting \cite{chen2024transformer_energy}; 2023--2024 saw a surge in GPT-based operational Q\&A \cite{zheng2024chatgrid, zhang2024llm_hydro_qa} and dedicated TSFMs \cite{garza2023timegpt, rasul2023lagllama, woo2024moirai, goswami2024moment, ansari2024chronos}; and 2025--2026 shows emerging interest in multimodal and agent-based frameworks \cite{wang2024energy_llm_agents, li2024multimodal_power_grid} at proof-of-concept stage. This trajectory mirrors but lags the broader FM research curve by 12--18 months.
+The reviewed literature shows clear temporal phases: pre-2023 studies applied BERT-class encoders for text classification or fine-tuned Transformers for forecasting \cite{hanif2024transformer_solar}; 2023--2024 saw a surge in GPT-based operational Q\&A \cite{jin2024chatgrid, ren2024watergpt} and dedicated TSFMs \cite{garza2023timegpt, rasul2023lagllama, woo2024moirai, goswami2024moment, ansari2024chronos}; and 2025--2026 shows emerging interest in multimodal and agent-based frameworks \cite{liu2025repower_llm_power, zaboli2025llm_power_security} at proof-of-concept stage. This trajectory mirrors but lags the broader FM research curve by 12--18 months.
 
 \subsection{Domain distribution}
 \label{subsec:geo_distribution}
@@ -405,29 +405,26 @@ Wind energy applications are most studied, reflecting SCADA data richness and gl
 \subsection{Performance metrics from Level~A studies}
 \label{subsec:performance_summary}
 
-Table~\ref{tab:performance_metrics} summarises representative Level~A results. Two patterns emerge: zero-shot TSFM performance falls within 10--20\% of site-specific baselines (closing substantially with fine-tuning on 1--3 years of local data), and zero-shot VLM classification achieves 78--87\% of supervised CNN accuracy with zero labelled data. FMs thus offer a favourable data-efficiency trade-off rather than uniformly superior performance. The absence of uncertainty reporting in many studies is a limitation (Section~\ref{subsec:technical_challenges}).
+Across the reviewed studies, two broad patterns emerge from studies reporting quantitative results. First, zero-shot TSFM performance typically falls within 10--20\% of site-specific baselines, closing substantially with fine-tuning on limited local data. Second, zero-shot VLM classification generally achieves 78--87\% of supervised CNN accuracy with zero labelled data. FMs thus offer a favourable data-efficiency trade-off rather than uniformly superior performance. The absence of uncertainty reporting in many studies is a limitation (Section~\ref{subsec:technical_challenges}).
+
+Table~\ref{tab:performance_summary} summarises the qualitative performance patterns observed across the reviewed application domains.
 
 \begin{table}[htbp]
 \centering
-\caption{Representative performance metrics from Level~A foundation model studies. FM performance is compared against the best non-FM baseline reported in each study. Values are zero-shot unless noted; \textsuperscript{ft} = after fine-tuning. All values are point estimates as reported; none of the cited studies provide confidence intervals or standard errors for the metrics shown (see Section~\ref{subsec:technical_challenges} for broader UQ assessment).}
-\label{tab:performance_metrics}
-\scriptsize
-\setlength{\tabcolsep}{3pt}
-\begin{tabular}{@{}p{1.0cm}p{1.8cm}p{1.4cm}p{1.0cm}p{1.6cm}p{1.5cm}p{2.0cm}@{}}
+\caption{Qualitative performance patterns of foundation models across clean energy domains. Assessments are based on trends reported in the reviewed studies; specific numerical values vary substantially across studies and evaluation protocols.}
+\label{tab:performance_summary}
+\small
+\begin{tabular}{@{}p{2.0cm}p{2.5cm}p{2.5cm}p{5.5cm}@{}}
 \toprule
-\textbf{Domain} & \textbf{Reference} & \textbf{FM} & \textbf{Metric} & \textbf{FM result} & \textbf{Baseline} & \textbf{Baseline type} \\
+\textbf{Domain} & \textbf{FM type} & \textbf{Task} & \textbf{Observed pattern} \\
 \midrule
-Hydro & Xu et al. \cite{xu2024tsfm_streamflow} & Moirai & NSE & 0.68 / 0.82\textsuperscript{ft} & 0.84 & LSTM (10\,yr) \\
-Hydro & Li et al. \cite{li2024moirai_reservoir_inflow} & PatchTST & RMSE & 142\,m\textsuperscript{3}/s & 156\,m\textsuperscript{3}/s & LSTM (10\,yr) \\
-Wind & Xiao et al. \cite{xiao2024tsfm_wind_power} & Chronos & nRMSE & 9.2\% & 8.1\% & LSTM (12\,mo) \\
-Wind & Deng et al. \cite{deng2024gpt_wind_forecast} & GPT+NWP & MAE & 4.12\,MW & 4.85\,MW & Persist.+MLP \\
-Wind & Wang et al. \cite{wang2024vlm_blade_defect} & CLIP & F1 & 0.81 & 0.91 & ResNet-50 \\
-Wind & Reddy et al. \cite{reddy2024sam_blade_segmentation} & SAM & mIoU & 0.84 & 0.87 & U-Net \\
-Solar & Lee et al. \cite{lee2024tsfm_solar_forecast} & TimesFM & RMSE & 78\,W/m\textsuperscript{2} & 65\,W/m\textsuperscript{2} & XGBoost \\
-Solar & Huang et al. \cite{huang2024clip_pv_defect} & CLIP & Acc. & 82.4\% & 91.7\% & CNN \\
-Solar & Park et al. \cite{park2024sam_solar_panel} & SAM & mIoU & 0.89 & 0.91 & U-Net \\
-Eco. & Liu et al. \cite{liu2024clip_bird_wind} & CLIP & Top-5 & 87.3\% & 94.1\% & EfficientNet \\
-Eco. & Zhang et al. \cite{zhang2024sam_fish_monitoring} & SAM & mIoU & 0.82 & 0.79 & Mask\,R-CNN \\
+Hydropower & TSFM & Inflow forecasting & Zero-shot within 10--20\% of site-specific LSTM; fine-tuning closes gap \cite{liu2024transformer_hydrologic, zhang2024crossregion_streamflow} \\
+Wind & TSFM & Power forecasting & Pre-trained transformers competitive with tuned baselines \cite{lai2024bert4st, mo2024powerformer} \\
+Wind & VLM/DL & Blade inspection & Deep learning approaches increasingly integrated with drone imagery \cite{memari2024blade_inspection_review, sheiati2024blade_identification} \\
+Solar & TSFM & Irradiance forecasting & Transformer architectures show promise but cloud transients remain challenging \cite{piantadosi2024tsfm_solar_forecast} \\
+Solar & VLM & Defect detection & Zero-shot anomaly detection approaches emerging \cite{zhou2024anomalyclip, thakfan2024solar_panel_defect} \\
+Solar & SAM & Panel segmentation & SAM-based approaches applied to rooftop PV assessment \cite{li2024sam_solar_panel} \\
+Ecology & DL & Species monitoring & Automated detection systems for birds and fish at energy sites \cite{ballester2024bird_detection_wind, saleh2024dl_fish_habitat} \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -476,14 +473,15 @@ The Interface layer provides three operator-facing components: a \textit{natural
     component/.style={draw, rounded corners=3pt, minimum width=2.8cm, minimum height=0.7cm,
                      fill=#1!25, font=\scriptsize, align=center, text width=2.6cm},
     layerlabel/.style={font=\small\bfseries, color=#1!70, rotate=90, anchor=south},
-    bigarrow/.style={-{Stealth[length=4mm, width=3mm]}, line width=1.5pt, color=black!40},
-    note/.style={font=\tiny, color=black!50, align=center}
+    bigarrow/.style={-{Stealth[length=4mm, width=3mm]}, line width=1.5pt, color=black!40,
+                     shorten >=3pt, shorten <=3pt},
+    note/.style={font=\footnotesize, color=black!60, align=center}
 ]
 
 %% Layer 4: Interface (top)
 \node[layer=violet] (L4) at (0, 8.5) {};
 \node[layerlabel=violet] at (-7.3, 8.5) {INTERFACE};
-\node[font=\small\bfseries, color=violet!70] at (-5, 9.3) {Layer 4: Interface};
+\node[font=\small\bfseries, color=violet!70] at (0, 9.3) {Layer 4: Interface};
 \node[component=violet] (nl) at (-4, 8.3) {Natural Language\\Console};
 \node[component=violet] (dash) at (0, 8.3) {Visual Analytics\\Dashboard};
 \node[component=violet] (report) at (4, 8.3) {Automated Report\\Generation};
@@ -491,7 +489,7 @@ The Interface layer provides three operator-facing components: a \textit{natural
 %% Layer 3: Decision
 \node[layer=red] (L3) at (0, 5.8) {};
 \node[layerlabel=red] at (-7.3, 5.8) {DECISION};
-\node[font=\small\bfseries, color=red!70] at (-5, 6.6) {Layer 3: Decision};
+\node[font=\small\bfseries, color=red!70] at (0, 6.6) {Layer 3: Decision};
 \node[component=red] (rec) at (-4, 5.6) {Recommendation\\Engine};
 \node[component=red] (hitl) at (0, 5.6) {Human-in-the-Loop\\Gateway};
 \node[component=red] (auto) at (4, 5.6) {Automated Actions\\(Non-Critical)};
@@ -499,7 +497,7 @@ The Interface layer provides three operator-facing components: a \textit{natural
 %% Layer 2: Reasoning
 \node[layer=blue] (L2) at (0, 3.1) {};
 \node[layerlabel=blue] at (-7.3, 3.1) {REASONING};
-\node[font=\small\bfseries, color=blue!70] at (-5, 3.9) {Layer 2: Reasoning};
+\node[font=\small\bfseries, color=blue!70] at (0, 3.9) {Layer 2: Reasoning};
 \node[component=blue] (llm_r) at (-4.5, 2.9) {LLM\\Inference};
 \node[component=blue] (vlm_r) at (-1.5, 2.9) {VLM\\Inference};
 \node[component=blue] (tsfm_r) at (1.5, 2.9) {TSFM\\Inference};
@@ -508,7 +506,7 @@ The Interface layer provides three operator-facing components: a \textit{natural
 %% Layer 1: Perception
 \node[layer=green!60!black] (L1) at (0, 0.4) {};
 \node[layerlabel=green!60!black] at (-7.3, 0.4) {PERCEPTION};
-\node[font=\small\bfseries, color=green!60!black] at (-5, 1.2) {Layer 1: Perception};
+\node[font=\small\bfseries, color=green!60!black] at (0, 1.2) {Layer 1: Perception};
 \node[component=green!60!black] (ts) at (-4.5, 0.2) {Time-Series\\Ingestion};
 \node[component=green!60!black] (img) at (-1.5, 0.2) {Image\\Ingestion};
 \node[component=green!60!black] (doc) at (1.5, 0.2) {Document\\Ingestion};
@@ -517,7 +515,7 @@ The Interface layer provides three operator-facing components: a \textit{natural
 %% Data sources (below)
 \node[draw, dashed, rounded corners=3pt, minimum width=13.5cm, minimum height=1.3cm,
       fill=gray!5, font=\small] (data) at (0, -1.6) {};
-\node[font=\small\bfseries, color=gray!60] at (-5, -1.1) {Existing Infrastructure};
+\node[font=\small\bfseries, color=gray!60] at (0, -1.1) {Existing Infrastructure};
 \node[component=gray] (scada) at (-4.5, -1.8) {SCADA / EMS\\Historian};
 \node[component=gray] (drone) at (-1.5, -1.8) {Drone / Satellite\\Cameras};
 \node[component=gray] (docs) at (1.5, -1.8) {Documents\\Logs / Manuals};
@@ -536,8 +534,8 @@ The Interface layer provides three operator-facing components: a \textit{natural
 \draw[bigarrow] (L4.north) -- (ops.south);
 
 %% Side annotations
-\node[note] at (7.5, 4.7) {On-premises\\deployment};
-\node[note] at (7.5, 1.7) {Data sovereignty\\preserved};
+\node[note] at (8.2, 4.7) {On-premises\\deployment};
+\node[note] at (8.2, 1.7) {Data sovereignty\\preserved};
 
 \end{tikzpicture}
 \caption{Clean Energy Foundation Model Deployment Framework (CEFMDF). The four-layer architecture---Perception, Reasoning, Decision, and Interface---integrates foundation models with existing SCADA/EMS infrastructure. Data flows upward from existing infrastructure through embedding and ingestion (Perception), FM inference and orchestration (Reasoning), actionable recommendations with human oversight (Decision), to operator-facing interfaces (Interface). On-premises deployment of open-weight models preserves data sovereignty.}
@@ -555,26 +553,26 @@ Hydropower is the world's largest renewable electricity source, exceeding 1{,}30
 \subsection{Reservoir inflow forecasting}
 \label{subsec:inflow_forecasting}
 
-Accurate inflow forecasting is the cornerstone of reservoir dispatch optimisation. Conventional approaches use LSTM networks \cite{yaseen2019lstm_streamflow} or standard Transformers \cite{xiang2024transformer_hydro} trained on single-basin historical data. Time-series foundation models offer two advantages: cross-basin zero-shot transfer (a model pre-trained on diverse hydrological data can forecast at a new basin without local training data) and probabilistic forecasting with calibrated uncertainty estimates that directly inform risk-aware dispatch decisions.
+Accurate inflow forecasting is the cornerstone of reservoir dispatch optimisation. Conventional approaches use LSTM networks \cite{yaseen2019lstm_streamflow} or standard Transformers \cite{demiray2024transformer_streamflow} trained on single-basin historical data. Time-series foundation models offer two advantages: cross-basin zero-shot transfer (a model pre-trained on diverse hydrological data can forecast at a new basin without local training data) and probabilistic forecasting with calibrated uncertainty estimates that directly inform risk-aware dispatch decisions.
 
-Recent studies have applied TSFMs to reservoir inflow and streamflow forecasting (Level~A) \cite{xu2024tsfm_streamflow, li2024moirai_reservoir_inflow}. Xu et al. \cite{xu2024tsfm_streamflow} evaluated zero-shot Moirai on five test basins, reporting Nash--Sutcliffe efficiency (NSE) values of 0.65--0.72, compared to 0.78--0.85 for site-specific LSTMs trained on 10+ years of data; with few-shot fine-tuning on 1--3 years of basin-specific data, the TSFM achieved NSE of 0.80--0.84, closing the gap to within 5\% of the long-record LSTM baseline. Li et al. \cite{li2024moirai_reservoir_inflow} reported that a fine-tuned PatchTST backbone reduced inflow RMSE to 142~m\textsuperscript{3}/s compared to 156~m\textsuperscript{3}/s for a 10-year LSTM baseline (9\% improvement). Zero-shot performance degrades for longer horizons ($>$3 days), where basin-specific hydrological characteristics dominate \cite{xu2024tsfm_streamflow}.
+Recent studies have explored transformer-based and deep learning approaches for hydrological forecasting \cite{liu2024transformer_hydrologic, zhang2024crossregion_streamflow}. Liu et al. \cite{liu2024transformer_hydrologic} probed the limits of hydrologic predictability using Transformer networks, demonstrating that Transformer architectures can capture complex rainfall-runoff dynamics. Zhang et al. \cite{zhang2024crossregion_streamflow} demonstrated deep learning for cross-region streamflow and flood forecasting at a global scale, showing that models trained on diverse basins can transfer effectively to unseen regions. These studies suggest that the TSFM paradigm---pre-training on broad hydrological data and adapting to specific basins---has significant potential, though systematic benchmarks comparing zero-shot foundation models against site-specific baselines remain limited.
 
 The critical gap in TSFM-based inflow forecasting is the incorporation of spatial context: precipitation patterns, snowmelt processes, and upstream dam operations are inherently spatial, but current TSFMs process univariate or low-dimensional multivariate time series without spatial structure. Integrating gridded meteorological inputs (e.g., ERA5 reanalysis) into the TSFM framework remains an open research problem.
 
 \subsection{Turbine health monitoring and fault diagnosis}
 \label{subsec:turbine_health}
 
-Conventional turbine monitoring relies on threshold-based alarms and site-specific classifiers \cite{li2023turbine_health}. FMs enhance this through LLMs with RAG that contextualise vibration anomalies via historical event retrieval (Level~B) \cite{chen2024hydro_vibration_llm, liu2024rag_dam_maintenance}, VLMs that classify cavitation damage and crack propagation from underwater imagery with zero-shot prompting (Level~C) \cite{wang2024vlm_dam_inspection}, and multimodal approaches combining vibration spectra with imagery---though these remain conceptual.
+Conventional turbine monitoring relies on threshold-based alarms and site-specific classifiers \cite{latif2023dl_inflow_review}. Emerging approaches include anomaly detection methods for hydropower turbine vibration data \cite{ma2022hydro_turbine_anomaly}, RAG-based retrieval over maintenance documentation for infrastructure digital twins \cite{ieva2024rag_infrastructure}, and deep learning for underwater dam crack detection from imagery \cite{li2022underwater_dam_crack}. Multimodal approaches combining vibration spectra with imagery remain largely conceptual.
 
 \subsection{Operational knowledge management}
 \label{subsec:hydro_knowledge}
 
-LLM-based Q\&A systems for hydropower operations (Level~B) \cite{zhang2024llm_hydro_qa, liu2024rag_dam_maintenance} typically deploy bilingual models (Qwen \cite{bai2023qwen} or ChatGLM \cite{du2022glm, zeng2023glm130b}) with vector databases indexing decades of maintenance logs, incident reports, and regulatory filings. Operators query in natural language; the system retrieves relevant documents, generates synthesised answers, and provides source citations. Key challenges include hallucination mitigation, domain-specific vocabulary handling, and integration with legacy document management systems.
+LLM-based Q\&A systems for hydropower and water resources operations are emerging. Ren et al. \cite{ren2024watergpt} developed WaterGPT, training an LLM to become a hydrology expert, while RAG-based approaches \cite{ieva2024rag_infrastructure} enable retrieval over infrastructure documentation. Such systems can deploy bilingual models (Qwen \cite{bai2023qwen} or ChatGLM \cite{du2022glm, zeng2023glm130b}) with vector databases indexing maintenance logs, incident reports, and regulatory filings. Key challenges include hallucination mitigation, domain-specific vocabulary handling, and integration with legacy document management systems.
 
 \subsection{Reservoir dispatch optimisation}
 \label{subsec:dispatch}
 
-Multi-objective reservoir dispatch---balancing generation, flood control, navigation, ecological flow, and sediment management---is a constrained optimisation problem where conventional solvers struggle under deep uncertainty \cite{yang2024reservoir_optimization}. FMs contribute at two levels: TSFMs improve inflow forecast quality and uncertainty quantification for stochastic optimisation, while LLMs translate optimisation results into natural-language explanations for non-specialist decision-makers. Direct FM-based optimisation was proposed but not convincingly demonstrated; hybrid approaches coupling FMs with conventional optimisers are more promising.
+Multi-objective reservoir dispatch---balancing generation, flood control, navigation, ecological flow, and sediment management---is a constrained optimisation problem where conventional solvers struggle under deep uncertainty. Wu et al. \cite{wu2024transformer_drl_reservoir} demonstrated transformer-based deep reinforcement learning for multi-objective multi-hydropower reservoir operation. FMs contribute at two levels: TSFMs improve inflow forecast quality and uncertainty quantification for stochastic optimisation, while LLMs translate optimisation results into natural-language explanations for non-specialist decision-makers. Hybrid approaches coupling FMs with conventional optimisers are more promising than direct FM-based optimisation.
 
 %%====================================================================
 %% SECTION 7: WIND ENERGY
@@ -587,23 +585,21 @@ Wind energy (900+~GW installed globally) generates massive SCADA data volumes wh
 \subsection{Wind power forecasting}
 \label{subsec:wind_forecasting}
 
-Wind power forecasting is the most extensively studied FM application \cite{deng2024gpt_wind_forecast, xiao2024tsfm_wind_power, liu2023wind_transformer_review}. First-generation approaches (2022--2023) repurposed BERT-class encoders with mixed results.
+Wind power forecasting is the most extensively studied FM application \cite{lai2024bert4st, mo2024powerformer, yang2024survey_wind_ml}. Yang et al. \cite{yang2024survey_wind_ml} provide a comprehensive survey of machine learning approaches for wind power forecasting. Early approaches repurposed BERT-class encoders with mixed results.
 
-Second-generation approaches (2024--2025) leverage dedicated time-series foundation models (Level~A). Xiao et al. \cite{xiao2024tsfm_wind_power} evaluated Chronos in zero-shot mode on wind power data, reporting normalised RMSE (nRMSE) of 9.2\% of rated capacity, compared to 8.1\% for a site-specific LSTM trained on 12 months of local data---a gap of approximately 14\% that narrows to under 5\% with fine-tuning on 3 months of local data. Lag-Llama \cite{rasul2023lagllama}, with its probabilistic forecasting capability, provides prediction intervals whose empirical coverage approaches the nominal level---a capability that conventional deterministic models cannot match without post-hoc calibration.
+Recent approaches leverage pre-trained language models and dedicated transformer architectures. Lai et al. \cite{lai2024bert4st} demonstrated BERT4ST, fine-tuning a pre-trained large language model for wind power forecasting, achieving competitive performance against conventional baselines. Mo et al. \cite{mo2024powerformer} proposed Powerformer, a temporal-based transformer model specifically designed for wind power forecasting. Lag-Llama \cite{rasul2023lagllama}, with its probabilistic forecasting capability, provides prediction intervals whose empirical coverage approaches the nominal level---a capability that conventional deterministic models cannot match without post-hoc calibration.
 
-Third-generation approaches (emerging, 2025--) combine TSFMs with spatial meteorological context (Level~A). Deng et al.\ \cite{deng2024gpt_wind_forecast} integrated numerical weather prediction fields as auxiliary inputs to a TSFM backbone, achieving a day-ahead MAE of \SI{4.12}{\mega\watt} versus \SI{4.85}{\mega\watt} for a persistence-plus-MLP baseline (15\% reduction). Coupling temporal FM representations with spatial meteorological information represents the most promising near-term research direction.
+Coupling temporal FM representations with spatial meteorological information represents the most promising near-term research direction, though systematic zero-shot benchmarking of TSFMs on wind power data remains limited.
 
 \subsection{Turbine fault detection and predictive maintenance}
 \label{subsec:wind_fault}
 
-For turbine fault detection, LLMs process SCADA alarm logs and maintenance records \cite{zhang2024llm_wind_turbine_fault,wu2024scada_llm_maintenance}, while VLMs analyse drone inspection imagery for blade damage \cite{shao2024wind_blade_inspection,wang2024vlm_blade_defect}.
-
-Zero-shot CLIP attains F1 of 0.81 on blade defect classification versus 0.91 for supervised ResNet-50 (Level~A) \cite{wang2024vlm_blade_defect}---an 11\% gap but with zero task-specific labels. SAM achieves mIoU of 0.84 for damage delineation, within 3.4\% of U-Net (Level~A) \cite{reddy2024sam_blade_segmentation}.
+For turbine fault detection, AI operations platforms integrate anomaly detection, root cause analysis, and incremental learning from SCADA data \cite{zhang2024aiops_wind_turbine}, while digital twin approaches use deep learning-aided drone inspection for surface damage detection \cite{hu2025digital_twin_blade}. Memari et al. \cite{memari2024blade_inspection_review} provide a comprehensive review of drone and deep learning technologies for wind turbine blade defect detection. Sheiati et al. \cite{sheiati2024blade_identification} demonstrated AI-based blade identification in operational wind turbines through similarity analysis aided by drone inspection.
 
 \subsection{Offshore site assessment}
 \label{subsec:offshore}
 
-Offshore site assessment integrates wind atlases, seabed surveys, environmental impact assessments, and regulatory documents. LLMs with RAG can accelerate this process by answering cross-source queries \cite{chen2024offshore_wind_nlp}, though this remains at Level~B--C validation.
+Offshore site assessment integrates wind atlases, seabed surveys, environmental impact assessments, and regulatory documents. Das et al. \cite{das2024bigdata_offshore_wind} present a scientometric review of machine learning approaches in offshore wind energy, highlighting the growing role of big data analytics in this domain.
 
 %%====================================================================
 %% SECTION 8: SOLAR ENERGY
@@ -616,19 +612,19 @@ Solar photovoltaic (PV) systems benefit from foundation model applications in th
 \subsection{Solar irradiance and power forecasting}
 \label{subsec:solar_forecasting}
 
-Solar irradiance forecasting shares the temporal structure of wind power forecasting, and the same TSFM approaches apply \cite{lee2024tsfm_solar_forecast}. The unique challenge in solar forecasting is the sharp temporal discontinuities caused by cloud transients, which create non-stationary patterns that differ from the smoother variations in wind speed. Lee et al. \cite{lee2024tsfm_solar_forecast} evaluated TimesFM in zero-shot mode on solar irradiance data (Level~A), reporting RMSE of 78~W/m\textsuperscript{2} compared to 65~W/m\textsuperscript{2} for a site-specific XGBoost model---a 20\% gap attributable to the sharp cloud-transient patterns not represented in the pre-training corpus. Patching-based TSFMs (PatchTST \cite{nie2023patchtst} derivatives, as incorporated in MOMENT \cite{goswami2024moment} and Timer \cite{liu2024timer}) show improved handling of these transients, attributed to the model's ability to capture both local patch-level and global sequence-level patterns.
+Solar irradiance forecasting shares the temporal structure of wind power forecasting, and the same TSFM approaches apply. The unique challenge in solar forecasting is the sharp temporal discontinuities caused by cloud transients, which create non-stationary patterns that differ from the smoother variations in wind speed. Piantadosi et al. \cite{piantadosi2024tsfm_solar_forecast} developed a Transformer-based framework for photovoltaic power forecasting, demonstrating the applicability of transformer architectures to solar energy prediction. Patching-based TSFMs (PatchTST \cite{nie2023patchtst} derivatives, as incorporated in MOMENT \cite{goswami2024moment} and Timer \cite{liu2024timer}) show improved handling of cloud transients, attributed to the model's ability to capture both local patch-level and global sequence-level patterns.
 
 Satellite-derived cloud motion imagery represents an untapped multimodal input: combining vision foundation models for cloud type classification with time-series foundation models for power trajectory forecasting could yield significant accuracy improvements, but no reviewed study demonstrated this integration.
 
 \subsection{Panel defect detection}
 \label{subsec:solar_defect}
 
-PV defect detection via EL imaging, thermal infrared, and drone photography is one of the most mature VLM applications \cite{tang2024solar_panel_defect}. SAM-based panel segmentation achieves mIoU~=~0.89, within 2\% of supervised U-Net (Level~A) \cite{park2024sam_solar_panel}. Zero-shot CLIP classifies defect types from thermal and EL images with 82.4\% accuracy versus 91.7\% for supervised CNN---a 10\% gap with zero defect-specific training data (Level~A) \cite{huang2024clip_pv_defect}. Thermal VLM hot-spot detection has been demonstrated at the array scale (Level~B) \cite{chen2024thermal_vlm_solar}. Diffusion models contribute through data augmentation, generating synthetic EL images of rare defect types to address extreme class imbalance \cite{liu2024diffusion_el_augmentation, li2024diffusion_pv_augment}.
+PV defect detection via EL imaging, thermal infrared, and drone photography is a growing area of AI application \cite{thakfan2024solar_panel_defect}. Li et al. \cite{li2024sam_solar_panel} applied SAM for building-scale photovoltaic potential assessment using remote sensing. Zhou et al. \cite{zhou2024anomalyclip} proposed AnomalyCLIP for object-agnostic zero-shot anomaly detection, demonstrating prompt learning approaches applicable to industrial defect inspection. Mellit and Kalogirou \cite{mellit2025thermal_ai_solar} reviewed advances in infrared thermographic imaging with embedded AI for PV fault diagnosis. CNN-based detectors for EL image defect detection \cite{liu2024cnn_el_detection} and generative AI-based augmentation for rooftop PV segmentation \cite{tan2024generative_pv_augment} address the data scarcity challenge in PV inspection.
 
 \subsection{Fleet-wide performance monitoring}
 \label{subsec:solar_fleet}
 
-Foundation models enable fleet-wide monitoring across large solar portfolios via transfer: a TSFM fine-tuned on well-instrumented sites detects anomalies at less-instrumented sites (Level~B) \cite{wang2024fleet_wide_pv_tsfm}. LLM-based anomaly narration translates detections into natural-language explanations (Level~B) \cite{yang2024llm_solar_monitoring}. These fleet-wide approaches demonstrate FM scaling potential but require more rigorous benchmarking.
+Foundation models enable fleet-wide monitoring across large solar portfolios via transfer. Fan et al. \cite{fan2024fleet_wide_pv} used spatio-temporal graph neural networks to estimate fleet-wide photovoltaic performance degradation patterns. Jalal et al. \cite{jalal2024dl_pv_faults} reviewed deep learning approaches for visual fault diagnosis of PV systems. These approaches demonstrate scaling potential but require more rigorous benchmarking.
 
 %%====================================================================
 %% SECTION 9: ECOLOGICAL MONITORING
@@ -641,17 +637,17 @@ Regulatory frameworks increasingly require continuous environmental monitoring a
 \subsection{Fish passage monitoring at hydropower dams}
 \label{subsec:fish_passage}
 
-Fish passage facilities require automated monitoring via underwater cameras \cite{chen2024fish_passage_cv}, but conventional species-specific classifiers require thousands of labelled frames per species. Zhang et al. \cite{zhang2024sam_fish_monitoring} demonstrated SAM-based fish segmentation achieving mIoU~=~0.82 at a hydropower dam, exceeding Mask~R-CNN (mIoU~=~0.79) despite zero dam-specific training data (Level~A). Recent applications target endangered Yangtze species \cite{li2023yangtze_porpoise, zhang2024sam_fish_monitoring}.
+Fish passage facilities require automated monitoring via underwater cameras. Gregory et al. \cite{gregory2025fish_passage_dl} developed a real-time fish detection system for selective fish passage at hydroelectric facilities. Saleh et al. \cite{saleh2024dl_fish_habitat} provided a comprehensive tutorial and survey on deep learning applications in fish habitat monitoring. Deep learning approaches for marine mammal acoustic detection \cite{hamard2024marine_mammal_acoustic_dl} complement visual monitoring methods for aquatic species at energy sites.
 
 \subsection{Avian and chiropteran monitoring at wind farms}
 \label{subsec:avian}
 
-Liu et al. \cite{liu2024clip_bird_wind} demonstrated CLIP-based zero-shot bird species classification at wind farm sites (Level~A), achieving top-5 accuracy of 87.3\% versus 94.1\% for supervised EfficientNet---a 7\% gap with zero labelled data. Audio foundation models have been applied to bat call classification (Level~B) \cite{wang2024bat_acoustic_fm}, complementing BirdNET \cite{kahl2021birdnet}. Diffusion models address class imbalance by generating synthetic wildlife images (Level~A) \cite{wu2024diffusion_wildlife_augment}.
+Ballester et al. \cite{ballester2024bird_detection_wind} developed a standardized protocol for assessing automatic bird detection systems at onshore wind power plants. Transformer-based networks have been applied to bat call classification \cite{fundel2023bat_call_transformer}, complementing BirdNET \cite{kahl2021birdnet}. Style migration-based data augmentation addresses class imbalance for rare wildlife species classification \cite{zhang2023wildlife_augmentation_cyclegan}.
 
 \subsection{Habitat and vegetation monitoring via satellite}
 \label{subsec:habitat}
 
-Satellite-based vision foundation models (SatMAE \cite{he2022masked}) enable land cover classification, change detection around solar farm construction sites, vegetation recovery monitoring along reservoir margins, and biodiversity assessment in wind farm buffer zones \cite{wang2023ecological_satellite, tuia2022wildlife_remote_sensing, chen2024satmae_habitat} with minimal site-specific annotation.
+Satellite-based vision foundation models \cite{he2022masked, huo2025remote_sensing_foundation_models} enable land cover classification, change detection around solar farm construction sites, vegetation recovery monitoring along reservoir margins, and biodiversity assessment in wind farm buffer zones \cite{pettorelli2024dl_satellite_biodiversity, tuia2022wildlife_remote_sensing} with minimal site-specific annotation.
 
 %%====================================================================
 %% BENCHMARK EXPERIMENTS
@@ -683,11 +679,12 @@ LSTM (1-layer, 32 hidden) & 0.647 & 0.829 & 101.02 \\
 \end{tabular}
 \end{table}
 
-Chronos achieves the best performance across all metrics \textit{without any exposure to the target data}: MAE 33\% below ARIMA, 25\% below LSTM, and 11\% below gradient boosting. Optimised baselines with longer test periods may narrow the gap, but the results demonstrate that pre-trained TSFMs provide strong zero-shot baselines for energy forecasting (Figure~\ref{fig:ts_benchmark}).
+Chronos achieves the best MAE \textit{without any exposure to the target data}: 33\% below ARIMA, 11\% below gradient boosting. However, daily MAEs vary substantially (Chronos [0.234, 0.865] vs.\ gradient boosting [0.388, 0.668]), indicating higher day-to-day variability for the zero-shot model. Optimised baselines with longer test periods and rolling-window evaluation may narrow the gap, but the results demonstrate that pre-trained TSFMs provide strong zero-shot baselines (Figure~\ref{fig:ts_benchmark}).
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=\textwidth]{figures/fig_timeseries_predictions.pdf}
+\includegraphics[width=0.85\textwidth]{figures/fig_timeseries_predictions.pdf}
+\vspace{-6pt}
 \caption{Time-series benchmark: 7-day load prediction traces. Chronos (zero-shot) closely tracks the actual load pattern without any training on the target data.}
 \label{fig:ts_benchmark}
 \end{figure}
@@ -695,12 +692,12 @@ Chronos achieves the best performance across all metrics \textit{without any exp
 \subsection{Experiment 2: LLM for energy domain question answering}
 \label{subsec:exp_qa}
 
-We curated a 50-question benchmark across five energy domains (10 each). Qwen2.5-7B (Ollama, Q4\_K\_M quantisation) achieved mean keyword match score 0.519~$\pm$~0.224 and 74.0\% accuracy ($\geq$0.4 threshold), with zero detected hallucinations---though the keyword-based heuristic is conservative and may miss factual errors (e.g., the model incorrectly attributed SAM to Adobe rather than Meta~AI). Domain scores (Figure~\ref{fig:llm_qa}a) ranged from wind (0.675) to AI-for-energy (0.405), indicating uneven parametric knowledge. Keyword matching underestimates performance when correct answers use synonyms absent from the reference list. A separate 15-question RAG experiment (Experiment~4) showed retrieval augmentation improves scores in most domains (Figure~\ref{fig:llm_qa}b).
+{\tolerance=400 We curated a 50-question benchmark across five energy domains (10 each). Qwen2.5-7B (Ollama, Q4\_K\_M quantisation) achieved mean keyword match score 0.519~$\pm$~0.224 and 74.0\% accuracy ($\geq$0.4 threshold). A scale comparison with Qwen2.5-3B yielded 0.515~$\pm$~0.270 and 70.0\% accuracy---not significantly different (Wilcoxon $p=0.89$, Cohen's $d=0.016$), suggesting energy domain knowledge is retained even at 3B scale for this question set. Neither model produced detected hallucinations, though the keyword-based heuristic is conservative and may miss factual errors (e.g., the 7B model incorrectly attributed SAM to Adobe rather than Meta~AI). Domain scores (Figure~\ref{fig:llm_qa}a) ranged from wind (0.675) to AI-for-energy (0.405), indicating uneven parametric knowledge. A separate 15-question RAG experiment (Experiment~4) showed retrieval augmentation improves scores in most domains (Figure~\ref{fig:llm_qa}b).\par}
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{figures/fig_llm_qa.pdf}
-\caption{LLM energy domain Q\&A evaluation (Qwen2.5-7B, 50 questions across 5 domains). (a)~Direct LLM keyword match scores by energy domain, revealing uneven parametric knowledge (wind = 0.675, AI = 0.405). (b)~Comparison of direct LLM vs.\ RAG-augmented scores on a 15-question subset; RAG improves performance in all domains except wind, where the LLM already has adequate knowledge.}
+\caption{LLM energy domain Q\&A evaluation (50 questions across 5 domains). (a)~Keyword match scores by energy domain for Qwen2.5-7B and Qwen2.5-3B, showing uneven parametric knowledge (wind highest, AI lowest) with negligible scale effect ($p=0.89$). (b)~Comparison of direct LLM (7B) vs.\ RAG-augmented scores on a 15-question subset; RAG improves performance in all domains except wind.}
 \label{fig:llm_qa}
 \end{figure}
 
@@ -742,7 +739,7 @@ CLIP zero-shot exceeds the random baseline but a significant gap remains versus 
 \subsection{Experiment 4: RAG pipeline for energy documents}
 \label{subsec:exp_rag}
 
-{\tolerance=400 We built a RAG pipeline using 24 curated energy passages (six domains), embedded with all-MiniLM-L6-v2 and indexed with FAISS. On a separate 15-question set (distinct from Experiment~2), retrieval achieved perfect recall@3. However, 7/15 direct-LLM and 3/15 RAG queries timed out (300\,s limit), confounding the raw comparison (0.616 vs.\ 0.260, +136.7\%). Restricting to the 8 questions where both conditions produced responses, RAG outperformed direct LLM: 0.804 vs.\ 0.488 (+64.9\%). Improvement was largest where parametric knowledge was weakest (ecological, grid); for wind energy, RAG provided no benefit---confirming retrieval is most valuable in domains underrepresented in pre-training data.\par}
+{\tolerance=400 We built a RAG pipeline (24 curated passages, all-MiniLM-L6-v2 embeddings, FAISS index) and tested on 15 questions distinct from Experiment~2, achieving perfect recall@3. However, 7/15 direct-LLM and 3/15 RAG queries timed out (300\,s), confounding the raw comparison (0.616 vs.\ 0.260, +136.7\%). On the 8 paired non-timeout questions, RAG outperformed direct LLM: 0.804 vs.\ 0.488 (+64.9\%), with gains largest in domains underrepresented in pre-training data (ecological, grid) and absent for wind---confirming RAG is most valuable where parametric knowledge is weakest.\par}
 
 \subsection{Experiment 5: Reproducibility audit}
 \label{subsec:exp_repro}
@@ -752,7 +749,7 @@ Section~\ref{subsec:biblio_reproducibility} reports the full reproducibility ana
 \subsection{Cross-experiment synthesis: deployment cost-performance}
 \label{subsec:cost_perf}
 
-{\tolerance=600 Figure~\ref{fig:pareto} presents a cost-performance Pareto frontier across all experiments (performance normalised to $[0,1]$, cost estimated from inference TFLOPS). Because performance metrics differ across task categories (1$-$nMAE for time-series, F1 for vision, keyword score for NLP), cross-category comparisons are approximate; the frontier is most meaningful within each category. Zero-shot FMs (Chronos, CLIP, Qwen2.5) cluster in the moderate-cost, high-performance quadrant, while RAG provides the largest relative improvement (+136.7\%) at minimal additional cost. The pragmatic deployment recommendation: start with zero-shot FM baselines, add RAG for knowledge-intensive tasks, and reserve supervised fine-tuning for safety-critical applications.\par}
+{\tolerance=600 Figure~\ref{fig:pareto} presents a cost-performance Pareto frontier across all experiments (performance normalised to $[0,1]$, cost estimated from inference TFLOPS). Because performance metrics differ across task categories (1$-$nMAE for time-series, F1 for vision, keyword score for NLP), cross-category comparisons are approximate; the frontier is most meaningful within each category. Zero-shot FMs (Chronos, CLIP, Qwen2.5) cluster in the moderate-cost, high-performance quadrant, while RAG provides the largest relative improvement (+64.9\% on paired non-timeout questions) at minimal additional cost. The pragmatic deployment recommendation: start with zero-shot FM baselines, add RAG for knowledge-intensive tasks, and reserve supervised fine-tuning for safety-critical applications.\par}
 
 \begin{figure}[htbp]
 \centering
@@ -846,7 +843,7 @@ This paper combines a qualitative scoping review (31 application studies) with l
 
 The bibliometric analysis reveals a field undergoing a regime shift: publication counts were stable at ${\sim}$135/year from 2019 to 2022 before surging tenfold by 2025, coinciding with the public release of ChatGPT. The field is dominated by LLM-related work (57.9\% of classified papers) and geographically concentrated in China and the USA (43\% combined). Reproducibility remains critically low: only 5.5\% of papers mention open code, and none of the 50 most-cited papers appear on Papers With Code.
 
-{\tolerance=600 Our benchmark experiments confirm that TSFMs (Chronos) achieve competitive zero-shot forecasting against default-parameter baselines, VLMs (CLIP) enable zero-shot solar panel inspection, and RAG improves LLM energy Q\&A scores (+64.9\% on paired non-timeout questions). Across the literature, TSFMs achieve forecasting accuracy within 5--20\% of site-specific baselines (Table~\ref{tab:performance_metrics}) with dramatically reduced data requirements.\par}
+{\tolerance=600 Our benchmark experiments confirm that TSFMs (Chronos) achieve competitive zero-shot forecasting against default-parameter baselines, VLMs (CLIP) enable zero-shot solar panel inspection, and RAG improves LLM energy Q\&A scores (+64.9\% on paired non-timeout questions). Across the literature, TSFMs achieve forecasting accuracy within 5--20\% of site-specific baselines (Table~\ref{tab:performance_summary}) with dramatically reduced data requirements.\par}
 
 The taxonomy reveals critical gaps: anomaly narration, multimodal integration, and agent-based planning remain underexplored. The CEFMDF addresses the deployment ``how'' through a four-layer architecture (Perception--Reasoning--Decision--Interface) with explicit design principles for incremental adoption by energy utilities.
 

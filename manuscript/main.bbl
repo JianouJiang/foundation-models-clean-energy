@@ -5,9 +5,12 @@
 \expandafter\ifx\csname href\endcsname\relax
   \def\href#1#2{#2} \def\path#1{#1}\fi
 
-\bibitem{wang2023dl_renewable_forecasting}
-H.~Wang, Z.~Lei, X.~Zhang, B.~Zhou, J.~Peng, A comprehensive review of deep
-  learning for renewable energy forecasting, Applied Energy 341 (2023) 121158.
+\bibitem{wang2019dl_renewable_forecasting}
+H.~Wang, Z.~Lei, X.~Zhang, B.~Zhou, J.~Peng, A review of deep learning for
+  renewable energy forecasting, Energy Conversion and Management 198 (2019)
+  111799.
+\newblock \href {https://doi.org/10.1016/j.enconman.2019.111799}
+  {\path{doi:10.1016/j.enconman.2019.111799}}.
 
 \bibitem{bommasani2021opportunities}
 R.~Bommasani, D.~A. Hudson, E.~Adeli, R.~Altman, S.~Arber, S.~von Arx, M.~S.
@@ -17,8 +20,8 @@ R.~Bommasani, D.~A. Hudson, E.~Adeli, R.~Altman, S.~Arber, S.~von Arx, M.~S.
 \bibitem{wei2022emergent}
 J.~Wei, Y.~Tay, R.~Bommasani, C.~Raffel, B.~Zoph, S.~Borgeaud, D.~Yogatama,
   M.~Bosma, D.~Zhou, D.~Metzler, et~al., Emergent abilities of large language
-  models, Transactions on Machine Learning Research (2022, eprint={2206.07682},
-  archivePrefix={arXiv}, primaryClass={cs}).
+  models, Transactions on Machine Learning Research (2022).
+\newblock \href {http://arxiv.org/abs/2206.07682} {\path{arXiv:2206.07682}}.
 
 \bibitem{achiam2023gpt4}
 J.~Achiam, S.~Adler, S.~Agarwal, L.~Ahmad, I.~Akkaya, F.~L. Aleman, D.~Almeida,
@@ -35,15 +38,15 @@ H.~Touvron, L.~Martin, K.~Stone, P.~Albert, A.~Almahairi, Y.~Babaei,
 A.~Radford, J.~W. Kim, C.~Hallacy, A.~Ramesh, G.~Goh, S.~Agarwal, G.~Sastry,
   A.~Askell, P.~Mishkin, J.~Clark, et~al., Learning transferable visual models
   from natural language supervision, in: International Conference on Machine
-  Learning, PMLR, eprint={2103.00020}, archivePrefix={arXiv},
-  primaryClass={cs}, 2021, pp. 8748--8763.
+  Learning, PMLR, 2021, pp. 8748--8763.
+\newblock \href {http://arxiv.org/abs/2103.00020} {\path{arXiv:2103.00020}}.
 
 \bibitem{kirillov2023sam}
 A.~Kirillov, E.~Mintun, N.~Ravi, H.~Mao, C.~Rolland, L.~Gustafson, T.~Xiao,
   S.~Whitehead, A.~C. Berg, W.-Y. Lo, et~al., Segment anything, in: Proceedings
-  of the IEEE/CVF International Conference on Computer Vision, 2023,
-  eprint={2304.02643}, archivePrefix={arXiv}, primaryClass={cs}, pp.
+  of the IEEE/CVF International Conference on Computer Vision, 2023, pp.
   4015--4026.
+\newblock \href {http://arxiv.org/abs/2304.02643} {\path{arXiv:2304.02643}}.
 
 \bibitem{woo2024moirai}
 G.~Woo, C.~Liu, A.~Kumar, C.~Xiong, S.~Savarese, D.~Sahoo, Unified training of
@@ -52,9 +55,11 @@ G.~Woo, C.~Liu, A.~Kumar, C.~Xiong, S.~Savarese, D.~Sahoo, Unified training of
 \newblock \href {http://arxiv.org/abs/2402.02592} {\path{arXiv:2402.02592}}.
 
 \bibitem{ahmed2020wind_forecasting_review}
-R.~Ahmed, V.~Robinson, S.~Ali, A review and evaluation of the state-of-the-art
-  in {PV} solar power forecasting: Techniques and optimization, Renewable and
-  Sustainable Energy Reviews 124 (2020) 109792.
+R.~Ahmed, V.~Sreeram, Y.~Mishra, M.~D. Arif, A review and evaluation of the
+  state-of-the-art in {PV} solar power forecasting: Techniques and
+  optimization, Renewable and Sustainable Energy Reviews 124 (2020) 109792.
+\newblock \href {https://doi.org/10.1016/j.rser.2020.109792}
+  {\path{doi:10.1016/j.rser.2020.109792}}.
 
 \bibitem{zhao2023llm_survey}
 W.~X. Zhao, K.~Zhou, J.~Li, T.~Tang, X.~Wang, Y.~Hou, Y.~Min, B.~Zhang,
@@ -70,18 +75,22 @@ S.~Minaee, T.~Mikolov, N.~Nikzad, M.~Chenaghlu, R.~Socher, X.~Amatriain,
 A.~C. Tricco, E.~Lillie, W.~Zarin, K.~K. O'Brien, H.~Colquhoun, D.~Levac,
   D.~Moher, M.~D. Peters, T.~Horsley, L.~Weeks, et~al., {PRISMA} extension for
   scoping reviews ({PRISMA-ScR}): Checklist and explanation, Annals of Internal
-  Medicine 169~(7) (2018, doi={10.7326/M18-0850}) 467--473.
+  Medicine 169~(7) (2018) 467--473.
+\newblock \href {https://doi.org/10.7326/M18-0850}
+  {\path{doi:10.7326/M18-0850}}.
 
 \bibitem{page2021prisma}
 M.~J. Page, J.~E. McKenzie, P.~M. Bossuyt, I.~Boutron, T.~C. Hoffmann, C.~D.
   Mulrow, L.~Shamseer, J.~M. Tetzlaff, E.~A. Akl, S.~E. Brennan, et~al., The
   {PRISMA} 2020 statement: An updated guideline for reporting systematic
-  reviews, BMJ 372 (2021, doi={10.1136/bmj.n71}) n71.
+  reviews, BMJ 372 (2021) n71.
+\newblock \href {https://doi.org/10.1136/bmj.n71} {\path{doi:10.1136/bmj.n71}}.
 
 \bibitem{arksey2005scoping}
 H.~Arksey, L.~O'Malley, Scoping studies: Towards a methodological framework,
-  International Journal of Social Research Methodology 8~(1) (2005,
-  doi={10.1080/1364557032000119616}) 19--32.
+  International Journal of Social Research Methodology 8~(1) (2005) 19--32.
+\newblock \href {https://doi.org/10.1080/1364557032000119616}
+  {\path{doi:10.1080/1364557032000119616}}.
 
 \bibitem{kitchenham2007guidelines}
 B.~Kitchenham, S.~Charters, Guidelines for performing systematic literature
@@ -92,28 +101,35 @@ B.~Kitchenham, S.~Charters, Guidelines for performing systematic literature
 J.~Devlin, M.-W. Chang, K.~Lee, K.~Toutanova, {BERT}: Pre-training of deep
   bidirectional transformers for language understanding, in: Proceedings of the
   2019 Conference of the North American Chapter of the Association for
-  Computational Linguistics: Human Language Technologies, 2019,
-  doi={10.18653/v1/N19-1423}, pp. 4171--4186.
+  Computational Linguistics: Human Language Technologies, 2019, pp. 4171--4186.
+\newblock \href {https://doi.org/10.18653/v1/N19-1423}
+  {\path{doi:10.18653/v1/N19-1423}}.
 
 \bibitem{vaswani2017attention}
 A.~Vaswani, N.~Shazeer, N.~Parmar, J.~Uszkoreit, L.~Jones, A.~N. Gomez,
   {\L}.~Kaiser, I.~Polosukhin, Attention is all you need, in: Advances in
-  Neural Information Processing Systems, Vol.~30, 2017, eprint={1706.03762},
-  archivePrefix={arXiv}, primaryClass={cs}, pp. 5998--6008.
+  Neural Information Processing Systems, Vol.~30, 2017, pp. 5998--6008.
+\newblock \href {http://arxiv.org/abs/1706.03762} {\path{arXiv:1706.03762}}.
 
-\bibitem{zhou2024llm_energy_review}
-Y.~Zhou, Z.~Wang, Large language models for renewable energy: Opportunities and
-  challenges, Renewable and Sustainable Energy Reviews 198 (2024) 114440.
+\bibitem{zhang2025deep_generative_energy}
+X.~Zhang, A.~Glaws, A.~Cortiella, P.~Emami, R.~King, Deep generative models in
+  energy system applications: Review, challenges, and future directions,
+  Applied Energy 380 (2025) 125059.
+\newblock \href {https://doi.org/10.1016/j.apenergy.2024.125059}
+  {\path{doi:10.1016/j.apenergy.2024.125059}}.
 
-\bibitem{lotfi2024generativeai_energy}
-A.~Lotfi, et~al., Generative {AI} and foundation models for energy systems: A
-  comprehensive review, Applied Energy 371 (2024) 123684.
+\bibitem{zhu2024generalist_energy_ai}
+X.~Zhu, S.~Chen, X.~Liang, X.~Jin, Z.~Du, Next-generation generalist energy
+  artificial intelligence for navigating smart energy, Cell Reports Physical
+  Science 5~(9) (2024) 102192.
+\newblock \href {https://doi.org/10.1016/j.xcrp.2024.102192}
+  {\path{doi:10.1016/j.xcrp.2024.102192}}.
 
 \bibitem{nie2023patchtst}
 Y.~Nie, N.~H. Nguyen, P.~Sinthong, J.~Kalagnanam, A time series is worth 64
   words: Long-term forecasting with transformers, in: International Conference
-  on Learning Representations, 2023, eprint={2211.14730},
-  archivePrefix={arXiv}, primaryClass={cs}.
+  on Learning Representations, 2023.
+\newblock \href {http://arxiv.org/abs/2211.14730} {\path{arXiv:2211.14730}}.
 
 \bibitem{goswami2024moment}
 M.~Goswami, K.~Szafer, A.~Choudhry, Y.~Cai, S.~Li, A.~Dubrawski, {MOMENT}: A
@@ -124,20 +140,23 @@ M.~Goswami, K.~Szafer, A.~Choudhry, Y.~Cai, S.~Li, A.~Dubrawski, {MOMENT}: A
 \bibitem{hu2022lora}
 E.~J. Hu, Y.~Shen, P.~Wallis, Z.~Allen-Zhu, Y.~Li, S.~Wang, L.~Wang, W.~Chen,
   {LoRA}: Low-rank adaptation of large language models, in: International
-  Conference on Learning Representations, 2022, eprint={2106.09685},
-  archivePrefix={arXiv}, primaryClass={cs}.
+  Conference on Learning Representations, 2022.
+\newblock \href {http://arxiv.org/abs/2106.09685} {\path{arXiv:2106.09685}}.
 
 \bibitem{lewis2020rag}
 P.~Lewis, E.~Perez, A.~Piktus, F.~Petroni, V.~Karpukhin, N.~Goyal,
   H.~K{\"u}ttler, M.~Lewis, W.-t. Yih, T.~Rockt{\"a}schel, et~al.,
   Retrieval-augmented generation for knowledge-intensive {NLP} tasks, in:
-  Advances in Neural Information Processing Systems, Vol.~33, 2020,
-  eprint={2005.11401}, archivePrefix={arXiv}, primaryClass={cs}, pp.
+  Advances in Neural Information Processing Systems, Vol.~33, 2020, pp.
   9459--9474.
+\newblock \href {http://arxiv.org/abs/2005.11401} {\path{arXiv:2005.11401}}.
 
-\bibitem{xiang2024transformer_hydro}
-Z.~Xiang, et~al., A transformer-based approach for multi-step-ahead reservoir
-  inflow forecasting, Journal of Hydrology 630 (2024) 130632.
+\bibitem{demiray2024transformer_streamflow}
+B.~Z. Demiray, M.~Sit, O.~Mermer, I.~Demir, Enhancing hydrological modeling
+  with transformers: a case study for 24-h streamflow prediction, Water Science
+  \& Technology 89~(9) (2024) 2326--2341.
+\newblock \href {https://doi.org/10.2166/wst.2024.110}
+  {\path{doi:10.2166/wst.2024.110}}.
 
 \bibitem{wei2022chainofthought}
 J.~Wei, X.~Wang, D.~Schuurmans, M.~Bosma, B.~Ichter, F.~Xia, E.~Chi, Q.~V. Le,
@@ -157,8 +176,8 @@ L.~Ouyang, J.~Wu, X.~Jiang, D.~Almeida, C.~Wainwright, P.~Mishkin, C.~Zhang,
 T.~Brown, B.~Mann, N.~Ryder, M.~Subbiah, J.~D. Kaplan, P.~Dhariwal,
   A.~Neelakantan, P.~Shyam, G.~Sastry, A.~Askell, et~al., Language models are
   few-shot learners, in: Advances in Neural Information Processing Systems,
-  Vol.~33, 2020, eprint={2005.14165}, archivePrefix={arXiv}, primaryClass={cs},
-  pp. 1877--1901.
+  Vol.~33, 2020, pp. 1877--1901.
+\newblock \href {http://arxiv.org/abs/2005.14165} {\path{arXiv:2005.14165}}.
 
 \bibitem{jiang2023mistral}
 A.~Q. Jiang, A.~Sablayrolles, A.~Mensch, C.~Bamford, D.~S. Chaplot, D.~d.~l.
@@ -189,23 +208,34 @@ J.~Li, D.~Li, S.~Savarese, S.~Hoi, {BLIP-2}: Bootstrapping language-image
   International Conference on Machine Learning, PMLR, 2023, pp. 19730--19742.
 \newblock \href {http://arxiv.org/abs/2301.12597} {\path{arXiv:2301.12597}}.
 
-\bibitem{shao2024wind_blade_inspection}
-H.~Shao, et~al., Deep learning-based automated inspection of wind turbine blade
-  surface defects: A comprehensive review, Renewable and Sustainable Energy
-  Reviews 195 (2024) 114293.
+\bibitem{memari2024blade_inspection_review}
+M.~Memari, P.~Shakya, M.~Shekaramiz, A.~C. Seibi, M.~A.~S. Masoum, Review on
+  the advancements in wind turbine blade inspection: Integrating drone and deep
+  learning technologies for enhanced defect detection, IEEE Access 12 (2024)
+  33236--33282.
+\newblock \href {https://doi.org/10.1109/ACCESS.2024.3371493}
+  {\path{doi:10.1109/ACCESS.2024.3371493}}.
 
-\bibitem{tang2024solar_panel_defect}
-W.~Tang, et~al., A survey of deep learning methods for photovoltaic defect
-  detection, Renewable Energy 216 (2023) 118970.
+\bibitem{thakfan2024solar_panel_defect}
+A.~Thakfan, Y.~Bin~Salamah, Artificial-intelligence-based detection of defects
+  and faults in photovoltaic systems: A survey, Energies 17~(19) (2024) 4807.
+\newblock \href {https://doi.org/10.3390/en17194807}
+  {\path{doi:10.3390/en17194807}}.
 
-\bibitem{chen2024fish_passage_cv}
-Y.~Chen, et~al., Computer vision for automated fish passage monitoring at
-  hydroelectric facilities: A review, Ecological Engineering 198 (2024) 107125.
+\bibitem{gregory2025fish_passage_dl}
+J.~Gregory, S.~M. Miehls, J.~L. Eickholt, D.~P. Zielinski, A real-time fish
+  detection system for partially dewatered fish to support selective fish
+  passage, Sensors 25~(4) (2025) 1022.
+\newblock \href {https://doi.org/10.3390/s25041022}
+  {\path{doi:10.3390/s25041022}}.
 
-\bibitem{wang2023ecological_satellite}
-S.~Wang, et~al., Deep learning for ecological monitoring from satellite
-  imagery: A systematic review, Remote Sensing of Environment 298 (2023)
-  113826.
+\bibitem{pettorelli2024dl_satellite_biodiversity}
+N.~Pettorelli, J.~Williams, H.~{Schulte to B{\"u}hne}, M.~Crowson, Deep
+  learning and satellite remote sensing for biodiversity monitoring and
+  conservation, Remote Sensing in Ecology and Conservation 11~(2) (2024)
+  123--132.
+\newblock \href {https://doi.org/10.1002/rse2.415}
+  {\path{doi:10.1002/rse2.415}}.
 
 \bibitem{zhou2023onefitsall}
 T.~Zhou, P.~Niu, X.~Wang, L.~Sun, R.~Jin, One fits all: Power general time
@@ -231,9 +261,9 @@ A.~Das, W.~Kong, A.~Leber, R.~Mathews, R.~Sen, A decoder-only foundation model
 
 \bibitem{ho2020denoising}
 J.~Ho, A.~Jain, P.~Abbeel, Denoising diffusion probabilistic models, in:
-  Advances in Neural Information Processing Systems, Vol.~33, 2020,
-  eprint={2006.11239}, archivePrefix={arXiv}, primaryClass={cs}, pp.
+  Advances in Neural Information Processing Systems, Vol.~33, 2020, pp.
   6840--6851.
+\newblock \href {http://arxiv.org/abs/2006.11239} {\path{arXiv:2006.11239}}.
 
 \bibitem{rombach2022stablediffusion}
 R.~Rombach, A.~Blattmann, D.~Lorenz, P.~Esser, B.~Ommer, High-resolution image
@@ -242,9 +272,11 @@ R.~Rombach, A.~Blattmann, D.~Lorenz, P.~Esser, B.~Ommer, High-resolution image
   10684--10695.
 \newblock \href {http://arxiv.org/abs/2112.10752} {\path{arXiv:2112.10752}}.
 
-\bibitem{zhang2024diffusion_ts}
-L.~Zhang, et~al., Diffusion models for time series applications: A survey,
-  arXiv preprint arXiv:2403.14250 (2024).
+\bibitem{lin2024diffusion_ts}
+L.~Lin, Z.~Li, R.~Li, X.~Li, J.~Gao, Diffusion models for time series
+  applications: A survey, Frontiers of Information Technology \& Electronic
+  Engineering (2024).
+\newblock \href {http://arxiv.org/abs/2305.00624} {\path{arXiv:2305.00624}}.
 
 \bibitem{girdhar2023imagebind}
 R.~Girdhar, A.~El-Nouby, Z.~Liu, M.~Singh, K.~V. Alwala, A.~Joulin, I.~Misra,
@@ -265,94 +297,138 @@ T.~Schick, J.~Dwivedi-Yu, R.~Dess{\`i}, R.~Raileanu, M.~Lomeli, L.~Zettlemoyer,
   use tools, Advances in Neural Information Processing Systems 36 (2024).
 \newblock \href {http://arxiv.org/abs/2302.04761} {\path{arXiv:2302.04761}}.
 
-\bibitem{zhang2024llm_hydro_qa}
-W.~Zhang, et~al., Large language model-based question answering system for
-  hydropower station operational knowledge management, Journal of
-  Hydroinformatics 26~(3) (2024) 512--528.
+\bibitem{ren2024watergpt}
+Y.~Ren, T.~Zhang, X.~Dong, W.~Li, Z.~Wang, J.~He, H.~Zhang, L.~Jiao,
+  {WaterGPT}: Training a large language model to become a hydrology expert,
+  Water 16~(21) (2024) 3075.
+\newblock \href {https://doi.org/10.3390/w16213075}
+  {\path{doi:10.3390/w16213075}}.
 
-\bibitem{wu2024scada_llm_maintenance}
-Y.~Wu, et~al., {SCADA}-{LLM}: An intelligent maintenance assistant for wind
-  farms using large language models, Applied Energy 370 (2024) 123561.
+\bibitem{hu2025digital_twin_blade}
+W.~Hu, J.~Fang, Y.~Zhang, Z.~Liu, A.~S. Verma, H.~Liu, F.~Cong, J.~Tan, Digital
+  twin of wind turbine surface damage detection based on deep learning-aided
+  drone inspection, Renewable Energy 241 (2025) 122332.
+\newblock \href {https://doi.org/10.1016/j.renene.2024.122332}
+  {\path{doi:10.1016/j.renene.2024.122332}}.
 
-\bibitem{zheng2024chatgrid}
-Y.~Zheng, et~al., {ChatGrid}: A large language model agent for power grid
-  operations and analysis, IEEE Transactions on Power Systems 39~(5) (2024)
-  6512--6525.
+\bibitem{jin2024chatgrid}
+S.~Jin, S.~Abhyankar, {ChatGrid}: Power grid visualization empowered by a large
+  language model, in: 2024 IEEE Workshop on Energy Data Visualization
+  (EnergyVis), 2024.
+\newblock \href {https://doi.org/10.1109/EnergyVis62781.2024.00007}
+  {\path{doi:10.1109/EnergyVis62781.2024.00007}}.
 
-\bibitem{wang2024llm_power_systems}
-Z.~Wang, B.~Zhang, Large language models for power systems: A survey, arXiv
-  preprint arXiv:2401.02722 (2024).
+\bibitem{hamann2024foundation_grid}
+H.~F. Hamann, B.~Gjorgiev, T.~Brunschwiler, L.~S.~A. Martins, A.~Puech,
+  A.~Varbella, J.~Weiss, J.~Bernabe-Moreno, A.~B. Mass\'{e}, S.~L. Choi,
+  I.~Foster, B.-M. Hodge, R.~Jain, K.~Kim, V.~Mai, F.~Mirall\`{e}s,
+  M.~De~Montigny, O.~Ramos-Lea\~{n}os, H.~Supr\^{e}me, L.~Xie, E.-N.~S.
+  Youssef, A.~Zinflou, A.~Belyi, R.~J. Bessa, B.~P. Bhattarai, J.~Schmude,
+  S.~Sobolevsky, Foundation models for the electric power grid, Joule 8~(12)
+  (2024) 3245--3258.
+\newblock \href {https://doi.org/10.1016/j.joule.2024.11.002}
+  {\path{doi:10.1016/j.joule.2024.11.002}}.
 
 \bibitem{ansari2024chronos}
 A.~F. Ansari, L.~Stella, C.~Turkmen, X.~Zhang, P.~Mercado, H.~Sez,
   K.~Rajbhandari, D.~Pham, D.~A. Dao, et~al., Chronos: Learning the language of
   time series, arXiv preprint arXiv:2403.07815 (2024).
 
-\bibitem{deng2024gpt_wind_forecast}
-J.~Deng, et~al., Can {GPT} models forecast wind power? exploring the potential
-  of large language models for zero-shot wind energy prediction, Applied Energy
-  364 (2024) 123148.
+\bibitem{lai2024bert4st}
+Z.~Lai, T.~Wu, X.~Fei, Q.~Ling, {BERT4ST}: Fine-tuning pre-trained large
+  language model for wind power forecasting, Energy Conversion and Management
+  307 (2024) 118331.
+\newblock \href {https://doi.org/10.1016/j.enconman.2024.118331}
+  {\path{doi:10.1016/j.enconman.2024.118331}}.
 
-\bibitem{xiao2024tsfm_wind_power}
-Y.~Xiao, et~al., Zero-shot wind power forecasting with time-series foundation
-  models, Energy 299 (2024) 131487.
+\bibitem{mo2024powerformer}
+S.~Mo, H.~Wang, B.~Li, Z.~Xue, S.~Fan, X.~Liu, Powerformer: A temporal-based
+  transformer model for wind power forecasting, Energy Reports 11 (2024)
+  736--744.
+\newblock \href {https://doi.org/10.1016/j.egyr.2023.12.030}
+  {\path{doi:10.1016/j.egyr.2023.12.030}}.
 
-\bibitem{lee2024tsfm_solar_forecast}
-H.~Lee, et~al., Foundation models for solar irradiance forecasting: A
-  comparative evaluation, Solar Energy 278 (2024) 112784.
+\bibitem{piantadosi2024tsfm_solar_forecast}
+G.~Piantadosi, S.~Dutto, A.~Galli, S.~De~Vito, C.~Sansone, G.~Di~Francia,
+  Photovoltaic power forecasting: A {Transformer} based framework, Energy and
+  AI 18 (2024) 100444.
+\newblock \href {https://doi.org/10.1016/j.egyai.2024.100444}
+  {\path{doi:10.1016/j.egyai.2024.100444}}.
 
-\bibitem{xu2024tsfm_streamflow}
-T.~Xu, et~al., Zero-shot streamflow forecasting using pre-trained time-series
-  foundation models, Water Resources Research 60~(5) (2024) e2024WR037152.
+\bibitem{liu2024transformer_hydrologic}
+J.~Liu, Y.~Bian, K.~Lawson, C.~Shen, Probing the limit of hydrologic
+  predictability with the {Transformer} network, Journal of Hydrology 637
+  (2024) 131389.
+\newblock \href {https://doi.org/10.1016/j.jhydrol.2024.131389}
+  {\path{doi:10.1016/j.jhydrol.2024.131389}}.
 
-\bibitem{li2024moirai_reservoir_inflow}
-X.~Li, et~al., Pre-trained time series transformers for cross-basin reservoir
-  inflow prediction, Journal of Hydrology 635 (2024) 131174.
+\bibitem{zhang2024crossregion_streamflow}
+B.~Zhang, C.~Ouyang, P.~Cui, Q.~Xu, D.~Wang, F.~Zhang, Z.~Li, L.~Fan,
+  M.~Lovati, Y.~Liu, Q.~Zhang, Deep learning for cross-region streamflow and
+  flood forecasting at a global scale, The Innovation 5~(3) (2024) 100617.
+\newblock \href {https://doi.org/10.1016/j.xinn.2024.100617}
+  {\path{doi:10.1016/j.xinn.2024.100617}}.
 
-\bibitem{huang2024clip_pv_defect}
-Y.~Huang, et~al., Zero-shot photovoltaic defect classification using
-  {CLIP}-based vision-language models, Solar Energy 274 (2024) 112561.
+\bibitem{zhou2024anomalyclip}
+Q.~Zhou, G.~Pang, Y.~Tian, S.~He, J.~Chen, {AnomalyCLIP}: Object-agnostic
+  prompt learning for zero-shot anomaly detection, in: Proceedings of the
+  Twelfth International Conference on Learning Representations (ICLR), 2024,
+  arXiv:2310.18961.
 
-\bibitem{wang2024vlm_blade_defect}
-C.~Wang, et~al., Vision-language models for automated wind turbine blade
-  surface defect classification, Engineering Applications of Artificial
-  Intelligence 133 (2024) 108225.
+\bibitem{li2024sam_solar_panel}
+G.~Li, G.~Wang, T.~Luo, Y.~Hu, S.~Wu, G.~Gong, C.~Song, Z.~Guo, Z.~Liu,
+  {SolarSAM}: Building-scale photovoltaic potential assessment based on
+  {Segment Anything Model} ({SAM}) and remote sensing for emerging city,
+  Renewable Energy 237 (2024) 121560.
+\newblock \href {https://doi.org/10.1016/j.renene.2024.121560}
+  {\path{doi:10.1016/j.renene.2024.121560}}.
 
-\bibitem{park2024sam_solar_panel}
-J.~Park, et~al., Automated solar panel segmentation and defect detection using
-  the {Segment Anything Model}, Solar Energy Materials and Solar Cells 268
-  (2024) 112730.
+\bibitem{sheiati2024blade_identification}
+S.~Sheiati, X.~Jia, M.~McGugan, K.~Branner, X.~Chen, Artificial
+  intelligence-based blade identification in operational wind turbines through
+  similarity analysis aided drone inspection, Engineering Applications of
+  Artificial Intelligence 137 (2024) 109234.
+\newblock \href {https://doi.org/10.1016/j.engappai.2024.109234}
+  {\path{doi:10.1016/j.engappai.2024.109234}}.
 
-\bibitem{reddy2024sam_blade_segmentation}
-A.~Reddy, et~al., Segment anything model for automated wind turbine blade
-  damage segmentation from drone imagery, Wind Energy 27~(4) (2024) 356--371.
+\bibitem{ma2022hydro_turbine_anomaly}
+T.~Ma, Z.~Zhu, L.~Wang, H.~Wang, L.~Ma, Anomaly detection for hydropower
+  turbine based on variational modal decomposition and hierarchical temporal
+  memory, Energy Reports 8 (2022) 1546--1556.
+\newblock \href {https://doi.org/10.1016/j.egyr.2022.02.286}
+  {\path{doi:10.1016/j.egyr.2022.02.286}}.
 
-\bibitem{chen2024hydro_vibration_llm}
-G.~Chen, et~al., Anomaly narration for hydroelectric turbine vibration
-  monitoring using fine-tuned large language models, Mechanical Systems and
-  Signal Processing 210 (2024) 111168.
+\bibitem{jalal2024dl_pv_faults}
+M.~Jalal, I.~U. Khalil, A.~u. Haq, Deep learning approaches for visual faults
+  diagnosis of photovoltaic systems: State-of-the-art review, Results in
+  Engineering 23 (2024) 102622.
+\newblock \href {https://doi.org/10.1016/j.rineng.2024.102622}
+  {\path{doi:10.1016/j.rineng.2024.102622}}.
 
-\bibitem{yang2024llm_solar_monitoring}
-Z.~Yang, et~al., Large language model-based intelligent monitoring and anomaly
-  narration for distributed photovoltaic systems, Applied Energy 365 (2024)
-  123212.
+\bibitem{zaboli2025llm_power_security}
+A.~Zaboli, J.~Hong, A.~Stefanov, C.-C. Liu, C.-S. Hwang, Large language models
+  for power system security: A novel multi-modal approach for anomaly detection
+  in energy management systems, IEEE Access 13 (2025) 203558--203585.
+\newblock \href {https://doi.org/10.1109/ACCESS.2025.3636184}
+  {\path{doi:10.1109/ACCESS.2025.3636184}}.
 
-\bibitem{li2024multimodal_power_grid}
-H.~Li, et~al., Multimodal foundation models for power grid anomaly detection
-  and explanation, IEEE Transactions on Smart Grid 15~(4) (2024) 3856--3870.
-
-\bibitem{wang2024energy_llm_agents}
-J.~Wang, et~al., Agent-based foundation models for autonomous energy system
-  management, Nature Energy 9 (2024) 892--903.
+\bibitem{liu2025repower_llm_power}
+Y.-X. Liu, M.~Jia, Y.-X. Zhang, J.~Wang, G.~He, S.-L. Zhong, Z.-M. Dang,
+  {RePower}: An {LLM}-driven autonomous platform for power system data-guided
+  research, Patterns 6~(4) (2025) 101211.
+\newblock \href {https://doi.org/10.1016/j.patter.2025.101211}
+  {\path{doi:10.1016/j.patter.2025.101211}}.
 
 \bibitem{xi2023llmagent_survey}
 Z.~Xi, W.~Chen, X.~Guo, W.~He, Y.~Ding, B.~Hong, M.~Zhang, J.~Wang, S.~Jin,
   E.~Zhou, et~al., The rise and potential of large language model based agents:
   A survey, arXiv preprint arXiv:2309.07864 (2023).
 
-\bibitem{chen2024transformer_energy}
-J.~Chen, et~al., Transformers in energy systems: A survey of architectures and
-  applications, Applied Energy 359 (2024) 122696.
+\bibitem{hanif2024transformer_solar}
+M.~F. Hanif, J.~Mi, Harnessing {AI} for solar energy: Emergence of transformer
+  models, Applied Energy 369 (2024) 123541.
+\newblock \href {https://doi.org/10.1016/j.apenergy.2024.123541}
+  {\path{doi:10.1016/j.apenergy.2024.123541}}.
 
 \bibitem{garza2023timegpt}
 A.~Garza, M.~Mergenthaler-Canseco, {TimeGPT-1}, arXiv preprint arXiv:2310.03589
@@ -371,15 +447,20 @@ D.~Tuia, B.~Kellenberger, S.~Beery, B.~R. Costelloe, S.~Zuffi, B.~Risse,
 \newblock \href {https://doi.org/10.1038/s41467-022-27980-y}
   {\path{doi:10.1038/s41467-022-27980-y}}.
 
-\bibitem{liu2024clip_bird_wind}
-Y.~Liu, et~al., Zero-shot bird species classification at wind farm sites using
-  {CLIP} with habitat-aware prompting, Ecological Applications 34~(3) (2024)
-  e2946.
+\bibitem{ballester2024bird_detection_wind}
+C.~Ballester, S.~M. Dupont, A.~Corbeau, T.~Chambert, O.~Duriez, A.~Besnard, A
+  standardized protocol for assessing the performance of automatic detection
+  systems used in onshore wind power plants to reduce avian mortality, Journal
+  of Environmental Management 354 (2024) 120437.
+\newblock \href {https://doi.org/10.1016/j.jenvman.2024.120437}
+  {\path{doi:10.1016/j.jenvman.2024.120437}}.
 
-\bibitem{zhang2024sam_fish_monitoring}
-H.~Zhang, et~al., Foundation model-based automated fish species identification
-  in underwater monitoring at hydropower dams, Ecological Informatics 81 (2024)
-  102580.
+\bibitem{saleh2024dl_fish_habitat}
+A.~Saleh, M.~Sheaves, D.~Jerry, M.~{Rahimi Azghadi}, Applications of deep
+  learning in fish habitat monitoring: A tutorial and survey, Expert Systems
+  with Applications 238 (2024) 121841.
+\newblock \href {https://doi.org/10.1016/j.eswa.2023.121841}
+  {\path{doi:10.1016/j.eswa.2023.121841}}.
 
 \bibitem{dosovitskiy2021vit}
 A.~Dosovitskiy, L.~Beyer, A.~Kolesnikov, D.~Weissenborn, X.~Zhai,
@@ -393,36 +474,56 @@ Z.~M. Yaseen, S.~O. Sulaiman, R.~C. Deo, K.-W. Chau, An enhanced extreme
   practical applications in water resources engineering and beyond, Journal of
   Hydrology 569 (2019) 387--408.
 
-\bibitem{li2023turbine_health}
-Z.~Li, et~al., Intelligent health monitoring of hydraulic turbines based on
-  deep learning: A comprehensive review, Measurement 216 (2023) 112898.
+\bibitem{latif2023dl_inflow_review}
+S.~D. Latif, A.~N. Ahmed, A review of deep learning and machine learning
+  techniques for hydrological inflow forecasting, Environment, Development and
+  Sustainability 25~(11) (2023) 12189--12216.
+\newblock \href {https://doi.org/10.1007/s10668-023-03131-1}
+  {\path{doi:10.1007/s10668-023-03131-1}}.
 
-\bibitem{liu2024rag_dam_maintenance}
-J.~Liu, et~al., Retrieval-augmented generation for intelligent dam maintenance
-  decision support, Automation in Construction 162 (2024) 105370.
+\bibitem{ieva2024rag_infrastructure}
+S.~Ieva, D.~Loconte, G.~Loseto, M.~Ruta, F.~Scioscia, D.~Marche,
+  M.~Notarnicola, A retrieval-augmented generation approach for data-driven
+  energy infrastructure digital twins, Smart Cities 7~(6) (2024) 3095--3120.
+\newblock \href {https://doi.org/10.3390/smartcities7060121}
+  {\path{doi:10.3390/smartcities7060121}}.
 
-\bibitem{wang2024vlm_dam_inspection}
-Q.~Wang, et~al., Visual language models for underwater dam surface inspection
-  and damage classification, Structural Health Monitoring 23~(4) (2024)
-  2156--2172.
+\bibitem{li2022underwater_dam_crack}
+Y.~Li, T.~Bao, X.~Huang, H.~Chen, B.~Xu, X.~Shu, Y.~Zhou, Q.~Cao, J.~Tu,
+  R.~Wang, K.~Zhang, Underwater crack pixel-wise identification and
+  quantification for dams via lightweight semantic segmentation and transfer
+  learning, Automation in Construction 144 (2022) 104600.
+\newblock \href {https://doi.org/10.1016/j.autcon.2022.104600}
+  {\path{doi:10.1016/j.autcon.2022.104600}}.
 
-\bibitem{yang2024reservoir_optimization}
-G.~Yang, et~al., Multi-objective reservoir operation optimization using deep
-  reinforcement learning, Journal of Water Resources Planning and Management
-  150~(2) (2024).
+\bibitem{wu2024transformer_drl_reservoir}
+R.~Wu, R.~Wang, J.~Hao, Q.~Wu, P.~Wang, Multiobjective multihydropower
+  reservoir operation optimization with transformer-based deep reinforcement
+  learning, Journal of Hydrology 632 (2024) 130904.
+\newblock \href {https://doi.org/10.1016/j.jhydrol.2024.130904}
+  {\path{doi:10.1016/j.jhydrol.2024.130904}}.
 
-\bibitem{liu2023wind_transformer_review}
-Z.~Liu, et~al., Transformer-based models for wind energy forecasting: A
-  comprehensive review, Energy Conversion and Management 293 (2023) 117520.
+\bibitem{yang2024survey_wind_ml}
+Y.~Yang, H.~Lou, J.~Wu, S.~Zhang, S.~Gao, A survey on wind power forecasting
+  with machine learning approaches, Neural Computing and Applications 36 (2024)
+  12753--12773.
+\newblock \href {https://doi.org/10.1007/s00521-024-09923-4}
+  {\path{doi:10.1007/s00521-024-09923-4}}.
 
-\bibitem{zhang2024llm_wind_turbine_fault}
-K.~Zhang, et~al., Intelligent wind turbine fault diagnosis using large language
-  models with retrieval-augmented generation, Renewable Energy 225 (2024)
-  120326.
+\bibitem{zhang2024aiops_wind_turbine}
+C.~Zhang, D.~Hu, T.~Yang, Research of artificial intelligence operations for
+  wind turbines considering anomaly detection, root cause analysis, and
+  incremental training, Reliability Engineering \& System Safety 241 (2024)
+  109634.
+\newblock \href {https://doi.org/10.1016/j.ress.2023.109634}
+  {\path{doi:10.1016/j.ress.2023.109634}}.
 
-\bibitem{chen2024offshore_wind_nlp}
-W.~Chen, et~al., Natural language processing for offshore wind farm site
-  assessment document analysis, Ocean Engineering 302 (2024) 117640.
+\bibitem{das2024bigdata_offshore_wind}
+P.~Das, M.~Mashiata, G.~Iglesias, Big data meets big wind: A scientometric
+  review of machine learning approaches in offshore wind energy, Energy and AI
+  18 (2024) 100418.
+\newblock \href {https://doi.org/10.1016/j.egyai.2024.100418}
+  {\path{doi:10.1016/j.egyai.2024.100418}}.
 
 \bibitem{liu2024timer}
 Y.~Liu, H.~Zhang, C.~Li, X.~Huang, J.~Wang, M.~Long, Timer: Generative
@@ -430,32 +531,48 @@ Y.~Liu, H.~Zhang, C.~Li, X.~Huang, J.~Wang, M.~Long, Timer: Generative
   Conference on Machine Learning, PMLR, 2024.
 \newblock \href {http://arxiv.org/abs/2402.02368} {\path{arXiv:2402.02368}}.
 
-\bibitem{chen2024thermal_vlm_solar}
-Z.~Chen, et~al., Thermal imaging analysis of photovoltaic arrays using
-  vision-language foundation models, Renewable and Sustainable Energy Reviews
-  199 (2024) 114505.
+\bibitem{mellit2025thermal_ai_solar}
+A.~Mellit, S.~A. Kalogirou, Recent advances in the application of infrared
+  thermographic imaging and embedded artificial intelligence for fault
+  diagnosis and predictive maintenance of photovoltaic plants: Challenges and
+  future directions, Renewable and Sustainable Energy Reviews 223 (2025)
+  116057.
+\newblock \href {https://doi.org/10.1016/j.rser.2025.116057}
+  {\path{doi:10.1016/j.rser.2025.116057}}.
 
-\bibitem{liu2024diffusion_el_augmentation}
-T.~Liu, et~al., Diffusion models for electroluminescence image augmentation in
-  photovoltaic module inspection, Renewable Energy 222 (2024) 119866.
+\bibitem{liu2024cnn_el_detection}
+Q.~Liu, M.~Liu, C.~Wang, Q.~M.~J. Wu, An efficient {CNN}-based detector for
+  photovoltaic module cells defect detection in electroluminescence images,
+  Solar Energy 267 (2024) 112245.
+\newblock \href {https://doi.org/10.1016/j.solener.2023.112245}
+  {\path{doi:10.1016/j.solener.2023.112245}}.
 
-\bibitem{li2024diffusion_pv_augment}
-G.~Li, et~al., Conditional diffusion models for photovoltaic defect image
-  generation and data augmentation, Solar Energy 271 (2024) 112417.
+\bibitem{tan2024generative_pv_augment}
+H.~Tan, Z.~Guo, Z.~Lin, Y.~Chen, D.~Huang, W.~Yuan, H.~Zhang, J.~Yan, General
+  generative {AI}-based image augmentation method for robust rooftop {PV}
+  segmentation, Applied Energy 368 (2024) 123554.
+\newblock \href {https://doi.org/10.1016/j.apenergy.2024.123554}
+  {\path{doi:10.1016/j.apenergy.2024.123554}}.
 
-\bibitem{wang2024fleet_wide_pv_tsfm}
-L.~Wang, et~al., Fleet-wide photovoltaic performance monitoring using
-  pre-trained time-series foundation models, Solar Energy 280 (2024) 112856.
+\bibitem{fan2024fleet_wide_pv}
+Y.~Fan, R.~Wieser, X.~Yu, Y.~Wu, L.~S. Bruckman, R.~H. French, Using
+  spatio-temporal graph neural networks to estimate fleet-wide photovoltaic
+  performance degradation patterns, PLOS ONE 19~(2) (2024) e0297445.
+\newblock \href {https://doi.org/10.1371/journal.pone.0297445}
+  {\path{doi:10.1371/journal.pone.0297445}}.
 
-\bibitem{li2023yangtze_porpoise}
-W.~Li, et~al., Population dynamics monitoring of the {Y}angtze finless porpoise
-  using deep learning and acoustic sensing, Ecological Indicators 150 (2023)
-  110215.
+\bibitem{hamard2024marine_mammal_acoustic_dl}
+Q.~Hamard, M.-T. Pham, D.~Cazau, K.~Heerah, A deep learning model for detecting
+  and classifying multiple marine mammal species from passive acoustic data,
+  Ecological Informatics 84 (2024) 102906.
+\newblock \href {https://doi.org/10.1016/j.ecoinf.2024.102906}
+  {\path{doi:10.1016/j.ecoinf.2024.102906}}.
 
-\bibitem{wang2024bat_acoustic_fm}
-T.~Wang, et~al., Pre-trained audio foundation models for bat call
-  classification at wind energy sites, Biological Conservation 293 (2024)
-  110592.
+\bibitem{fundel2023bat_call_transformer}
+F.~Fundel, D.~A. Braun, S.~Gottwald, Automatic bat call classification using
+  transformer networks, Ecological Informatics 78 (2023) 102288.
+\newblock \href {https://doi.org/10.1016/j.ecoinf.2023.102288}
+  {\path{doi:10.1016/j.ecoinf.2023.102288}}.
 
 \bibitem{kahl2021birdnet}
 S.~Kahl, C.~M. Wood, M.~Eibl, H.~Klinck, {BirdNET}: A deep learning solution
@@ -463,10 +580,12 @@ S.~Kahl, C.~M. Wood, M.~Eibl, H.~Klinck, {BirdNET}: A deep learning solution
 \newblock \href {https://doi.org/10.1016/j.ecoinf.2021.101236}
   {\path{doi:10.1016/j.ecoinf.2021.101236}}.
 
-\bibitem{wu2024diffusion_wildlife_augment}
-X.~Wu, et~al., Diffusion models for synthetic wildlife image generation to
-  address class imbalance in ecological monitoring, Methods in Ecology and
-  Evolution 15~(6) (2024) 1092--1108.
+\bibitem{zhang2023wildlife_augmentation_cyclegan}
+Q.~Zhang, X.~Yi, J.~Guo, Y.~Tang, T.~Feng, R.~Liu, A few-shot rare wildlife
+  image classification method based on style migration data augmentation,
+  Ecological Informatics 77 (2023) 102237.
+\newblock \href {https://doi.org/10.1016/j.ecoinf.2023.102237}
+  {\path{doi:10.1016/j.ecoinf.2023.102237}}.
 
 \bibitem{he2022masked}
 K.~He, X.~Chen, S.~Xie, Y.~Li, P.~Doll{\'a}r, R.~Girshick, Masked autoencoders
@@ -474,10 +593,12 @@ K.~He, X.~Chen, S.~Xie, Y.~Li, P.~Doll{\'a}r, R.~Girshick, Masked autoencoders
   Computer Vision and Pattern Recognition, 2022, pp. 16000--16009.
 \newblock \href {http://arxiv.org/abs/2111.06377} {\path{arXiv:2111.06377}}.
 
-\bibitem{chen2024satmae_habitat}
-S.~Chen, et~al., Satellite foundation models for vegetation change detection
-  around energy infrastructure, Remote Sensing of Environment 305 (2024)
-  114072.
+\bibitem{huo2025remote_sensing_foundation_models}
+C.~Huo, K.~Chen, S.~Zhang, Z.~Wang, H.~Yan, J.~Shen, Y.~Hong, G.~Qi, H.~Fang,
+  Z.~Wang, When remote sensing meets foundation model: A survey and beyond,
+  Remote Sensing 17~(2) (2025) 179.
+\newblock \href {https://doi.org/10.3390/rs17020179}
+  {\path{doi:10.3390/rs17020179}}.
 
 \bibitem{deitsch2019elpv}
 S.~Deitsch, V.~Christlein, S.~Berber, C.~Buerhop-Lutz, A.~Maier, F.~Gallwitz,

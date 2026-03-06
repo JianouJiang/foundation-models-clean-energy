@@ -87,7 +87,8 @@ def main():
     ax2.set_xlim(0, 1)
     ax2.set_xlabel("Share of publications")
     ax2.set_title("(b) FM-type portfolio (top-5)")
-    ax2.legend(fontsize=8, frameon=False, loc="lower right")
+    ax2.legend(fontsize=8, frameon=False, loc="upper left",
+               bbox_to_anchor=(0.0, 1.0))
     ax2.grid(visible=False)
 
     fig.tight_layout()

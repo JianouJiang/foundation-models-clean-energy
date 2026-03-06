@@ -52,8 +52,8 @@ def plot_timeseries_benchmark():
         ax.set_title(f"({chr(97 + metrics_names.index(metric))}) {metric}")
 
     fig.suptitle("Time-Series Foundation Model Benchmark: 24h Ahead Load Forecasting",
-                fontsize=12, y=1.02)
-    fig.tight_layout()
+                fontsize=12)
+    fig.tight_layout(rect=[0, 0, 1, 0.95])
     pu.save_figure(fig, "fig_timeseries_benchmark")
     print("Done: fig_timeseries_benchmark")
 
@@ -100,39 +100,53 @@ def plot_vlm_results():
     colors = pu.COLORS
     fig, axes = plt.subplots(1, 2, figsize=(12, 5))
 
-    # (a) Model comparison bar chart
+    # (a) Precision–Recall scatter (Tufte: higher density than bars)
     ax = axes[0]
     models = []
-    accs = []
+    precs = []
+    recs = []
     f1s = []
     for name, metrics in data.items():
-        if isinstance(metrics, dict) and "accuracy" in metrics:
+        if isinstance(metrics, dict) and "precision" in metrics:
             models.append(name)
-            accs.append(metrics["accuracy"])
+            precs.append(metrics["precision"])
+            recs.append(metrics["recall"])
             f1s.append(metrics["f1"])
 
-    x = np.arange(len(models))
-    width = 0.35
+    # F1 iso-curves (background reference)
+    for f1_val in [0.4, 0.6, 0.8]:
+        r_range = np.linspace(0.01, 1.0, 200)
+        p_iso = f1_val * r_range / (2 * r_range - f1_val)
+        mask = (p_iso > 0) & (p_iso <= 1)
+        ax.plot(r_range[mask], p_iso[mask], color="0.85", lw=0.8, zorder=1)
+        # Label the iso-curve
+        idx = np.argmin(np.abs(r_range[mask] - 0.95))
+        ax.text(r_range[mask][idx], p_iso[mask][idx] + 0.02,
+                f"F1={f1_val}", fontsize=6, color="0.6", ha="right")
 
-    bars1 = ax.bar(x - width / 2, accs, width, label="Accuracy",
-                   color=colors[0], alpha=0.85, edgecolor="white")
-    bars2 = ax.bar(x + width / 2, f1s, width, label="F1 Score",
-                   color=colors[1], alpha=0.85, edgecolor="white")
+    model_colors = [colors[i % len(colors)] for i in range(len(models))]
+    for i, (m, p, r, f) in enumerate(zip(models, precs, recs, f1s)):
+        ax.scatter(r, p, s=80, color=model_colors[i], edgecolors="white",
+                   linewidths=0.5, zorder=5)
+        # Direct label (Tufte: avoid legend when possible)
+        short = m.replace("CLIP zero-shot ", "").replace("Supervised ", "Sup. ")
+        # Custom offsets to avoid overlap between nearby points
+        offsets = [(-60, -20), (12, 10), (12, 14), (-70, 10), (12, -14)]
+        idx = i % len(offsets)
+        offset = offsets[idx]
+        ha_ann = "left" if offset[0] > 0 else "right"
+        va_ann = "bottom" if offset[1] > 0 else "top"
+        ax.annotate(f"{short}\nF1={f:.2f}", (r, p),
+                    fontsize=7, xytext=offset, textcoords="offset points",
+                    ha=ha_ann, va=va_ann,
+                    arrowprops=dict(arrowstyle="-", color="0.5", lw=0.4))
 
-    ax.set_xticks(x)
-    ax.set_xticklabels(models, rotation=35, ha="right", fontsize=7)
-    ax.set_ylabel("Score")
-    ax.set_ylim(0, 1.1)
-    ax.set_title("(a) Model Comparison")
-    ax.legend(fontsize=8)
-
-    # Annotate bars
-    for bar in bars1:
-        ax.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + 0.02,
-               f"{bar.get_height():.2f}", ha="center", fontsize=7)
-    for bar in bars2:
-        ax.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + 0.02,
-               f"{bar.get_height():.2f}", ha="center", fontsize=7)
+    ax.set_xlabel("Recall")
+    ax.set_ylabel("Precision")
+    ax.set_xlim(0, 1.08)
+    ax.set_ylim(0.3, 1.0)
+    ax.set_title("(a) Precision–Recall space")
+    ax.grid(visible=False)
 
     # (b) Confusion matrix
     ax = axes[1]
@@ -160,57 +174,77 @@ def plot_vlm_results():
         ax.set_title("(b) Confusion Matrix")
 
     fig.suptitle("VLM Zero-Shot Solar Panel Defect Detection (ELPV Dataset)",
-                fontsize=12, y=1.02)
-    fig.tight_layout()
+                fontsize=12)
+    fig.tight_layout(rect=[0, 0, 1, 0.95])
     pu.save_figure(fig, "fig_vlm_inspection")
     print("Done: fig_vlm_inspection")
 
 
 def plot_llm_qa():
-    """Plot LLM Q&A results: (a) Cleveland dot plot, (b) slopegraph Direct vs RAG."""
+    """Plot LLM Q&A results: (a) Cleveland dot plot with 7B+3B, (b) slopegraph Direct vs RAG."""
     fpath = os.path.join(RESULTS_DIR, "llm_energy_qa.json")
+    fpath_3b = os.path.join(RESULTS_DIR, "llm_energy_qa_3b.json")
     rag_path = os.path.join(RESULTS_DIR, "rag_pipeline.json")
 
-    domain_scores = {}
+    domain_scores_7b = {}
+    domain_scores_3b = {}
     n_q = 0
 
     if os.path.exists(fpath):
         with open(fpath) as f:
             data = json.load(f)
-        domain_scores = data.get("domain_scores", {})
+        domain_scores_7b = data.get("domain_scores", {})
         n_q = data.get("n_questions", 0)
         source = "dedicated"
     elif os.path.exists(rag_path):
         with open(rag_path) as f:
             data = json.load(f)
         by_domain = data.get("summary", {}).get("by_domain", {})
-        domain_scores = {d: v["direct_mean"] for d, v in by_domain.items()}
+        domain_scores_7b = {d: v["direct_mean"] for d, v in by_domain.items()}
         n_q = data.get("summary", {}).get("n_questions", 15)
         source = "RAG baseline"
     else:
         print("Skipping LLM Q&A (no results)")
         return
 
+    if os.path.exists(fpath_3b):
+        with open(fpath_3b) as f:
+            data_3b = json.load(f)
+        domain_scores_3b = data_3b.get("domain_scores", {})
+
     colors = pu.COLORS
     fig, axes = plt.subplots(1, 2, figsize=(12, 5))
 
-    # (a) Direct LLM score by domain: Cleveland dot plot
+    # (a) Direct LLM score by domain: Cleveland dot plot (7B + 3B)
     ax = axes[0]
-    if domain_scores:
-        domains = sorted(domain_scores.keys(), key=lambda d: domain_scores[d])
-        scores = [domain_scores[d] for d in domains]
+    if domain_scores_7b:
+        domains = sorted(domain_scores_7b.keys(), key=lambda d: domain_scores_7b[d])
+        scores_7b = [domain_scores_7b[d] for d in domains]
         y = np.arange(len(domains))
 
-        ax.hlines(y, 0, scores, color="0.80", lw=1)
-        ax.plot(scores, y, "o", color=colors["primary"], markersize=8, zorder=5)
-        for yy, sc in zip(y, scores):
-            ax.text(sc + 0.03, yy, f"{sc:.3f}", va="center", fontsize=9)
+        ax.hlines(y, 0, [max(s7, domain_scores_3b.get(d, 0))
+                         for s7, d in zip(scores_7b, domains)],
+                  color="0.85", lw=1)
+        ax.plot(scores_7b, y, "o", color=colors["primary"], markersize=8,
+                zorder=5, label="Qwen2.5-7B")
+
+        if domain_scores_3b:
+            scores_3b = [domain_scores_3b.get(d, 0) for d in domains]
+            ax.plot(scores_3b, y, "s", color=colors["secondary"], markersize=7,
+                    zorder=5, label="Qwen2.5-3B")
+            for yy, s7, s3 in zip(y, scores_7b, scores_3b):
+                ax.text(max(s7, s3) + 0.03, yy,
+                        f"{s7:.3f} / {s3:.3f}", va="center", fontsize=8)
+        else:
+            for yy, sc in zip(y, scores_7b):
+                ax.text(sc + 0.03, yy, f"{sc:.3f}", va="center", fontsize=9)
 
         ax.set_yticks(y)
         ax.set_yticklabels(domains)
         ax.set_xlabel("Mean keyword match score")
         ax.set_xlim(0, 1.0)
         ax.set_title("(a) Direct LLM score by domain")
+        ax.legend(fontsize=8, frameon=False, loc="lower right")
         ax.grid(axis="y", visible=False)
 
     # (b) Direct vs RAG: slopegraph (paired comparison)
@@ -225,12 +259,24 @@ def plot_llm_qa():
             rag = [by_domain[d]["rag_mean"] for d in domains]
             domain_colors = [colors[i % len(colors)] for i in range(len(domains))]
 
+            # Sort right-side labels and add offsets to prevent overlap
+            right_labels = sorted(enumerate(zip(domains, rag)), key=lambda x: x[1][1])
+            right_offsets = {}
+            min_gap = 0.06
+            prev_y = -999
+            for idx, (d, rs) in right_labels:
+                y_pos = rs
+                if y_pos - prev_y < min_gap:
+                    y_pos = prev_y + min_gap
+                right_offsets[idx] = y_pos
+                prev_y = y_pos
+
             for i, (d, ds, rs, c) in enumerate(zip(domains, direct, rag, domain_colors)):
                 ax.plot([0, 1], [ds, rs], 'o-', color=c, linewidth=1.5,
                         markersize=7, zorder=3)
                 ax.text(-0.08, ds, f"{ds:.2f}", ha="right", va="center",
                         fontsize=8, color=c)
-                ax.text(1.08, rs, f"{rs:.2f} {d}", ha="left", va="center",
+                ax.text(1.08, right_offsets[i], f"{rs:.2f} {d}", ha="left", va="center",
                         fontsize=8, color=c)
 
             ax.set_xticks([0, 1])
@@ -241,9 +287,9 @@ def plot_llm_qa():
             ax.set_title("(b) Direct LLM vs RAG by domain")
             ax.grid(axis="x", visible=False)
 
-    fig.suptitle(f"LLM energy domain Q&A (Qwen2.5-7B, n = {n_q})",
-                fontsize=12, y=1.02)
-    fig.tight_layout()
+    fig.suptitle(f"LLM energy domain Q&A (n = {n_q})",
+                fontsize=12)
+    fig.tight_layout(rect=[0, 0, 1, 0.95])
     pu.save_figure(fig, "fig_llm_qa")
     print(f"Done: fig_llm_qa (source: {source})")
 
@@ -317,8 +363,8 @@ def plot_rag_comparison():
         ax.grid(axis="y", visible=False)
 
     fig.suptitle(f"RAG pipeline evaluation (n = {summary.get('n_questions', '?')})",
-                fontsize=12, y=1.02)
-    fig.tight_layout()
+                fontsize=12)
+    fig.tight_layout(rect=[0, 0, 1, 0.95])
     pu.save_figure(fig, "fig_rag_comparison")
     print("Done: fig_rag_comparison")
 
