@@ -26,26 +26,22 @@
 
 \begin{document}
 \begin{frontmatter}
-\title{Foundation Models for Clean Energy Systems: A Systematic Review and Deployment Framework}
+\title{Foundation Models for Clean Energy Systems: A Scoping Review and Deployment Framework}
 
 \author[ox]{Jianou Jiang\corref{cor1}}
 \ead{jianou.jiang@eng.ox.ac.uk}
-\author[ox2]{Claude}
-\ead{budimir.rosic@eng.ox.ac.uk}
 
 \cortext[cor1]{Corresponding author.}
 
 \affiliation[ox]{organization={Department of Engineering Science, University of Oxford},
   addressline={Parks Road}, city={Oxford}, postcode={OX1 3PJ}, country={United Kingdom}}
-\affiliation[ox2]{organization={Department of Engineering Science, University of Oxford},
-  addressline={Osney Mead, Botley}, city={Oxford}, postcode={OX2 0ES}, country={United Kingdom}}
 
 \begin{abstract}
 Foundation models---large-scale neural networks pre-trained on broad data and adaptable to diverse downstream tasks---have transformed natural language processing, computer vision, and scientific computing. Their application to clean energy systems, however, remains fragmented and lacks a unifying framework. This paper presents a comprehensive scoping review, guided by the PRISMA-ScR framework, that maps foundation model capabilities onto clean energy operations spanning hydropower, wind energy, solar photovoltaics, and ecological monitoring at energy infrastructure sites. Through structured searches of Web of Science, Scopus, IEEE Xplore, arXiv, and Google Scholar, we identify and synthesise 31 application studies on foundation models in clean energy, published between January 2019 and February 2026. A large-scale bibliometric analysis of 3{,}645 classified papers from OpenAlex reveals a regime shift in publication activity---counts were stable at ${\sim}$135/year during 2019--2022 before surging to 1{,}319 in 2025---geographic concentration in China and the USA, and critical reproducibility gaps (only 5.5\% of papers share code). We propose a structured taxonomy that cross-references five foundation model paradigms (large language models, vision-language models, time-series foundation models, diffusion models, and multimodal transformers) against seven clean energy task categories. Building on this taxonomy, we introduce the Clean Energy Foundation Model Deployment Framework (CEFMDF), a four-layer architecture---Perception, Reasoning, Decision, and Interface---that specifies how foundation models integrate with existing SCADA and EMS infrastructure. Five benchmark experiments---time-series forecasting with Chronos, zero-shot solar panel inspection with CLIP, LLM energy Q\&A, RAG pipeline evaluation, and a reproducibility audit---provide original quantitative evidence on FM capabilities and limitations for energy applications. This review provides energy engineers and policymakers with a data-driven roadmap for deploying foundation models in clean energy infrastructure.
 \end{abstract}
 
 \begin{keyword}
-foundation models \sep large language models \sep clean energy \sep hydropower \sep wind energy \sep solar energy \sep systematic review \sep deployment framework \sep ecological monitoring
+foundation models \sep large language models \sep clean energy \sep hydropower \sep wind energy \sep solar energy \sep scoping review \sep deployment framework \sep ecological monitoring
 \end{keyword}
 
 \end{frontmatter}
@@ -538,6 +534,21 @@ The Interface layer provides three operator-facing components: a \textit{natural
 \label{fig:cefmdf}
 \end{figure}
 
+\subsection{Case study sketch: hydropower turbine monitoring}
+\label{subsec:cefmdf_case_study}
+
+To ground the CEFMDF in a concrete operational scenario, we sketch how the framework would apply to vibration-based condition monitoring at a large hydropower plant (e.g., Three Gorges, 22.5~GW, 32 turbine-generator units).
+
+\textit{Perception layer.} Each unit produces SCADA vibration data (shaft displacement, bearing temperature, guide vane position) at 1\,Hz sampling rates, alongside maintenance logs in Chinese stored in the plant's document management system. The Perception layer ingests time-series data via the existing OPC-UA interface, segments it into patches for a TSFM, and indexes maintenance logs into a vector database using a multilingual embedding model (e.g., BGE-M3).
+
+\textit{Reasoning layer.} A time-series foundation model (e.g., Chronos or Moirai) runs zero-shot anomaly detection on vibration spectra, flagging deviations from learned temporal patterns without requiring labelled fault data from this specific plant. In parallel, a RAG-augmented LLM (Qwen2.5 with the indexed maintenance history) interprets flagged anomalies in the context of past incidents at the same unit.
+
+\textit{Decision layer.} When the TSFM flags a vibration anomaly with confidence above a configurable threshold (e.g., $>0.9$), and the RAG pipeline retrieves a similar past incident that required shutdown, the Decision layer generates a structured recommendation: priority level, affected unit, suggested action (inspection vs.\ immediate shutdown), and supporting evidence (retrieved maintenance records, anomaly score time series). Actions above severity level 3 require operator approval via the human-in-the-loop gateway.
+
+\textit{Interface layer.} The operator sees a natural-language summary in the control room dashboard: ``Unit 14 shaft displacement anomaly detected (confidence 0.94). Similar pattern preceded bearing replacement on Unit 14 in March 2024. Recommended action: schedule vibration inspection within 48 hours.'' The shift report is generated automatically.
+
+This sketch illustrates the practical value of the four-layer separation: the Perception layer handles data heterogeneity, the Reasoning layer provides FM inference without plant-specific training, the Decision layer enforces safety constraints, and the Interface layer makes outputs actionable for operators. A full implementation and validation study is needed to quantify the operational benefits and failure modes of this architecture.
+
 %%====================================================================
 %% SECTION 6: HYDROPOWER
 %%====================================================================
@@ -656,7 +667,7 @@ To move beyond qualitative assessment, we conducted five benchmark experiments t
 \subsection{Experiment 1: Time-series foundation model for load forecasting}
 \label{subsec:exp_ts}
 
-{\tolerance=400 We evaluated Chronos-T5-Small \cite{ansari2024chronos} (zero-shot) against default-parameter baselines on 24-hour ahead load forecasting using the UCI Household Electric Power dataset (34{,}168 hourly records, 7-day test set). Baselines include ARIMA(2,1,1), gradient boosting (sklearn, 100 estimators) with lag features, and a single-layer LSTM (32 hidden, 5 epochs on recent 3{,}000 hours). All baselines use default hyperparameters; the comparison demonstrates FM zero-shot capability rather than superiority over optimised baselines.\par}
+{\tolerance=400 We evaluated Chronos-T5-Small \cite{ansari2024chronos} (zero-shot) against deliberately minimal baselines on 24-hour ahead load forecasting using the UCI Household Electric Power dataset (34{,}168 hourly records, 7-day test set). Baselines include ARIMA(2,1,1), gradient boosting (sklearn, 100 estimators, default hyperparameters) with lag features, and a single-layer LSTM (32 hidden units, 5 epochs, trained on only the most recent 3{,}000 hours). These baselines were \textit{intentionally not optimised}: hyperparameters were not tuned, LSTM training was limited to 5 epochs on a small data subset, and ARIMA used interpolated windows for computational speed. The purpose is to test whether a zero-shot FM provides a useful out-of-the-box baseline---not to demonstrate superiority over well-tuned models, which would require extensive hyperparameter search, cross-validation, and longer test periods.\par}
 
 \begin{table}[H]
 \centering
@@ -675,7 +686,7 @@ LSTM (1-layer, 32 hidden) & 0.647 & 0.829 & 101.02 \\
 \end{tabular}
 \end{table}
 
-Chronos achieves the best MAE \textit{without any exposure to the target data}: 33\% below ARIMA, 11\% below gradient boosting. However, daily MAEs vary substantially (Chronos [0.234, 0.865] vs.\ gradient boosting [0.388, 0.668]), indicating higher day-to-day variability for the zero-shot model. Optimised baselines with longer test periods and rolling-window evaluation may narrow the gap, but the results demonstrate that pre-trained TSFMs provide strong zero-shot baselines (Figure~\ref{fig:ts_benchmark}).
+Chronos achieves the lowest mean MAE \textit{without any exposure to the target data}: 33\% below ARIMA, 11\% below gradient boosting. However, daily MAEs vary substantially (Chronos [0.234, 0.865] vs.\ gradient boosting [0.388, 0.668]), indicating that the zero-shot model is \textit{less reliable} despite its lower mean error---a practically important trade-off for deployment. Bootstrap 95\% CIs on MAE ($B = 1{,}000$, resampled over 7 daily predictions): Chronos $0.483 \pm 0.17$, gradient boosting $0.540 \pm 0.08$. The CIs overlap, meaning the difference is not statistically significant at $\alpha = 0.05$ on this small test set ($n = 7$ days). Optimised baselines with longer test periods, rolling-window evaluation, and hyperparameter tuning would likely narrow or close the gap. These results demonstrate that pre-trained TSFMs provide useful zero-shot baselines for rapid prototyping, but do not support claims of superiority over tuned alternatives (Figure~\ref{fig:ts_benchmark}).
 
 \begin{figure}[H]
 \centering
@@ -735,7 +746,7 @@ CLIP zero-shot exceeds the random baseline but a significant gap remains versus 
 \subsection{Experiment 4: RAG pipeline for energy documents}
 \label{subsec:exp_rag}
 
-{\tolerance=400 We built a RAG pipeline (24 curated passages, all-MiniLM-L6-v2 embeddings, FAISS index) and tested on 15 questions distinct from Experiment~2, achieving perfect recall@3. However, 7/15 direct-LLM and 3/15 RAG queries timed out (300\,s), confounding the raw comparison (0.616 vs.\ 0.260, +136.7\%). On the 8 paired non-timeout questions, RAG outperformed direct LLM: 0.804 vs.\ 0.488 (+64.9\%), with gains largest in domains underrepresented in pre-training data (ecological, grid) and absent for wind---confirming RAG is most valuable where parametric knowledge is weakest.\par}
+{\tolerance=400 We built a RAG pipeline (24 curated passages, all-MiniLM-L6-v2 embeddings, FAISS index) and tested on 15 questions distinct from Experiment~2, achieving perfect recall@3 on the small curated corpus (24 passages)---a trivially achievable result that does not demonstrate retrieval quality on realistic document collections. \textbf{Timeout caveat:} 7/15 direct-LLM and 3/15 RAG queries timed out (300\,s limit), leaving only $n = 8$ paired non-timeout observations for comparison. On these 8 questions, RAG outperformed direct LLM: 0.804 vs.\ 0.488 (+64.9\%). However, this result must be interpreted with caution given the very small sample size ($n = 8$), which precludes statistical significance testing and limits generalisability. Qualitatively, gains were largest in domains underrepresented in pre-training data (ecological, grid) and absent for wind, consistent with the hypothesis that RAG is most valuable where parametric knowledge is weakest. A larger-scale evaluation with more questions, longer timeouts, and diverse document corpora is needed to validate these preliminary findings.\par}
 
 \subsection{Experiment 5: Reproducibility audit}
 \label{subsec:exp_repro}
@@ -745,7 +756,7 @@ Section~\ref{subsec:biblio_reproducibility} reports the full reproducibility ana
 \subsection{Cross-experiment synthesis: deployment cost-performance}
 \label{subsec:cost_perf}
 
-{\tolerance=600 Figure~\ref{fig:pareto} presents a cost-performance Pareto frontier across all experiments (performance normalised to $[0,1]$, cost estimated from inference TFLOPS). Because performance metrics differ across task categories (1$-$nMAE for time-series, F1 for vision, keyword score for NLP), cross-category comparisons are approximate; the frontier is most meaningful within each category. Zero-shot FMs (Chronos, CLIP, Qwen2.5) cluster in the moderate-cost, high-performance quadrant, while RAG provides the largest relative improvement (+64.9\% on paired non-timeout questions) at minimal additional cost. The pragmatic deployment recommendation: start with zero-shot FM baselines, add RAG for knowledge-intensive tasks, and reserve supervised fine-tuning for safety-critical applications.\par}
+{\tolerance=600 Figure~\ref{fig:pareto} presents a cost-performance Pareto frontier across all experiments (performance normalised to $[0,1]$, cost estimated from inference TFLOPS). Because performance metrics differ across task categories (1$-$nMAE for time-series, F1 for vision, keyword score for NLP), cross-category comparisons are approximate; the frontier is most meaningful within each category. Zero-shot FMs (Chronos, CLIP, Qwen2.5) cluster in the moderate-cost, high-performance quadrant, while RAG shows promise (+64.9\% on $n=8$ paired non-timeout questions, pending validation at larger scale) at minimal additional cost. The pragmatic deployment recommendation: start with zero-shot FM baselines, add RAG for knowledge-intensive tasks, and reserve supervised fine-tuning for safety-critical applications.\par}
 
 \begin{figure}[htbp]
 \centering
@@ -839,7 +850,7 @@ This paper combines a qualitative scoping review (31 application studies) with l
 
 The bibliometric analysis reveals a field undergoing a regime shift: publication counts were stable at ${\sim}$135/year from 2019 to 2022 before surging tenfold by 2025, coinciding with the public release of ChatGPT. The field is dominated by LLM-related work (57.9\% of classified papers) and geographically concentrated in China and the USA (43\% combined). Reproducibility remains critically low: only 5.5\% of papers mention open code, and none of the 50 most-cited papers appear on Papers With Code.
 
-{\tolerance=600 Our benchmark experiments confirm that TSFMs (Chronos) achieve competitive zero-shot forecasting against default-parameter baselines, VLMs (CLIP) enable zero-shot solar panel inspection, and RAG improves LLM energy Q\&A scores (+64.9\% on paired non-timeout questions). Across the literature, TSFMs achieve forecasting accuracy within 5--20\% of site-specific baselines (Table~\ref{tab:performance_summary}) with dramatically reduced data requirements.\par}
+{\tolerance=600 Our benchmark experiments demonstrate that TSFMs (Chronos) achieve competitive zero-shot forecasting against intentionally minimal baselines (though the difference is not statistically significant on the 7-day test set), VLMs (CLIP) enable zero-shot solar panel inspection at 62.3\% accuracy (12.3 percentage points above chance), and RAG shows preliminary evidence of improving LLM energy Q\&A scores (+64.9\% on $n=8$ paired non-timeout questions, though the small sample precludes robust conclusions). Across the literature, TSFMs achieve forecasting accuracy within 5--20\% of site-specific baselines (Table~\ref{tab:performance_summary}) with dramatically reduced data requirements.\par}
 
 The taxonomy reveals critical gaps: anomaly narration, multimodal integration, and agent-based planning remain underexplored. The CEFMDF addresses the deployment ``how'' through a four-layer architecture (Perception--Reasoning--Decision--Interface) with explicit design principles for incremental adoption by energy utilities.
 
@@ -855,8 +866,10 @@ All bibliometric data, classification results, benchmark code, and figure genera
 The authors declare that they have no known competing financial interests or personal relationships that could have appeared to influence the work reported in this paper.
 
 \section*{CRediT authorship contribution statement}
-\textbf{Jianou Jiang}: Conceptualization, Methodology, Investigation, Data curation, Writing -- original draft, Visualization.
-\textbf{Claude}: Supervision, Validation, Writing -- review \& editing.
+\textbf{Jianou Jiang}: Conceptualization, Methodology, Investigation, Data curation, Writing -- original draft, Visualization, Writing -- review \& editing.
+
+\section*{AI tools disclosure}
+This paper was produced with the assistance of Claude (Anthropic, Claude Opus 4) as a research and writing aid. Claude was used for literature synthesis, code generation, figure scripting, and manuscript drafting under continuous human direction and review. All scientific claims, methodological decisions, and editorial judgements are the sole responsibility of the human author. Full AI session logs are available in the supplementary repository (\texttt{process-log/ai-sessions/}).
 
 %%====================================================================
 %% APPENDIX: PRISMA-ScR Checklist

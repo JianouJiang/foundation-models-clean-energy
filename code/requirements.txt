@@ -4,3 +4,13 @@ matplotlib
 seaborn
 scipy
 requests
+
+# --- Additional packages for benchmark experiments ---
+# These are required to re-run experiments from scratch (not needed for reproduce.sh)
+# torch>=2.0.0
+# chronos-forecasting
+# open-clip-torch
+# sentence-transformers
+# faiss-cpu
+# scikit-learn
+# statsmodels
